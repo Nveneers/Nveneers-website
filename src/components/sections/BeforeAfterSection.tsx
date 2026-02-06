@@ -8,13 +8,21 @@ type BeforeAfterSectionProps = {
   cases: BeforeAfterCase[];
   filters: string[];
   disclaimer: string;
+  labels: {
+    eyebrow: string;
+    headline: string;
+    compareAriaLabel: string;
+    beforeLabel: string;
+    afterLabel: string;
+  };
 };
 
 // Gallery with filter chips and image compare sliders.
 export default function BeforeAfterSection({
   cases,
   filters,
-  disclaimer
+  disclaimer,
+  labels
 }: BeforeAfterSectionProps) {
   const [activeFilter, setActiveFilter] = useState(filters[0]);
 
@@ -29,9 +37,9 @@ export default function BeforeAfterSection({
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
-              Before and After
+              {labels.eyebrow}
             </p>
-            <h2 className="section-title mt-4">Real cases, refined outcomes</h2>
+            <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
           <div className="flex flex-wrap gap-2">
             {filters.map((filter) => {
@@ -65,8 +73,9 @@ export default function BeforeAfterSection({
                 <ImageCompare
                   beforeSrc={item.beforeImage}
                   afterSrc={item.afterImage}
-                  beforeAlt={`${item.title} before`}
-                  afterAlt={`${item.title} after`}
+                  beforeAlt={`${item.title} ${labels.beforeLabel}`}
+                  afterAlt={`${item.title} ${labels.afterLabel}`}
+                  labels={labels}
                 />
               </div>
             </div>

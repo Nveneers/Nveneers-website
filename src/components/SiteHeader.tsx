@@ -5,13 +5,15 @@ type SiteHeaderProps = {
   navigation: { label: string; href: string }[];
   cta: { label: string; href: string };
   brand: { name: string; logoFull: string; logoAlt: string };
+  languageToggle: { label: string; href: string; ariaLabel: string };
 };
 
 // Desktop sticky header with primary CTA.
 export default function SiteHeader({
   navigation,
   cta,
-  brand
+  brand,
+  languageToggle
 }: SiteHeaderProps) {
   return (
     <header className="sticky top-0 z-40 hidden overflow-visible border-b border-brand-teal/10 bg-white/95 backdrop-blur md:block">
@@ -41,9 +43,18 @@ export default function SiteHeader({
             </Link>
           ))}
         </nav>
-        <Link href={cta.href} className="btn-primary">
-          {cta.label}
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href={languageToggle.href}
+            className="btn-secondary px-4 py-2 text-xs"
+            aria-label={languageToggle.ariaLabel}
+          >
+            {languageToggle.label}
+          </Link>
+          <Link href={cta.href} className="btn-primary">
+            {cta.label}
+          </Link>
+        </div>
       </div>
     </header>
   );

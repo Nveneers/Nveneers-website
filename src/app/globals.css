@@ -22,6 +22,15 @@ body {
   color: #0b1c22;
 }
 
+.locale-ltr {
+  direction: ltr;
+}
+
+.locale-rtl {
+  direction: rtl;
+  font-family: var(--font-arabic), sans-serif;
+}
+
 @layer components {
   .section {
     @apply py-20;

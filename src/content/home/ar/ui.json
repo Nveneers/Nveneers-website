@@ -1,0 +1,51 @@
+﻿{
+  "header": {
+    "languageSwitchLabel": "English",
+    "languageSwitchAriaLabel": "التبديل إلى الإنجليزية",
+    "languageSwitchLocale": "en"
+  },
+  "socialProof": {
+    "eyebrow": "رضا المرضى"
+  },
+  "eligibility": {
+    "goodFitTitle": "مناسب",
+    "notIdealTitle": "غير مناسب"
+  },
+  "process": {
+    "eyebrow": "الخطوات",
+    "headline": "ثلاث خطوات بإشراف سريري",
+    "stepLabel": "الخطوة",
+    "visitsTitle": "الزيارات المعتادة",
+    "closingQuestion": "هل أنت جاهز لخطة مخصصة؟"
+  },
+  "beforeAfter": {
+    "eyebrow": "قبل وبعد",
+    "headline": "حالات حقيقية ونتائج محسّنة",
+    "compareAriaLabel": "قارن بين قبل وبعد",
+    "beforeLabel": "قبل",
+    "afterLabel": "بعد"
+  },
+  "videos": {
+    "eyebrow": "أدلة بالفيديو",
+    "headline": "مقاطع قصيرة ونتائج حقيقية",
+    "hint": "اضغط على مقطع للمشاهدة.",
+    "playLabel": "تشغيل",
+    "closeLabel": "إغلاق",
+    "durationLabel": "المدة"
+  },
+  "assessment": {
+    "uploadLabel": "ارفع صورة واضحة لابتسامتك",
+    "submitLabel": "إرسال للتقييم"
+  },
+  "faq": {
+    "eyebrow": "الأسئلة الشائعة",
+    "headline": "أسئلة شائعة",
+    "lead": "إجابات واضحة لتتخذ قرارك بثقة."
+  },
+  "contact": {
+    "eyebrow": "الخطوة الأخيرة",
+    "phoneLabel": "الهاتف",
+    "emailLabel": "البريد الإلكتروني",
+    "hoursLabel": "ساعات العمل"
+  }
+}

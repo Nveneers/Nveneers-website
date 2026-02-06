@@ -1,0 +1,17 @@
+﻿{
+  "goodFit": [
+    "Small gaps or minor spacing",
+    "Worn or uneven edges",
+    "Mild rotation or alignment concerns",
+    "Teeth with healthy enamel",
+    "Patients seeking a conservative approach"
+  ],
+  "notIdeal": [
+    "Severe crowding or bite issues",
+    "Active gum disease or decay",
+    "Very dark underlying tooth shade",
+    "Heavy grinding without protection",
+    "Minimal enamel remaining"
+  ],
+  "note": "Final eligibility after clinical exam."
+}

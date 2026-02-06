@@ -1,0 +1,51 @@
+﻿{
+  "header": {
+    "languageSwitchLabel": "العربية",
+    "languageSwitchAriaLabel": "Switch to Arabic",
+    "languageSwitchLocale": "ar"
+  },
+  "socialProof": {
+    "eyebrow": "Patient Satisfaction"
+  },
+  "eligibility": {
+    "goodFitTitle": "Good fit",
+    "notIdealTitle": "Not ideal"
+  },
+  "process": {
+    "eyebrow": "The Process",
+    "headline": "Three steps, clinically guided",
+    "stepLabel": "Step",
+    "visitsTitle": "Typical visits",
+    "closingQuestion": "Ready for a personalized plan?"
+  },
+  "beforeAfter": {
+    "eyebrow": "Before and After",
+    "headline": "Real cases, refined outcomes",
+    "compareAriaLabel": "Compare before and after",
+    "beforeLabel": "Before",
+    "afterLabel": "After"
+  },
+  "videos": {
+    "eyebrow": "Video Proof",
+    "headline": "Short reels, real outcomes",
+    "hint": "Tap a reel to watch.",
+    "playLabel": "Play",
+    "closeLabel": "Close",
+    "durationLabel": "Duration"
+  },
+  "assessment": {
+    "uploadLabel": "Upload a clear smile photo",
+    "submitLabel": "Submit for assessment"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "headline": "Common questions",
+    "lead": "Clear answers so you can decide with confidence."
+  },
+  "contact": {
+    "eyebrow": "Final Step",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "hoursLabel": "Hours"
+  }
+}

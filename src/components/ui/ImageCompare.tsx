@@ -8,6 +8,11 @@ type ImageCompareProps = {
   afterSrc: string;
   beforeAlt: string;
   afterAlt: string;
+  labels: {
+    compareAriaLabel: string;
+    beforeLabel: string;
+    afterLabel: string;
+  };
 };
 
 // Accessible image compare slider with draggable handle.
@@ -15,7 +20,8 @@ export default function ImageCompare({
   beforeSrc,
   afterSrc,
   beforeAlt,
-  afterAlt
+  afterAlt,
+  labels
 }: ImageCompareProps) {
   const sliderId = useId();
   const [position, setPosition] = useState(50);
@@ -50,7 +56,7 @@ export default function ImageCompare({
           max={100}
           value={position}
           onChange={(event) => setPosition(Number(event.target.value))}
-          aria-label="Compare before and after"
+          aria-label={labels.compareAriaLabel}
           className="peer absolute inset-0 z-10 h-full w-full cursor-ew-resize opacity-0"
         />
         <div
@@ -65,10 +71,10 @@ export default function ImageCompare({
           </div>
         </div>
         <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-teal">
-          Before
+          {labels.beforeLabel}
         </div>
         <div className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-teal">
-          After
+          {labels.afterLabel}
         </div>
       </div>
     </div>

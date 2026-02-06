@@ -5,11 +5,16 @@ type AssessmentToolPlaceholderSectionProps = {
     body: string;
     disclaimer: string;
   };
+  labels: {
+    uploadLabel: string;
+    submitLabel: string;
+  };
 };
 
 // Placeholder assessment tool with disabled form inputs.
 export default function AssessmentToolPlaceholderSection({
-  content
+  content,
+  labels
 }: AssessmentToolPlaceholderSectionProps) {
   return (
     <section id="assessment" className="section scroll-mt-24 bg-white">
@@ -22,7 +27,7 @@ export default function AssessmentToolPlaceholderSection({
           <p className="section-lead">{content.body}</p>
           <div className="mt-8 space-y-4">
             <label className="block text-sm font-semibold text-brand-teal">
-              Upload a clear smile photo
+              {labels.uploadLabel}
             </label>
             <input
               type="file"
@@ -34,7 +39,7 @@ export default function AssessmentToolPlaceholderSection({
               disabled
               className="btn-primary w-full cursor-not-allowed opacity-60"
             >
-              Submit for assessment
+              {labels.submitLabel}
             </button>
             <p className="text-xs text-brand-teal/70">{content.disclaimer}</p>
           </div>

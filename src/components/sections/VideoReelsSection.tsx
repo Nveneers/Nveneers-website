@@ -7,10 +7,21 @@ import type { VideoItem } from "@/content/home";
 
 type VideoReelsSectionProps = {
   videos: VideoItem[];
+  labels: {
+    eyebrow: string;
+    headline: string;
+    hint: string;
+    playLabel: string;
+    closeLabel: string;
+    durationLabel: string;
+  };
 };
 
 // Reels-style video proof grid with modal playback.
-export default function VideoReelsSection({ videos }: VideoReelsSectionProps) {
+export default function VideoReelsSection({
+  videos,
+  labels
+}: VideoReelsSectionProps) {
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
 
   return (
@@ -19,12 +30,12 @@ export default function VideoReelsSection({ videos }: VideoReelsSectionProps) {
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
-              Video Proof
+              {labels.eyebrow}
             </p>
-            <h2 className="section-title mt-4">Short reels, real outcomes</h2>
+            <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
           <p className="text-sm text-brand-teal/70">
-            Tap a reel to watch.
+            {labels.hint}
           </p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -33,8 +44,8 @@ export default function VideoReelsSection({ videos }: VideoReelsSectionProps) {
               key={video.id}
               type="button"
               onClick={() => setActiveVideo(video)}
-              aria-label={`Play ${video.title}`}
-              className="group relative overflow-hidden rounded-3xl border border-brand-teal/10 bg-white text-left"
+              aria-label={`${labels.playLabel} ${video.title}`}
+              className="group relative overflow-hidden rounded-3xl border border-brand-teal/10 bg-white text-start"
             >
               <div className="relative aspect-[9/16]">
                 <Image
@@ -47,7 +58,7 @@ export default function VideoReelsSection({ videos }: VideoReelsSectionProps) {
                 <div className="absolute inset-0 bg-brand-teal/10" />
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold bg-white text-xs font-semibold text-brand-teal">
-                    Play
+                    {labels.playLabel}
                   </span>
                 </div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -65,6 +76,10 @@ export default function VideoReelsSection({ videos }: VideoReelsSectionProps) {
         open={Boolean(activeVideo)}
         video={activeVideo}
         onClose={() => setActiveVideo(null)}
+        labels={{
+          closeLabel: labels.closeLabel,
+          durationLabel: labels.durationLabel
+        }}
       />
     </section>
   );

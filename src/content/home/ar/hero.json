@@ -1,0 +1,9 @@
+﻿{
+  "eyebrow": "فينير بدون تحضير",
+  "headline": "فينير بدون تحضير، مصمم بدقة",
+  "subheadline": "قشور خزفية فائقة الرقة مصممة لتوازن الضوء والشكل والانسجام الطبيعي. تعديل محدود عندما يكون مناسبًا سريريًا.",
+  "primaryCta": { "label": "احصل على تقييم", "href": "#assessment" },
+  "secondaryCta": { "label": "شاهد الحالات الواقعية", "href": "#cases" },
+  "videoSrc": "/videos/hero.mp4",
+  "videoPoster": "/images/hero-poster.svg"
+}

@@ -7,10 +7,19 @@ type VideoModalProps = {
   open: boolean;
   video: VideoItem | null;
   onClose: () => void;
+  labels: {
+    closeLabel: string;
+    durationLabel: string;
+  };
 };
 
 // Modal video player with focus trap and escape key close.
-export default function VideoModal({ open, video, onClose }: VideoModalProps) {
+export default function VideoModal({
+  open,
+  video,
+  onClose,
+  labels
+}: VideoModalProps) {
   const modalRef = useRef<HTMLDivElement | null>(null);
   const lastFocusedRef = useRef<HTMLElement | null>(null);
 
@@ -94,7 +103,7 @@ export default function VideoModal({ open, video, onClose }: VideoModalProps) {
           onClick={onClose}
           className="absolute right-4 top-4 z-10 rounded-full border border-brand-teal/20 bg-white px-3 py-2 text-xs font-semibold text-brand-teal"
         >
-          Close
+          {labels.closeLabel}
         </button>
         <div className="relative aspect-video bg-black">
           <video
@@ -110,7 +119,7 @@ export default function VideoModal({ open, video, onClose }: VideoModalProps) {
         <div className="p-6">
           <p className="text-sm font-semibold text-brand-teal">{video.title}</p>
           <p className="text-xs text-brand-teal/60">
-            Duration {video.duration}
+            {labels.durationLabel} {video.duration}
           </p>
         </div>
       </div>

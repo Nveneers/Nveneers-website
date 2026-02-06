@@ -24,7 +24,7 @@ export default function Accordion({ items }: AccordionProps) {
           <div key={item.question} className="card overflow-hidden">
             <button
               type="button"
-              className="flex w-full items-center justify-between px-6 py-5 text-left text-sm font-semibold text-brand-teal"
+              className="flex w-full items-center justify-between px-6 py-5 text-start text-sm font-semibold text-brand-teal"
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex(isOpen ? null : index)}

@@ -3,12 +3,14 @@ import type { Testimonial } from "@/content/home";
 type SocialProofStripProps = {
   rating: { rating: string; count: string; note: string };
   testimonials: Testimonial[];
+  eyebrow: string;
 };
 
 // Social proof strip with rating summary and testimonials.
 export default function SocialProofStrip({
   rating,
-  testimonials
+  testimonials,
+  eyebrow
 }: SocialProofStripProps) {
   return (
     <section className="section">
@@ -16,7 +18,7 @@ export default function SocialProofStrip({
         <div className="flex flex-wrap items-center justify-between gap-6 border-y border-brand-teal/10 py-6">
           <div>
             <p className="text-sm uppercase tracking-[0.2em] text-brand-teal/70">
-              Patient Satisfaction
+              {eyebrow}
             </p>
             <div className="mt-3 flex items-center gap-3 text-brand-teal">
               <div className="flex items-center gap-1">

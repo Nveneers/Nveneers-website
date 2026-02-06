@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 
 // Add your licensed Subjectivity Serif file at public/fonts/subjectivity.regular.otf.
@@ -12,6 +13,13 @@ const subjectivity = localFont({
     }
   ],
   variable: "--font-subjectivity",
+  display: "swap"
+});
+
+const cairo = Cairo({
+  subsets: ["arabic"],
+  weight: ["400", "600", "700"],
+  variable: "--font-arabic",
   display: "swap"
 });
 
@@ -34,7 +42,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${subjectivity.variable} font-brand antialiased`}>
+      <body
+        className={`${subjectivity.variable} ${cairo.variable} font-brand antialiased`}
+      >
         {children}
       </body>
     </html>

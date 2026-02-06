@@ -8,12 +8,20 @@ type ProcessTimelineSectionProps = {
     visits: string[];
     cta: { label: string; href: string };
   };
+  labels: {
+    eyebrow: string;
+    headline: string;
+    stepLabel: string;
+    visitsTitle: string;
+    closingQuestion: string;
+  };
 };
 
 // Three-step process with timeline placeholders and CTA.
 export default function ProcessTimelineSection({
   steps,
-  process
+  process,
+  labels
 }: ProcessTimelineSectionProps) {
   return (
     <section id="process" className="section scroll-mt-24 bg-white">
@@ -21,9 +29,9 @@ export default function ProcessTimelineSection({
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
-              The Process
+              {labels.eyebrow}
             </p>
-            <h2 className="section-title mt-4">Three steps, clinically guided</h2>
+            <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
           <p className="text-sm text-brand-teal/70">{process.timeline}</p>
         </div>
@@ -31,7 +39,7 @@ export default function ProcessTimelineSection({
           {steps.map((step, index) => (
             <div key={step.title} className="card p-6">
               <p className="text-xs uppercase tracking-[0.2em] text-brand-teal/60">
-                Step {index + 1}
+                {labels.stepLabel} {index + 1}
               </p>
               <h3 className="mt-4 text-lg font-semibold text-brand-teal">
                 {step.title}
@@ -42,7 +50,7 @@ export default function ProcessTimelineSection({
         </div>
         <div className="mt-10 card p-6">
           <p className="text-sm font-semibold text-brand-teal">
-            Typical visits
+            {labels.visitsTitle}
           </p>
           <ul className="mt-4 space-y-2 text-sm text-slate-700">
             {process.visits.map((visit) => (
@@ -55,7 +63,7 @@ export default function ProcessTimelineSection({
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-brand-teal/10 pt-6">
           <p className="text-sm text-brand-teal/70">
-            Ready for a personalized plan?
+            {labels.closingQuestion}
           </p>
           <Link href={process.cta.href} className="btn-primary">
             {process.cta.label}

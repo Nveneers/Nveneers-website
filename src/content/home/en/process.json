@@ -1,0 +1,9 @@
+﻿{
+  "timeline": "Typical timeline: 2 to 4 weeks, 2 to 3 visits.",
+  "visits": [
+    "Visit 1: consultation, scan, and smile design",
+    "Visit 2: try-in or mockup approval",
+    "Visit 3: final bonding and finishing"
+  ],
+  "cta": { "label": "Schedule a consult", "href": "#contact" }
+}

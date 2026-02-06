@@ -1,10 +1,12 @@
 import {
-  homeContent,
+  getHomeContent,
   type ContactContent,
-  type HeroContent
+  type HeroContent,
+  type Locale
 } from "@/content/home";
 import SiteHeader from "@/components/SiteHeader";
 import MobileActionBar from "@/components/MobileActionBar";
+import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import SocialProofStrip from "@/components/sections/SocialProofStrip";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
@@ -17,7 +19,12 @@ import FAQSection from "@/components/sections/FAQSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 // Homepage composition with all sections in the required order.
-export default function Homepage() {
+type HomepageProps = {
+  locale: Locale;
+};
+
+export default function Homepage({ locale }: HomepageProps) {
+  const homeContent = getHomeContent(locale);
   const {
     hero,
     brand,
@@ -34,30 +41,63 @@ export default function Homepage() {
     assessment,
     faqs,
     contact,
-    navigation
+    navigation,
+    ui
   } = homeContent;
+  const direction = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <div className="bg-white">
-      <SiteHeader navigation={navigation} cta={hero.primaryCta} brand={brand} />
+    <div
+      className={`bg-white ${direction === "rtl" ? "locale-rtl" : "locale-ltr"}`}
+      dir={direction}
+      lang={locale}
+      data-locale={locale}
+    >
+      <LanguageDocument locale={locale} />
+      <SiteHeader
+        navigation={navigation}
+        cta={hero.primaryCta}
+        brand={brand}
+        languageToggle={{
+          label: ui.header.languageSwitchLabel,
+          ariaLabel: ui.header.languageSwitchAriaLabel,
+          href: `/${ui.header.languageSwitchLocale}`
+        }}
+      />
       <main className="pb-24 md:pb-0">
         <HeroVideoSection content={hero as HeroContent} />
         <SocialProofStrip
           rating={socialProof}
           testimonials={testimonials}
+          eyebrow={ui.socialProof.eyebrow}
         />
         <ProductSplitSection content={product} />
-        <WhoIsThisForSection content={eligibility} />
-        <ProcessTimelineSection steps={steps} process={process} />
+        <WhoIsThisForSection
+          content={eligibility}
+          labels={ui.eligibility}
+        />
+        <ProcessTimelineSection
+          steps={steps}
+          process={process}
+          labels={ui.process}
+        />
         <BeforeAfterSection
           cases={beforeAfterCases}
           filters={beforeAfterFilters}
           disclaimer={galleryDisclaimer}
+          labels={ui.beforeAfter}
         />
-        <VideoReelsSection videos={videos} />
-        <AssessmentToolPlaceholderSection content={assessment} />
-        <FAQSection items={faqs} />
-        <ContactSection content={contact as ContactContent} />
+        <VideoReelsSection videos={videos} labels={ui.videos} />
+        <AssessmentToolPlaceholderSection
+          content={assessment}
+          labels={ui.assessment}
+        />
+        <FAQSection items={faqs} labels={ui.faq} />
+        <ContactSection
+          content={contact as ContactContent}
+          cta={hero.primaryCta}
+          labels={ui.contact}
+        />
       </main>
       <MobileActionBar
         whatsapp={contact.whatsapp}
