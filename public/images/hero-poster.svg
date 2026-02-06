@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="heroGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#003b4f" />
+      <stop offset="100%" stop-color="#0b1c22" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#heroGradient)" />
+  <rect x="80" y="80" width="1440" height="740" fill="#ffffff" opacity="0.08" />
+  <text x="50%" y="48%" text-anchor="middle" fill="#cda349" font-size="52" font-family="serif">
+    Non Prep Veneers
+  </text>
+  <text x="50%" y="56%" text-anchor="middle" fill="#ffffff" font-size="22" font-family="serif" opacity="0.8">
+    Hero video placeholder
+  </text>
+</svg>

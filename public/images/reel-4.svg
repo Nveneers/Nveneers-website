@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280">
+  <rect width="720" height="1280" fill="#0b1c22" />
+  <rect x="50" y="60" width="620" height="1160" fill="#ffffff" opacity="0.08" />
+  <text x="50%" y="50%" text-anchor="middle" fill="#cda349" font-size="36" font-family="serif">
+    Reel 04
+  </text>
+  <text x="50%" y="57%" text-anchor="middle" fill="#ffffff" font-size="18" font-family="serif" opacity="0.8">
+    Final polish
+  </text>
+</svg>
