@@ -14,8 +14,8 @@ export default function SiteHeader({
   brand
 }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 hidden border-b border-brand-teal/10 bg-white/95 backdrop-blur md:block">
-      <div className="container flex h-[6.5rem] items-center justify-between">
+    <header className="sticky top-0 z-40 hidden overflow-visible border-b border-brand-teal/10 bg-white/95 backdrop-blur md:block">
+      <div className="container flex h-16 items-center justify-between overflow-visible">
         <Link
           href="/"
           className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-teal"
@@ -26,7 +26,7 @@ export default function SiteHeader({
             alt={brand.logoAlt}
             width={1280}
             height={320}
-            className="h-24 w-auto md:h-28"
+            className="h-50 w-auto md:h-[11rem]"
             priority
           />
         </Link>
