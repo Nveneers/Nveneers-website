@@ -48,7 +48,7 @@ export default function ContactSection({
               </a>
             </div>
           </div>
-          <div className="card p-8">
+          <div className="card p-6 sm:p-8">
             <div className="space-y-4 text-sm text-slate-700">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-brand-teal/60">

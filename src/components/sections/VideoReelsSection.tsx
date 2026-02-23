@@ -73,25 +73,25 @@ export default function VideoReelsSection({
   return (
     <section id="videos" className="section scroll-mt-24 bg-white">
       <div className="container">
-        <div className="flex items-end justify-between gap-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
               {labels.eyebrow}
             </p>
             <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
-          <p className="text-sm text-brand-teal/70">
+          <p className="text-sm text-brand-teal/70 sm:text-right">
             {labels.hint}
           </p>
         </div>
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-4">
           {videos.map((video) => {
             const isPlaying = playingId === video.id;
 
             return (
               <div
                 key={video.id}
-                className="group relative overflow-hidden rounded-3xl border border-brand-teal/10 bg-white text-start"
+                className="group relative min-w-[14rem] snap-start overflow-hidden rounded-3xl border border-brand-teal/10 bg-white text-start md:min-w-0"
               >
                 <div className="relative aspect-[9/16]">
                   <video

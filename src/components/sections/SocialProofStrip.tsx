@@ -40,9 +40,12 @@ export default function SocialProofStrip({
           </div>
           <p className="text-sm text-brand-teal/70">{rating.note}</p>
         </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
           {testimonials.map((item) => (
-            <div key={item.name} className="card p-6">
+            <div
+              key={item.name}
+              className="card min-w-[16.5rem] snap-start p-6 md:min-w-0"
+            >
               <p className="text-base text-slate-700">"{item.quote}"</p>
               <p className="mt-4 text-sm font-semibold text-brand-teal">
                 {item.name}

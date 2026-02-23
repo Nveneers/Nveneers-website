@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { HeroContent } from "@/content/home";
 
@@ -8,13 +9,23 @@ type HeroVideoSectionProps = {
 // Full-viewport hero with video background and primary CTAs.
 export default function HeroVideoSection({ content }: HeroVideoSectionProps) {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
+    <section className="relative flex min-h-[85svh] items-center overflow-hidden sm:min-h-[90svh] md:min-h-screen">
+      <Image
+        src={content.videoPoster}
+        alt=""
+        fill
+        sizes="100vw"
+        priority
+        className="absolute inset-0 h-full w-full object-cover md:hidden"
+        aria-hidden="true"
+      />
       <video
-        className="absolute inset-0 h-full w-full object-cover"
+        className="absolute inset-0 hidden h-full w-full object-cover md:block"
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         poster={content.videoPoster}
         aria-hidden="true"
       >

@@ -5,6 +5,7 @@ import {
   type Locale
 } from "@/content/home";
 import SiteHeader from "@/components/SiteHeader";
+import MobileHeader from "@/components/MobileHeader";
 import MobileActionBar from "@/components/MobileActionBar";
 import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
@@ -54,6 +55,17 @@ export default function Homepage({ locale }: HomepageProps) {
       data-locale={locale}
     >
       <LanguageDocument locale={locale} />
+      <MobileHeader
+        locale={locale}
+        navigation={navigation}
+        cta={hero.primaryCta}
+        brand={brand}
+        languageToggle={{
+          label: ui.header.languageSwitchLabel,
+          ariaLabel: ui.header.languageSwitchAriaLabel,
+          href: `/${ui.header.languageSwitchLocale}`
+        }}
+      />
       <SiteHeader
         navigation={navigation}
         cta={hero.primaryCta}
@@ -64,7 +76,7 @@ export default function Homepage({ locale }: HomepageProps) {
           href: `/${ui.header.languageSwitchLocale}`
         }}
       />
-      <main className="pb-24 md:pb-0">
+      <main className="pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
         <HeroVideoSection content={hero as HeroContent} />
         <SocialProofStrip
           rating={socialProof}

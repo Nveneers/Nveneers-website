@@ -26,14 +26,16 @@ export default function ProcessTimelineSection({
   return (
     <section id="process" className="section scroll-mt-24 bg-white">
       <div className="container">
-        <div className="flex items-end justify-between gap-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
               {labels.eyebrow}
             </p>
             <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
-          <p className="text-sm text-brand-teal/70">{process.timeline}</p>
+          <p className="text-sm text-brand-teal/70 sm:text-right">
+            {process.timeline}
+          </p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {steps.map((step, index) => (

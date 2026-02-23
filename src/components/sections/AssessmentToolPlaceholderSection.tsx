@@ -19,7 +19,7 @@ export default function AssessmentToolPlaceholderSection({
   return (
     <section id="assessment" className="section scroll-mt-24 bg-white">
       <div className="container">
-        <div className="card mx-auto max-w-3xl p-10">
+        <div className="card mx-auto max-w-3xl p-6 sm:p-10">
           <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
             {content.eyebrow}
           </p>
