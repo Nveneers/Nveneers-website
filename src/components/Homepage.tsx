@@ -9,14 +9,14 @@ import MobileHeader from "@/components/MobileHeader";
 import MobileActionBar from "@/components/MobileActionBar";
 import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
-import SocialProofStrip from "@/components/sections/SocialProofStrip";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
+import AssessmentToolPlaceholderSection from "@/components/sections/AssessmentToolPlaceholderSection";
 import WhoIsThisForSection from "@/components/sections/WhoIsThisForSection";
 import ProcessTimelineSection from "@/components/sections/ProcessTimelineSection";
 import BeforeAfterSection from "@/components/sections/BeforeAfterSection";
 import VideoReelsSection from "@/components/sections/VideoReelsSection";
-import AssessmentToolPlaceholderSection from "@/components/sections/AssessmentToolPlaceholderSection";
 import FAQSection from "@/components/sections/FAQSection";
+import SocialProofStrip from "@/components/sections/SocialProofStrip";
 import ContactSection from "@/components/sections/ContactSection";
 
 // Homepage composition with all sections in the required order.
@@ -77,13 +77,12 @@ export default function Homepage({ locale }: HomepageProps) {
         }}
       />
       <main className="pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
-        <HeroVideoSection content={hero as HeroContent} />
-        <SocialProofStrip
-          rating={socialProof}
-          testimonials={testimonials}
-          eyebrow={ui.socialProof.eyebrow}
-        />
+        <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
         <ProductSplitSection content={product} />
+        <AssessmentToolPlaceholderSection
+          content={assessment}
+          labels={ui.assessment}
+        />
         <WhoIsThisForSection
           content={eligibility}
           labels={ui.eligibility}
@@ -100,11 +99,12 @@ export default function Homepage({ locale }: HomepageProps) {
           labels={ui.beforeAfter}
         />
         <VideoReelsSection videos={videos} labels={ui.videos} />
-        <AssessmentToolPlaceholderSection
-          content={assessment}
-          labels={ui.assessment}
-        />
         <FAQSection items={faqs} labels={ui.faq} />
+        <SocialProofStrip
+          rating={socialProof}
+          testimonials={testimonials}
+          eyebrow={ui.socialProof.eyebrow}
+        />
         <ContactSection
           content={contact as ContactContent}
           cta={hero.primaryCta}

@@ -25,14 +25,14 @@ Pages
 
 Section order
 1. Hero video section
-2. Social proof strip
-3. Product explanation split
+2. Product explanation split
+3. Smile assessment tool
 4. Who this is for
 5. 3-step process and timeline
 6. Before and after cases gallery with sliders and filters
 7. Video proof section
-8. Smile assessment tool
-9. FAQ accordion
+8. FAQ accordion
+9. Social proof strip
 10. Contact and final CTA
 
 Phase 1 scope

@@ -17,7 +17,7 @@ npm run lint
 ```
 
 ## Content Editing
-All copy and data live in `src/content/home.ts`.
+All copy and data live in `src/content/home/`.
 
 ## Local Font Setup
 Place Subjectivity Serif font files in `public/fonts`.
@@ -28,4 +28,4 @@ If you use separate weights, update `src/app/layout.tsx` to match the files.
 ## Media Placeholders
 Video files are referenced but not included.
 Add the following files to `public/videos`:
-`hero.mp4`, `product-loop.mp4`, `reel-1.mp4`, `reel-2.mp4`, `reel-3.mp4`, `reel-4.mp4`.
+`hero-1.mp4`, `hero-2.mp4`, `hero-3.mp4`, `product-loop.mp4`, `reel-1.mp4`, `reel-2.mp4`, `reel-3.mp4`, `reel-4.mp4`.

@@ -4,6 +4,9 @@
     "languageSwitchAriaLabel": "التبديل إلى الإنجليزية",
     "languageSwitchLocale": "en"
   },
+  "hero": {
+    "dotAriaLabelPrefix": "الانتقال إلى الفيديو"
+  },
   "socialProof": {
     "eyebrow": "رضا المرضى"
   },

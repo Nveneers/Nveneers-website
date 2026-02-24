@@ -4,6 +4,9 @@
     "languageSwitchAriaLabel": "Switch to Arabic",
     "languageSwitchLocale": "ar"
   },
+  "hero": {
+    "dotAriaLabelPrefix": "Go to video"
+  },
   "socialProof": {
     "eyebrow": "Patient Satisfaction"
   },

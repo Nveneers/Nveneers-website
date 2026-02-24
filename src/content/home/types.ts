@@ -1,13 +1,18 @@
 export type Locale = "en" | "ar";
 
+export type HeroVideoSlide = {
+  id: string;
+  src: string;
+  poster: string;
+};
+
 export type HeroContent = {
   eyebrow: string;
   headline: string;
   subheadline: string;
   primaryCta: { label: string; href: string };
   secondaryCta: { label: string; href: string };
-  videoSrc: string;
-  videoPoster: string;
+  videos: HeroVideoSlide[];
 };
 
 export type Testimonial = {
@@ -93,6 +98,9 @@ export type HomeUi = {
     languageSwitchLabel: string;
     languageSwitchAriaLabel: string;
     languageSwitchLocale: Locale;
+  };
+  hero: {
+    dotAriaLabelPrefix: string;
   };
   socialProof: {
     eyebrow: string;

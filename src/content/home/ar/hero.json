@@ -4,6 +4,21 @@
   "subheadline": "قشور خزفية فائقة الرقة مصممة لتوازن الضوء والشكل والانسجام الطبيعي. تعديل محدود عندما يكون مناسبًا سريريًا.",
   "primaryCta": { "label": "احصل على تقييم", "href": "#assessment" },
   "secondaryCta": { "label": "شاهد الحالات الواقعية", "href": "#cases" },
-  "videoSrc": "/videos/hero.mp4",
-  "videoPoster": "/images/hero-poster.svg"
+  "videos": [
+    {
+      "id": "hero-1",
+      "src": "/videos/hero-1.mp4",
+      "poster": "/images/hero-poster.svg"
+    },
+    {
+      "id": "hero-2",
+      "src": "/videos/hero-2.mp4",
+      "poster": "/images/hero-poster.svg"
+    },
+    {
+      "id": "hero-3",
+      "src": "/videos/hero-3.mp4",
+      "poster": "/images/hero-poster.svg"
+    }
+  ]
 }
