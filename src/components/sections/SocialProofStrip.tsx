@@ -13,7 +13,7 @@ export default function SocialProofStrip({
   eyebrow
 }: SocialProofStripProps) {
   return (
-    <section className="section">
+    <section className="section section-surface-white">
       <div className="container">
         <div className="flex flex-wrap items-center justify-between gap-6 border-y border-brand-teal/10 py-6">
           <div>

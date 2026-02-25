@@ -21,7 +21,7 @@ export default function ProductSplitSection({
   content
 }: ProductSplitSectionProps) {
   return (
-    <section className="section bg-white">
+    <section className="section section-surface-white">
       <div className="container grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">

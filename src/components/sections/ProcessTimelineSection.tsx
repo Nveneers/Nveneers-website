@@ -24,7 +24,10 @@ export default function ProcessTimelineSection({
   labels
 }: ProcessTimelineSectionProps) {
   return (
-    <section id="process" className="section scroll-mt-24 bg-white">
+    <section
+      id="process"
+      className="section section-surface-soft-2 scroll-mt-24"
+    >
       <div className="container">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

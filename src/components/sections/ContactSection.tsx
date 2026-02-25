@@ -22,7 +22,10 @@ export default function ContactSection({
   )}`;
 
   return (
-    <section id="contact" className="section scroll-mt-24 bg-white">
+    <section
+      id="contact"
+      className="section section-surface-soft-1 scroll-mt-24"
+    >
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>

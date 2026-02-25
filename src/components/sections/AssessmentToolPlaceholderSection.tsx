@@ -17,7 +17,10 @@ export default function AssessmentToolPlaceholderSection({
   labels
 }: AssessmentToolPlaceholderSectionProps) {
   return (
-    <section id="assessment" className="section scroll-mt-24 bg-white">
+    <section
+      id="assessment"
+      className="section section-surface-soft-2 scroll-mt-24"
+    >
       <div className="container">
         <div className="card mx-auto max-w-3xl p-6 sm:p-10">
           <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">

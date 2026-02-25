@@ -49,7 +49,7 @@ export default function Homepage({ locale }: HomepageProps) {
 
   return (
     <div
-      className={`bg-white ${direction === "rtl" ? "locale-rtl" : "locale-ltr"}`}
+      className={direction === "rtl" ? "locale-rtl" : "locale-ltr"}
       dir={direction}
       lang={locale}
       data-locale={locale}

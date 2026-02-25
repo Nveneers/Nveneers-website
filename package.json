@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "clean": "rimraf .next",
+    "rebuild": "npm run clean && npm run build",
+    "dev:clean": "npm run clean && npm run dev",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

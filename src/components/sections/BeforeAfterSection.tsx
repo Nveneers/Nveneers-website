@@ -32,7 +32,10 @@ export default function BeforeAfterSection({
   );
 
   return (
-    <section id="cases" className="section scroll-mt-24 bg-white">
+    <section
+      id="cases"
+      className="section section-surface-white scroll-mt-24"
+    >
       <div className="container">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>

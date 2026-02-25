@@ -71,7 +71,10 @@ export default function VideoReelsSection({
   };
 
   return (
-    <section id="videos" className="section scroll-mt-24 bg-white">
+    <section
+      id="videos"
+      className="section section-surface-soft-1 scroll-mt-24"
+    >
       <div className="container">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>

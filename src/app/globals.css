@@ -6,6 +6,10 @@
   --brand-teal: #003b4f;
   --brand-gold: #cda349;
   --brand-white: #ffffff;
+  --surface-white: #ffffff;
+  --surface-soft-1: #f7fbfc;
+  --surface-soft-2: #eef4f6;
+  --surface-nile: #003b4f;
 }
 
 * {
@@ -36,12 +40,36 @@ body {
     @apply py-20;
   }
 
+  .section-surface-white {
+    background-color: var(--surface-white);
+  }
+
+  .section-surface-soft-1 {
+    background-color: var(--surface-soft-1);
+  }
+
+  .section-surface-soft-2 {
+    background-color: var(--surface-soft-2);
+  }
+
+  .section-surface-nile {
+    background-color: var(--surface-nile);
+  }
+
   .section-title {
     @apply text-3xl font-semibold text-brand-teal md:text-4xl;
   }
 
   .section-lead {
     @apply mt-4 text-base text-slate-700 md:text-lg;
+  }
+
+  .section-surface-nile .section-title {
+    @apply text-white;
+  }
+
+  .section-surface-nile .section-lead {
+    @apply text-white/85;
   }
 
   .card {

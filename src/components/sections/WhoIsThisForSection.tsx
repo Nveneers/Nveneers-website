@@ -14,7 +14,7 @@ export default function WhoIsThisForSection({
   labels
 }: WhoIsThisForSectionProps) {
   return (
-    <section className="section bg-white">
+    <section className="section section-surface-white">
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="card p-8">
