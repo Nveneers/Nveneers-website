@@ -11,15 +11,23 @@ const config: Config = {
         lg: "3rem"
       },
       screens: {
-        "2xl": "1280px"
+        "2xl": "1100px"
       }
     },
     extend: {
       colors: {
         brand: {
-          teal: "#003b4f",
-          gold: "#cda349",
-          white: "#ffffff"
+          cream: "#f4f6fa",
+          ivory: "#e8edf5",
+          "warm-white": "#f8fafd",
+          gold: "#c9a84c",
+          "gold-light": "#e8d08a",
+          brown: "#7a6030",
+          deep: "#0a1628",
+          mid: "#2a4066",
+          text: "#1a2e4a",
+          muted: "#5a7099",
+          border: "#c0cfe0"
         }
       },
       fontFamily: {
@@ -27,12 +35,17 @@ const config: Config = {
       },
       keyframes: {
         "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "0%": { opacity: "0", transform: "translateY(24px)" },
           "100%": { opacity: "1", transform: "translateY(0)" }
+        },
+        pulse: {
+          "0%, 100%": { opacity: "0.3" },
+          "50%": { opacity: "1" }
         }
       },
       animation: {
-        "fade-up": "fade-up 240ms ease-out both"
+        "fade-up": "fade-up 700ms ease-out both",
+        pulse: "pulse 2s ease infinite"
       }
     }
   },

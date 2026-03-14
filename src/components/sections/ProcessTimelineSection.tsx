@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Step } from "@/content/home";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 type ProcessTimelineSectionProps = {
   steps: Step[];
@@ -17,7 +18,7 @@ type ProcessTimelineSectionProps = {
   };
 };
 
-// Three-step process with timeline placeholders and CTA.
+// Vertical numbered steps timeline with visits card and CTA.
 export default function ProcessTimelineSection({
   steps,
   process,
@@ -26,54 +27,80 @@ export default function ProcessTimelineSection({
   return (
     <section
       id="process"
-      className="section section-surface-soft-2 scroll-mt-24"
+      className="section section-cream scroll-mt-24"
     >
       <div className="container">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
-              {labels.eyebrow}
-            </p>
-            <h2 className="section-title mt-4">{labels.headline}</h2>
-          </div>
-          <p className="text-sm text-brand-teal/70 sm:text-right">
-            {process.timeline}
-          </p>
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {steps.map((step, index) => (
-            <div key={step.title} className="card p-6">
-              <p className="text-xs uppercase tracking-[0.2em] text-brand-teal/60">
-                {labels.stepLabel} {index + 1}
-              </p>
-              <h3 className="mt-4 text-lg font-semibold text-brand-teal">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-sm text-slate-700">{step.description}</p>
+        <RevealOnScroll>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="intro-label">{labels.eyebrow}</p>
+              <h2 className="section-title mt-4">{labels.headline}</h2>
+              <div className="divider" />
             </div>
+            <p className="text-sm text-brand-muted sm:text-right">
+              {process.timeline}
+            </p>
+          </div>
+        </RevealOnScroll>
+
+        {/* Numbered steps */}
+        <div className="mt-10 flex flex-col">
+          {steps.map((step, index) => (
+            <RevealOnScroll key={step.title} delay={index * 80}>
+              <div className="grid grid-cols-[80px_1fr] gap-8 border-b border-brand-border py-10 last:border-b-0">
+                <div className="text-brand-gold-light" style={{
+                  fontFamily: "var(--font-subjectivity), serif",
+                  fontSize: "3.5rem",
+                  fontWeight: 300,
+                  lineHeight: 1,
+                  paddingTop: "0.2rem"
+                }}>
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div>
+                  <h3 className="text-brand-deep" style={{
+                    fontFamily: "var(--font-subjectivity), serif",
+                    fontSize: "1.35rem",
+                    fontWeight: 600,
+                    marginBottom: "0.6rem"
+                  }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-[0.95rem] text-brand-mid">{step.description}</p>
+                </div>
+              </div>
+            </RevealOnScroll>
           ))}
         </div>
-        <div className="mt-10 card p-6">
-          <p className="text-sm font-semibold text-brand-teal">
-            {labels.visitsTitle}
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-slate-700">
-            {process.visits.map((visit) => (
-              <li key={visit} className="flex items-start gap-3">
-                <span className="mt-1 h-2 w-2 rounded-full bg-brand-gold" />
-                <span>{visit}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-brand-teal/10 pt-6">
-          <p className="text-sm text-brand-teal/70">
-            {labels.closingQuestion}
-          </p>
-          <Link href={process.cta.href} className="btn-primary">
-            {process.cta.label}
-          </Link>
-        </div>
+
+        {/* Visits card */}
+        <RevealOnScroll>
+          <div className="mt-10 card p-6">
+            <p className="text-sm font-medium text-brand-deep">
+              {labels.visitsTitle}
+            </p>
+            <ul className="mt-4 space-y-2 text-sm text-brand-mid">
+              {process.visits.map((visit) => (
+                <li key={visit} className="flex items-start gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-gold" />
+                  <span>{visit}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </RevealOnScroll>
+
+        {/* CTA */}
+        <RevealOnScroll>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-brand-border pt-6">
+            <p className="text-sm text-brand-muted">
+              {labels.closingQuestion}
+            </p>
+            <Link href={process.cta.href} className="btn-primary">
+              {process.cta.label}
+            </Link>
+          </div>
+        </RevealOnScroll>
       </div>
     </section>
   );

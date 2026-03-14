@@ -1,4 +1,5 @@
 import type { EligibilityContent } from "@/content/home";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 type WhoIsThisForSectionProps = {
   content: EligibilityContent;
@@ -8,43 +9,61 @@ type WhoIsThisForSectionProps = {
   };
 };
 
-// Eligibility guidance section with good fit and not ideal lists.
+// Eligibility guidance section with pros/cons card layout.
 export default function WhoIsThisForSection({
   content,
   labels
 }: WhoIsThisForSectionProps) {
   return (
-    <section className="section section-surface-white">
+    <section className="section section-ivory">
       <div className="container">
-        <div className="grid gap-10 lg:grid-cols-2">
-          <div className="card p-8">
-            <h3 className="text-xl font-semibold text-brand-teal">
-              {labels.goodFitTitle}
-            </h3>
-            <ul className="mt-6 space-y-3 text-sm text-slate-700">
-              {content.goodFit.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-brand-gold" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="card p-8">
-            <h3 className="text-xl font-semibold text-brand-teal">
-              {labels.notIdealTitle}
-            </h3>
-            <ul className="mt-6 space-y-3 text-sm text-slate-700">
-              {content.notIdeal.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-brand-teal/60" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* Good Fit - dark card */}
+          <RevealOnScroll>
+            <div className="rounded-2xl p-8 lg:p-10" style={{ background: "var(--deep)", color: "var(--cream)" }}>
+              <h3 className="text-brand-gold-light" style={{
+                fontFamily: "var(--font-subjectivity), serif",
+                fontSize: "1.6rem",
+                fontWeight: 400,
+                marginBottom: "1.8rem"
+              }}>
+                {labels.goodFitTitle}
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {content.goodFit.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-white/75">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </RevealOnScroll>
+          {/* Not Ideal - light card */}
+          <RevealOnScroll delay={80}>
+            <div className="card rounded-2xl p-8 lg:p-10">
+              <h3 className="text-brand-deep" style={{
+                fontFamily: "var(--font-subjectivity), serif",
+                fontSize: "1.6rem",
+                fontWeight: 400,
+                marginBottom: "1.8rem"
+              }}>
+                {labels.notIdealTitle}
+              </h3>
+              <ul className="flex flex-col gap-4">
+                {content.notIdeal.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-brand-mid">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-brown" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </RevealOnScroll>
         </div>
-        <p className="mt-6 text-sm text-brand-teal/70">{content.note}</p>
+        <RevealOnScroll>
+          <p className="mt-6 text-sm text-brand-muted">{content.note}</p>
+        </RevealOnScroll>
       </div>
     </section>
   );

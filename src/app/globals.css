@@ -3,13 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --brand-teal: #003b4f;
-  --brand-gold: #cda349;
-  --brand-white: #ffffff;
-  --surface-white: #ffffff;
-  --surface-soft-1: #f7fbfc;
-  --surface-soft-2: #eef4f6;
-  --surface-nile: #003b4f;
+  --cream: #f4f6fa;
+  --ivory: #e8edf5;
+  --warm-white: #f8fafd;
+  --gold: #c9a84c;
+  --gold-light: #e8d08a;
+  --brown: #7a6030;
+  --deep: #0a1628;
+  --mid: #2a4066;
+  --text: #1a2e4a;
+  --muted: #5a7099;
+  --border: #c0cfe0;
 }
 
 * {
@@ -22,8 +26,10 @@ html {
 
 body {
   font-family: var(--font-subjectivity), serif;
-  background-color: var(--brand-white);
-  color: #0b1c22;
+  background-color: var(--cream);
+  color: var(--text);
+  font-weight: 300;
+  line-height: 1.75;
 }
 
 .locale-ltr {
@@ -38,56 +44,120 @@ body {
 @layer components {
   .section {
     @apply py-20;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
-  .section-surface-white {
-    background-color: var(--surface-white);
+  .section-cream {
+    background-color: var(--cream);
   }
 
-  .section-surface-soft-1 {
-    background-color: var(--surface-soft-1);
+  .section-ivory {
+    background-color: var(--ivory);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
   }
 
-  .section-surface-soft-2 {
-    background-color: var(--surface-soft-2);
+  .section-warm-white {
+    background-color: var(--warm-white);
   }
 
-  .section-surface-nile {
-    background-color: var(--surface-nile);
+  .section-deep {
+    background-color: var(--deep);
   }
 
   .section-title {
-    @apply text-3xl font-semibold text-brand-teal md:text-4xl;
+    font-family: var(--font-subjectivity), serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--deep);
+  }
+
+  .section-deep .section-title {
+    color: var(--warm-white);
   }
 
   .section-lead {
-    @apply mt-4 text-base text-slate-700 md:text-lg;
+    @apply mt-4;
+    color: var(--mid);
+    font-size: 0.95rem;
   }
 
-  .section-surface-nile .section-title {
-    @apply text-white;
+  .section-deep .section-lead {
+    color: rgba(255, 255, 255, 0.55);
   }
 
-  .section-surface-nile .section-lead {
-    @apply text-white/85;
+  .intro-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 2rem 0;
   }
 
   .card {
-    @apply rounded-3xl border border-brand-teal/10 bg-white;
+    @apply rounded-2xl;
+    border: 1px solid var(--border);
+    background-color: var(--warm-white);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-teal transition duration-200;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition duration-200;
+    background: var(--gold);
+    color: var(--deep);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-brand-teal/30 px-6 py-3 text-sm font-semibold text-brand-teal transition duration-200;
+    @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium transition duration-200;
+    border: 1px solid var(--border);
+    color: var(--deep);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold);
   }
 
   .btn-primary:focus-visible,
   .btn-secondary:focus-visible {
     @apply outline-none ring-2 ring-brand-gold ring-offset-2;
   }
+
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.page-fade-in {
+  animation: pageFadeIn 0.4s ease-out;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
 }
 
 @layer utilities {

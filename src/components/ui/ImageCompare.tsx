@@ -27,7 +27,7 @@ export default function ImageCompare({
   const [position, setPosition] = useState(50);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-brand-teal/10 bg-white">
+    <div className="relative overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white">
       <div className="relative aspect-[4/3]">
         <Image
           src={beforeSrc}
@@ -70,10 +70,10 @@ export default function ImageCompare({
             </div>
           </div>
         </div>
-        <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-teal">
+        <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-brand-deep">
           {labels.beforeLabel}
         </div>
-        <div className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-brand-teal">
+        <div className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-medium text-brand-deep">
           {labels.afterLabel}
         </div>
       </div>

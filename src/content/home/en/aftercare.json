@@ -1,0 +1,27 @@
+{
+  "eyebrow": "Long-Term Care",
+  "headline": "Aftercare & Maintenance",
+  "lead": "Caring for your N Veneers is simple. With the right habits, your investment can last up to two decades.",
+  "tips": [
+    {
+      "icon": "brush",
+      "title": "Brush Twice Daily",
+      "description": "Use a soft-bristled toothbrush and a non-abrasive toothpaste to protect the porcelain surface."
+    },
+    {
+      "icon": "guard",
+      "title": "Wear a Night Guard",
+      "description": "If you grind your teeth at night, a custom guard protects your N Veneers from excessive force."
+    },
+    {
+      "icon": "calendar",
+      "title": "Regular Check-Ups",
+      "description": "Visit your dentist every six months for professional cleaning and to monitor the condition of your veneers."
+    },
+    {
+      "icon": "food",
+      "title": "Avoid Hard Foods",
+      "description": "Do not bite directly into hard items like ice, hard candy, or bones with your veneered teeth."
+    }
+  ]
+}

@@ -62,7 +62,8 @@ export default function HeroVideoSection({
   };
 
   return (
-    <section className="relative flex min-h-[85svh] items-center overflow-hidden sm:min-h-[90svh] md:min-h-screen">
+    <section className="relative min-h-[85svh] overflow-hidden sm:min-h-[90svh] md:min-h-screen" style={{ background: "var(--deep)" }}>
+
       {videos.length > 0 ? (
         <div className="absolute inset-0" dir="ltr" aria-hidden="true">
           <div
@@ -94,24 +95,28 @@ export default function HeroVideoSection({
                 >
                   <source src={video.src} type="video/mp4" />
                 </video>
+                <div className="absolute inset-0 bg-brand-deep/40" />
               </div>
             ))}
           </div>
         </div>
       ) : (
-        <Image
-          src="/images/hero-poster.svg"
-          alt=""
-          fill
-          sizes="100vw"
-          priority
-          className="absolute inset-0 h-full w-full object-cover"
-          aria-hidden="true"
-        />
+        <>
+          <Image
+            src="/images/hero-poster.svg"
+            alt=""
+            fill
+            sizes="100vw"
+            priority
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-brand-deep/40" />
+        </>
       )}
 
       {videos.length > 1 ? (
-        <div className="absolute inset-x-0 bottom-8 z-10 flex justify-center px-4 sm:bottom-10">
+        <div className="absolute inset-x-0 bottom-10 z-10 flex justify-center px-4">
           <div className="flex items-center gap-3 rounded-full bg-black/20 px-4 py-2 backdrop-blur-sm">
             {videos.map((video, index) => {
               const isActive = index === activeIndex;

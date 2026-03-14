@@ -1,0 +1,30 @@
+﻿[
+  {
+    "id": "reel-1",
+    "title": "تحسين الشكل خلال زيارتين",
+    "duration": "00:24",
+    "thumbnail": "/images/reel-1.svg",
+    "src": "/videos/reel-1.mp4"
+  },
+  {
+    "id": "reel-2",
+    "title": "تفتيح اللون مع تحضير محدود",
+    "duration": "00:31",
+    "thumbnail": "/images/reel-2.svg",
+    "src": "/videos/reel-2.mp4"
+  },
+  {
+    "id": "reel-3",
+    "title": "شرح معاينة الابتسامة",
+    "duration": "00:18",
+    "thumbnail": "/images/reel-3.svg",
+    "src": "/videos/reel-3.mp4"
+  },
+  {
+    "id": "reel-4",
+    "title": "التلميع واللمسة النهائية",
+    "duration": "00:22",
+    "thumbnail": "/images/reel-4.svg",
+    "src": "/videos/reel-4.mp4"
+  }
+]

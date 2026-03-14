@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-teal: #003b4f;
+  --brand-gold: #cda349;
+  --brand-white: #ffffff;
+  --surface-white: #ffffff;
+  --surface-soft-1: #f7fbfc;
+  --surface-soft-2: #eef4f6;
+  --surface-nile: #003b4f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-subjectivity), serif;
+  background-color: var(--brand-white);
+  color: #0b1c22;
+}
+
+.locale-ltr {
+  direction: ltr;
+}
+
+.locale-rtl {
+  direction: rtl;
+  font-family: var(--font-arabic), sans-serif;
+}
+
+@layer components {
+  .section {
+    @apply py-20;
+  }
+
+  .section-surface-white {
+    background-color: var(--surface-white);
+  }
+
+  .section-surface-soft-1 {
+    background-color: var(--surface-soft-1);
+  }
+
+  .section-surface-soft-2 {
+    background-color: var(--surface-soft-2);
+  }
+
+  .section-surface-nile {
+    background-color: var(--surface-nile);
+  }
+
+  .section-title {
+    @apply text-3xl font-semibold text-brand-teal md:text-4xl;
+  }
+
+  .section-lead {
+    @apply mt-4 text-base text-slate-700 md:text-lg;
+  }
+
+  .section-surface-nile .section-title {
+    @apply text-white;
+  }
+
+  .section-surface-nile .section-lead {
+    @apply text-white/85;
+  }
+
+  .card {
+    @apply rounded-3xl border border-brand-teal/10 bg-white;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-gold px-6 py-3 text-sm font-semibold text-brand-teal transition duration-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-brand-teal/30 px-6 py-3 text-sm font-semibold text-brand-teal transition duration-200;
+  }
+
+  .btn-primary:focus-visible,
+  .btn-secondary:focus-visible {
+    @apply outline-none ring-2 ring-brand-gold ring-offset-2;
+  }
+}
+
+@layer utilities {
+  .fade-up {
+    @apply motion-safe:animate-fade-up;
+  }
+}

@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { VideoItem } from "@/content/home";
+import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
 type VideoReelsSectionProps = {
   videos: VideoItem[];
@@ -300,21 +301,22 @@ export default function VideoReelsSection({
     <section
       id="videos"
       ref={sectionRef}
-      className="section section-surface-soft-1 scroll-mt-24"
+      className="section section-warm-white scroll-mt-24"
     >
       <div className="container">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.3em] text-brand-teal/70">
-              {labels.eyebrow}
+        <RevealOnScroll>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="intro-label">{labels.eyebrow}</p>
+              <h2 className="section-title mt-4">{labels.headline}</h2>
+              <div className="divider" />
+            </div>
+            <p className="text-sm text-brand-muted sm:text-right">
+              {labels.hint}
             </p>
-            <h2 className="section-title mt-4">{labels.headline}</h2>
           </div>
-          <p className="text-sm text-brand-teal/70 sm:text-right">
-            {labels.hint}
-          </p>
-        </div>
-        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:px-0 md:pb-0">
+        </RevealOnScroll>
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {videos.map((video, index) => {
             const isPlaying = playingId === video.id;
             const actionLabel = isPlaying ? labels.closeLabel : labels.playLabel;
@@ -323,7 +325,7 @@ export default function VideoReelsSection({
               <div
                 key={video.id}
                 ref={setCardRef(video.id)}
-                className="group relative min-w-[14rem] snap-start overflow-hidden rounded-3xl border border-brand-teal/10 bg-white text-start"
+                className="group relative min-w-[14rem] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start md:min-w-0"
               >
                 <div className="relative aspect-[9/16]">
                   <video
@@ -346,7 +348,7 @@ export default function VideoReelsSection({
                   </video>
                   <div
                     className={`absolute inset-0 pointer-events-none transition-colors ${
-                      isPlaying ? "bg-transparent" : "bg-brand-teal/10"
+                      isPlaying ? "bg-transparent" : "bg-brand-deep/10"
                     }`}
                   />
                   <button
@@ -364,7 +366,7 @@ export default function VideoReelsSection({
                       className={`flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         isPlaying
                           ? "h-10 w-10 border-white/70 bg-black/55 text-white"
-                          : "h-12 w-12 border-brand-gold bg-white text-brand-teal"
+                          : "h-12 w-12 border-brand-gold bg-white text-brand-deep"
                       }`}
                     >
                       <svg

@@ -93,6 +93,56 @@ export type ContactContent = {
   privacyLabel: string;
 };
 
+export type IntroStripStat = {
+  value: string;
+  unit: string;
+  label: string;
+};
+
+export type IntroStripContent = {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  stats: IntroStripStat[];
+};
+
+export type ComparisonRow = {
+  feature: string;
+  nVeneers: string;
+  traditional: string;
+};
+
+export type ComparisonContent = {
+  eyebrow: string;
+  headline: string;
+  columns: [string, string, string];
+  rows: ComparisonRow[];
+};
+
+export type AftercareTip = {
+  icon: string;
+  title: string;
+  description: string;
+};
+
+export type AftercareContent = {
+  eyebrow: string;
+  headline: string;
+  lead: string;
+  tips: AftercareTip[];
+};
+
+export type CtaBannerContent = {
+  headline: string;
+  highlightedText: string;
+  body: string;
+  cta: { label: string; href: string };
+};
+
+export type FooterContent = {
+  text: string;
+};
+
 export type HomeUi = {
   header: {
     languageSwitchLabel: string;
@@ -171,4 +221,9 @@ export type HomeContent = {
   contact: ContactContent;
   navigation: { label: string; href: string }[];
   ui: HomeUi;
+  introStrip: IntroStripContent;
+  comparison: ComparisonContent;
+  aftercare: AftercareContent;
+  ctaBanner: CtaBannerContent;
+  footer: FooterContent;
 };

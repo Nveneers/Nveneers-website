@@ -1,0 +1,15 @@
+{
+  "eyebrow": "Side by Side",
+  "headline": "N Veneers vs. Traditional Veneers",
+  "columns": ["Feature", "N Veneers", "Traditional Veneers"],
+  "rows": [
+    { "feature": "Thickness", "nVeneers": "~0.2 mm", "traditional": "~0.5 mm" },
+    { "feature": "Enamel Removal", "nVeneers": "Minimal to none", "traditional": "Significant (irreversible)" },
+    { "feature": "Reversibility", "nVeneers": "Generally reversible", "traditional": "Irreversible" },
+    { "feature": "Anesthesia Required", "nVeneers": "Rarely", "traditional": "Usually required" },
+    { "feature": "Appointments", "nVeneers": "2 visits", "traditional": "2\u20133 visits" },
+    { "feature": "Masking Dark Stains", "nVeneers": "Moderate", "traditional": "Excellent" },
+    { "feature": "Natural Appearance", "nVeneers": "Very good", "traditional": "Excellent" },
+    { "feature": "Lifespan", "nVeneers": "10\u201320 years", "traditional": "10\u201315 years" }
+  ]
+}

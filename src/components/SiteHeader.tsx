@@ -16,11 +16,11 @@ export default function SiteHeader({
   languageToggle
 }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-40 hidden overflow-visible border-b border-brand-teal/10 bg-white/95 backdrop-blur md:block">
-      <div className="container flex h-16 items-center justify-between overflow-visible">
+    <header dir="ltr" className="sticky top-0 z-40 hidden overflow-visible border-b border-[var(--border)] bg-white md:block" style={{ backdropFilter: "blur(12px)" }}>
+      <div className="flex h-16 items-center justify-between overflow-visible px-16">
         <Link
           href="/"
-          className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-teal"
+          className="relative z-10 flex-shrink-0"
         >
           <span className="sr-only">{brand.name}</span>
           <Image
@@ -28,16 +28,16 @@ export default function SiteHeader({
             alt={brand.logoAlt}
             width={1280}
             height={320}
-            className="h-50 w-auto md:h-[11rem]"
+            className="h-[10rem] w-auto"
             priority
           />
         </Link>
-        <nav className="flex items-center gap-8 text-sm text-brand-teal">
+        <nav className="absolute left-1/2 flex -translate-x-1/2 items-center gap-8 text-[0.8rem] uppercase tracking-[0.05em]">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="transition hover:text-brand-teal/70"
+              className="whitespace-nowrap text-[var(--muted)] transition hover:text-brand-gold"
             >
               {item.label}
             </Link>
@@ -46,12 +46,17 @@ export default function SiteHeader({
         <div className="flex items-center gap-4">
           <Link
             href={languageToggle.href}
-            className="btn-secondary px-4 py-2 text-xs"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--muted)] transition hover:text-brand-gold"
             aria-label={languageToggle.ariaLabel}
           >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="M2 12h20" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
             {languageToggle.label}
           </Link>
-          <Link href={cta.href} className="btn-primary">
+          <Link href={cta.href} className="btn-primary px-4 py-2 text-xs">
             {cta.label}
           </Link>
         </div>

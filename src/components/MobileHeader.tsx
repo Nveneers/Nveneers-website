@@ -22,11 +22,11 @@ export default function MobileHeader({
   languageToggle
 }: MobileHeaderProps) {
   const [open, setOpen] = useState(false);
-  const menuLabel = locale === "ar" ? "القائمة" : "Menu";
-  const closeLabel = locale === "ar" ? "إغلاق" : "Close";
-  const openLabel = locale === "ar" ? "فتح القائمة" : "Open menu";
+  const menuLabel = locale === "ar" ? "\u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Menu";
+  const closeLabel = locale === "ar" ? "\u0625\u063a\u0644\u0627\u0642" : "Close";
+  const openLabel = locale === "ar" ? "\u0641\u062a\u062d \u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Open menu";
   const navLabel =
-    locale === "ar" ? "التنقل عبر الهاتف" : "Mobile navigation";
+    locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0639\u0628\u0631 \u0627\u0644\u0647\u0627\u062a\u0641" : "Mobile navigation";
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -53,8 +53,8 @@ export default function MobileHeader({
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="sticky top-0 z-40 md:hidden">
-      <div className="border-b border-brand-teal/10 bg-white/95 backdrop-blur">
+    <header dir="ltr" className="sticky top-0 z-40 md:hidden">
+      <div className="border-b border-[var(--border)] bg-white" style={{ backdropFilter: "blur(12px)" }}>
         <div className="flex items-center justify-between px-4 pb-3 pt-[calc(0.75rem+env(safe-area-inset-top))]">
           <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
             <span className="sr-only">{brand.name}</span>
@@ -63,21 +63,21 @@ export default function MobileHeader({
               alt={brand.logoAlt}
               width={640}
               height={160}
-              className="h-10 w-auto"
+              className="h-16 w-auto"
               priority
             />
           </Link>
           <div className="flex items-center gap-2">
             <Link
               href={languageToggle.href}
-              className="btn-secondary px-3 py-2 text-[0.7rem]"
+              className="rounded-full border border-[var(--border)] px-3 py-2 text-[0.7rem] font-medium text-[var(--muted)] transition hover:border-brand-gold hover:text-brand-gold"
               aria-label={languageToggle.ariaLabel}
             >
               {languageToggle.label}
             </Link>
             <button
               type="button"
-              className="rounded-full border border-brand-teal/30 px-4 py-2 text-xs font-semibold text-brand-teal"
+              className="rounded-full border border-[var(--border)] px-4 py-2 text-xs font-medium text-[var(--muted)]"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={openLabel}
@@ -96,9 +96,10 @@ export default function MobileHeader({
         aria-label={navLabel}
         aria-hidden={!open}
         onClick={closeMenu}
-        className={`fixed inset-0 z-[60] bg-white/95 backdrop-blur transition duration-200 ${
+        className={`fixed inset-0 z-[60] transition duration-200 ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
+        style={{ background: "rgba(10,22,40,0.96)", backdropFilter: "blur(12px)" }}
       >
         <div
           className="flex h-full flex-col overflow-y-auto px-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-[calc(1rem+env(safe-area-inset-top))]"
@@ -112,25 +113,25 @@ export default function MobileHeader({
                 alt={brand.logoAlt}
                 width={640}
                 height={160}
-                className="h-10 w-auto"
+                className="h-10 w-auto brightness-0 invert"
               />
             </Link>
             <button
               type="button"
-              className="rounded-full border border-brand-teal/30 px-4 py-2 text-xs font-semibold text-brand-teal"
+              className="rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white/60"
               onClick={closeMenu}
             >
               {closeLabel}
             </button>
           </div>
 
-          <nav className="mt-10 flex flex-col gap-5 text-lg font-semibold text-brand-teal">
+          <nav className="mt-10 flex flex-col gap-5 text-lg font-normal text-white/70">
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={closeMenu}
-                className="transition hover:text-brand-teal/70"
+                className="transition hover:text-brand-gold"
               >
                 {item.label}
               </Link>
@@ -143,7 +144,7 @@ export default function MobileHeader({
             </Link>
             <Link
               href={languageToggle.href}
-              className="btn-secondary w-full"
+              className="btn-secondary w-full border-white/20 text-white/60"
               aria-label={languageToggle.ariaLabel}
               onClick={closeMenu}
             >

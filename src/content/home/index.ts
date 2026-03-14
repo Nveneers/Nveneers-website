@@ -1,11 +1,16 @@
 import type {
+  AftercareContent,
+  ComparisonContent,
   ContactContent,
+  CtaBannerContent,
   EligibilityContent,
   FaqItem,
+  FooterContent,
   HeroContent,
   HeroVideoSlide,
   HomeContent,
   HomeUi,
+  IntroStripContent,
   Locale,
   ProcessContent,
   ProductContent,
@@ -30,6 +35,11 @@ import faqsEn from "./en/faqs.json";
 import contactEn from "./en/contact.json";
 import navigationEn from "./en/navigation.json";
 import uiEn from "./en/ui.json";
+import introStripEn from "./en/introStrip.json";
+import comparisonEn from "./en/comparison.json";
+import aftercareEn from "./en/aftercare.json";
+import ctaBannerEn from "./en/ctaBanner.json";
+import footerEn from "./en/footer.json";
 
 import brandAr from "./ar/brand.json";
 import heroAr from "./ar/hero.json";
@@ -46,17 +56,27 @@ import faqsAr from "./ar/faqs.json";
 import contactAr from "./ar/contact.json";
 import navigationAr from "./ar/navigation.json";
 import uiAr from "./ar/ui.json";
+import introStripAr from "./ar/introStrip.json";
+import comparisonAr from "./ar/comparison.json";
+import aftercareAr from "./ar/aftercare.json";
+import ctaBannerAr from "./ar/ctaBanner.json";
+import footerAr from "./ar/footer.json";
 
 export type {
+  AftercareContent,
   AssessmentContent,
   BeforeAfterCase,
+  ComparisonContent,
   ContactContent,
+  CtaBannerContent,
   EligibilityContent,
   FaqItem,
+  FooterContent,
   HeroContent,
   HeroVideoSlide,
   HomeContent,
   HomeUi,
+  IntroStripContent,
   Locale,
   ProcessContent,
   ProductContent,
@@ -83,7 +103,12 @@ const homeContentEn: HomeContent = {
   faqs: faqsEn as FaqItem[],
   contact: contactEn as ContactContent,
   navigation: navigationEn as HomeContent["navigation"],
-  ui: uiEn as HomeUi
+  ui: uiEn as HomeUi,
+  introStrip: introStripEn as IntroStripContent,
+  comparison: comparisonEn as ComparisonContent,
+  aftercare: aftercareEn as AftercareContent,
+  ctaBanner: ctaBannerEn as CtaBannerContent,
+  footer: footerEn as FooterContent
 };
 
 const homeContentAr: HomeContent = {
@@ -103,7 +128,12 @@ const homeContentAr: HomeContent = {
   faqs: faqsAr as FaqItem[],
   contact: contactAr as ContactContent,
   navigation: navigationAr as HomeContent["navigation"],
-  ui: uiAr as HomeUi
+  ui: uiAr as HomeUi,
+  introStrip: introStripAr as IntroStripContent,
+  comparison: comparisonAr as ComparisonContent,
+  aftercare: aftercareAr as AftercareContent,
+  ctaBanner: ctaBannerAr as CtaBannerContent,
+  footer: footerAr as FooterContent
 };
 
 export const homeContentByLocale: Record<Locale, HomeContent> = {
