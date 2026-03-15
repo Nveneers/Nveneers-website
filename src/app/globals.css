@@ -43,9 +43,25 @@ body {
 
 @layer components {
   .section {
-    @apply py-20;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    @apply py-12 sm:py-20;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .section {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   .section-cream {

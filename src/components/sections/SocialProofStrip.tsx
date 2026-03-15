@@ -41,10 +41,10 @@ export default function SocialProofStrip({
             <p className="text-sm text-brand-muted">{rating.note}</p>
           </div>
         </RevealOnScroll>
-        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-hide px-4 pb-4 sm:gap-6 md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0">
           {testimonials.map((item, i) => (
             <RevealOnScroll key={item.name} delay={i * 80}>
-              <div className="card min-w-[16.5rem] snap-start p-6 md:min-w-0">
+              <div className="card min-w-[80vw] snap-start p-6 sm:min-w-[16.5rem] md:min-w-0">
                 <p className="text-base text-brand-mid">&ldquo;{item.quote}&rdquo;</p>
                 <p className="mt-4 text-sm font-semibold text-brand-deep">
                   {item.name}

@@ -20,10 +20,10 @@ export default function WhoIsThisForSection({
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Good Fit - dark card */}
           <RevealOnScroll>
-            <div className="rounded-2xl p-8 lg:p-10" style={{ background: "var(--deep)", color: "var(--cream)" }}>
+            <div className="rounded-2xl p-6 sm:p-8 lg:p-10" style={{ background: "var(--deep)", color: "var(--cream)" }}>
               <h3 className="text-brand-gold-light" style={{
                 fontFamily: "var(--font-subjectivity), serif",
-                fontSize: "1.6rem",
+                fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
                 fontWeight: 400,
                 marginBottom: "1.8rem"
               }}>
@@ -41,10 +41,10 @@ export default function WhoIsThisForSection({
           </RevealOnScroll>
           {/* Not Ideal - light card */}
           <RevealOnScroll delay={80}>
-            <div className="card rounded-2xl p-8 lg:p-10">
+            <div className="card rounded-2xl p-6 sm:p-8 lg:p-10">
               <h3 className="text-brand-deep" style={{
                 fontFamily: "var(--font-subjectivity), serif",
-                fontSize: "1.6rem",
+                fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
                 fontWeight: 400,
                 marginBottom: "1.8rem"
               }}>

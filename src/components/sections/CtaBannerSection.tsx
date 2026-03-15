@@ -8,7 +8,7 @@ type CtaBannerSectionProps = {
 // Full-width dark CTA banner with gold gradient.
 export default function CtaBannerSection({ content }: CtaBannerSectionProps) {
   return (
-    <section className="relative overflow-hidden py-24 text-center" style={{ background: "var(--deep)" }}>
+    <section className="relative overflow-hidden py-14 text-center sm:py-24" style={{ background: "var(--deep)" }}>
       <div className="pointer-events-none absolute inset-0" style={{
         background: "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.12) 0%, transparent 70%)"
       }} />

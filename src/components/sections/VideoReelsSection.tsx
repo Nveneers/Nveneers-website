@@ -316,7 +316,7 @@ export default function VideoReelsSection({
             </p>
           </div>
         </RevealOnScroll>
-        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-4 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
+        <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scrollbar-hide px-4 pb-4 sm:gap-6 md:mx-0 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible md:px-0 md:pb-0">
           {videos.map((video, index) => {
             const isPlaying = playingId === video.id;
             const actionLabel = isPlaying ? labels.closeLabel : labels.playLabel;
@@ -325,7 +325,7 @@ export default function VideoReelsSection({
               <div
                 key={video.id}
                 ref={setCardRef(video.id)}
-                className="group relative min-w-[14rem] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start md:min-w-0"
+                className="group relative min-w-[75vw] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start sm:min-w-[14rem] md:min-w-0"
               >
                 <div className="relative aspect-[9/16]">
                   <video

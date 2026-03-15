@@ -9,7 +9,7 @@ type IntroStripSectionProps = {
 export default function IntroStripSection({ content }: IntroStripSectionProps) {
   return (
     <section className="section section-ivory">
-      <div className="container grid gap-20 md:grid-cols-2 md:items-center">
+      <div className="container grid gap-10 md:gap-20 md:grid-cols-2 md:items-center">
         <RevealOnScroll>
           <div>
             <p className="intro-label">{content.eyebrow}</p>
@@ -24,13 +24,13 @@ export default function IntroStripSection({ content }: IntroStripSectionProps) {
               <div className="card rounded-xl p-6 text-center">
                 <div className="text-brand-gold" style={{
                   fontFamily: "var(--font-subjectivity), serif",
-                  fontSize: "2.8rem",
+                  fontSize: "clamp(1.8rem, 7vw, 2.8rem)",
                   fontWeight: 600,
                   lineHeight: 1
                 }}>
                   {stat.value}
                   {stat.unit ? (
-                    <span style={{ fontSize: "1.4rem" }}>{stat.unit}</span>
+                    <span style={{ fontSize: "clamp(0.9rem, 3vw, 1.4rem)" }}>{stat.unit}</span>
                   ) : null}
                 </div>
                 <div className="mt-1 text-[0.78rem] tracking-[0.05em] text-brand-muted">

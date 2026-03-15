@@ -19,16 +19,16 @@ export default function ComparisonTableSection({ content }: ComparisonTableSecti
         </RevealOnScroll>
         <RevealOnScroll>
           <div className="overflow-x-auto rounded-2xl border border-brand-border">
-            <table className="w-full border-collapse text-[0.9rem]">
+            <table className="w-full border-collapse text-[0.8rem] sm:text-[0.9rem]">
               <thead style={{ background: "var(--deep)", color: "var(--cream)" }}>
                 <tr>
                   {content.columns.map((col, i) => (
                     <th
                       key={col}
-                      className="px-6 py-4 text-start font-normal tracking-[0.02em]"
+                      className="px-3 py-3 text-start font-normal tracking-[0.02em] sm:px-6 sm:py-4"
                       style={{
                         fontFamily: "var(--font-subjectivity), serif",
-                        fontSize: "1.05rem",
+                        fontSize: "clamp(0.85rem, 2.5vw, 1.05rem)",
                         color: i === 0 ? "var(--gold-light)" : "var(--cream)"
                       }}
                     >
@@ -44,11 +44,11 @@ export default function ComparisonTableSection({ content }: ComparisonTableSecti
                     className="border-b border-brand-border last:border-b-0"
                     style={{ background: i % 2 === 1 ? "var(--ivory)" : "var(--warm-white)" }}
                   >
-                    <td className="px-6 py-4 font-medium text-brand-deep whitespace-nowrap">
+                    <td className="px-3 py-3 font-medium text-brand-deep sm:px-6 sm:py-4">
                       {row.feature}
                     </td>
-                    <td className="px-6 py-4 text-brand-mid">{row.nVeneers}</td>
-                    <td className="px-6 py-4 text-brand-mid">{row.traditional}</td>
+                    <td className="px-3 py-3 text-brand-mid sm:px-6 sm:py-4">{row.nVeneers}</td>
+                    <td className="px-3 py-3 text-brand-mid sm:px-6 sm:py-4">{row.traditional}</td>
                   </tr>
                 ))}
               </tbody>

@@ -47,10 +47,10 @@ export default function ProcessTimelineSection({
         <div className="mt-10 flex flex-col">
           {steps.map((step, index) => (
             <RevealOnScroll key={step.title} delay={index * 80}>
-              <div className="grid grid-cols-[80px_1fr] gap-8 border-b border-brand-border py-10 last:border-b-0">
+              <div className="grid grid-cols-[50px_1fr] gap-4 border-b border-brand-border py-10 last:border-b-0 sm:grid-cols-[80px_1fr] sm:gap-8">
                 <div className="text-brand-gold-light" style={{
                   fontFamily: "var(--font-subjectivity), serif",
-                  fontSize: "3.5rem",
+                  fontSize: "clamp(2rem, 8vw, 3.5rem)",
                   fontWeight: 300,
                   lineHeight: 1,
                   paddingTop: "0.2rem"
@@ -60,7 +60,7 @@ export default function ProcessTimelineSection({
                 <div>
                   <h3 className="text-brand-deep" style={{
                     fontFamily: "var(--font-subjectivity), serif",
-                    fontSize: "1.35rem",
+                    fontSize: "clamp(1.1rem, 3vw, 1.35rem)",
                     fontWeight: 600,
                     marginBottom: "0.6rem"
                   }}>
