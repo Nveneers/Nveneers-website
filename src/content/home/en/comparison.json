@@ -8,8 +8,8 @@
     { "feature": "Reversibility", "nVeneers": "Generally reversible", "traditional": "Irreversible" },
     { "feature": "Anesthesia Required", "nVeneers": "Rarely", "traditional": "Usually required" },
     { "feature": "Appointments", "nVeneers": "2 visits", "traditional": "2\u20133 visits" },
-    { "feature": "Masking Dark Stains", "nVeneers": "Moderate", "traditional": "Excellent" },
-    { "feature": "Natural Appearance", "nVeneers": "Very good", "traditional": "Excellent" },
+    { "feature": "Masking Dark Stains", "nVeneers": "Excellent", "traditional": "Moderate" },
+    { "feature": "Natural Appearance", "nVeneers": "Excellent", "traditional": "Very good" },
     { "feature": "Lifespan", "nVeneers": "10\u201320 years", "traditional": "10\u201315 years" }
   ]
 }
