@@ -37,8 +37,19 @@
     "durationLabel": "المدة"
   },
   "assessment": {
-    "uploadLabel": "ارفع صورة واضحة لابتسامتك",
-    "submitLabel": "إرسال للتقييم"
+    "uploadLabel": "اسحب وأفلت أو انقر لرفع صورة الابتسامة",
+    "cameraLabel": "التقط صورة بالكاميرا",
+    "checkLabel": "تحقق من ابتسامتي",
+    "changePhotoLabel": "اختر صورة مختلفة",
+    "validatingLabel": "جارٍ تحليل ابتسامتك…",
+    "successTitle": "ابتسامتك رائعة!",
+    "successBody": "اتبع الخطوتين أدناه لإرسال صورتك إلى موظف الاستقبال عبر واتساب.",
+    "savePhotoLabel": "١ — احفظ الصورة على جهازك",
+    "savePhotoHint": "ثم افتح واتساب، أرفق الصورة المحفوظة وأرسلها.",
+    "whatsappLabel": "٢ — افتح واتساب",
+    "tryAgainLabel": "حاول مجددًا بصورة مختلفة",
+    "fileSizeError": "الصورة كبيرة جدًا. يرجى اختيار صورة أقل من 5 ميغابايت.",
+    "fileTypeError": "يرجى رفع صورة بصيغة JPG أو PNG أو WEBP."
   },
   "faq": {
     "eyebrow": "الأسئلة الشائعة",

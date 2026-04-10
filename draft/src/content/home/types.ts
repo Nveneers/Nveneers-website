@@ -133,7 +133,18 @@ export type HomeUi = {
   };
   assessment: {
     uploadLabel: string;
-    submitLabel: string;
+    cameraLabel: string;
+    checkLabel: string;
+    changePhotoLabel: string;
+    validatingLabel: string;
+    successTitle: string;
+    successBody: string;
+    savePhotoLabel: string;
+    savePhotoHint: string;
+    whatsappLabel: string;
+    tryAgainLabel: string;
+    fileSizeError: string;
+    fileTypeError: string;
   };
   faq: {
     eyebrow: string;

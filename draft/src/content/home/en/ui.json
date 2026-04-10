@@ -37,8 +37,19 @@
     "durationLabel": "Duration"
   },
   "assessment": {
-    "uploadLabel": "Upload a clear smile photo",
-    "submitLabel": "Submit for assessment"
+    "uploadLabel": "Drag & drop or click to upload a smile photo",
+    "cameraLabel": "Take a photo with your camera",
+    "checkLabel": "Check My Smile",
+    "changePhotoLabel": "Choose a different photo",
+    "validatingLabel": "Analysing your smile…",
+    "successTitle": "Your smile looks great!",
+    "successBody": "Follow the two steps below to send your photo to our receptionist on WhatsApp.",
+    "savePhotoLabel": "1 — Save Photo to Device",
+    "savePhotoHint": "Then open WhatsApp, attach the saved photo, and send.",
+    "whatsappLabel": "2 — Open WhatsApp",
+    "tryAgainLabel": "Try again with a different photo",
+    "fileSizeError": "Photo is too large. Please choose one under 5 MB.",
+    "fileTypeError": "Please upload a JPG, PNG, or WEBP image."
   },
   "faq": {
     "eyebrow": "FAQ",

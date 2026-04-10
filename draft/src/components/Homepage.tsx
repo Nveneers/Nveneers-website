@@ -10,7 +10,7 @@ import MobileActionBar from "@/components/MobileActionBar";
 import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
-import AssessmentToolPlaceholderSection from "@/components/sections/AssessmentToolPlaceholderSection";
+import SmileAssessmentSection from "@/components/sections/SmileAssessmentSection";
 import WhoIsThisForSection from "@/components/sections/WhoIsThisForSection";
 import ProcessTimelineSection from "@/components/sections/ProcessTimelineSection";
 import BeforeAfterSection from "@/components/sections/BeforeAfterSection";
@@ -79,9 +79,11 @@ export default function Homepage({ locale }: HomepageProps) {
       <main className="pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
         <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
         <ProductSplitSection content={product} />
-        <AssessmentToolPlaceholderSection
+        <SmileAssessmentSection
           content={assessment}
           labels={ui.assessment}
+          whatsappNumber={contact.whatsapp.number}
+          whatsappSuccessMessage="Hi, I just used the smile assessment tool on your website and my photo was approved. I'm attaching it now — could you please review it and let me know next steps?"
         />
         <WhoIsThisForSection
           content={eligibility}

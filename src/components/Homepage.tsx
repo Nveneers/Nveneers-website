@@ -11,7 +11,7 @@ import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import IntroStripSection from "@/components/sections/IntroStripSection";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
-import AssessmentToolPlaceholderSection from "@/components/sections/AssessmentToolPlaceholderSection";
+import SmileAssessmentSection from "@/components/sections/SmileAssessmentSection";
 import ProcessTimelineSection from "@/components/sections/ProcessTimelineSection";
 import WhoIsThisForSection from "@/components/sections/WhoIsThisForSection";
 import BeforeAfterSection from "@/components/sections/BeforeAfterSection";
@@ -90,9 +90,11 @@ export default function Homepage({ locale }: HomepageProps) {
         <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
         <IntroStripSection content={introStrip} />
         <ProductSplitSection content={product} />
-        <AssessmentToolPlaceholderSection
+        <SmileAssessmentSection
           content={assessment}
           labels={ui.assessment}
+          whatsappNumber={contact.whatsapp.number}
+          whatsappSuccessMessage="Hi, I just used the smile assessment tool on your website and my photo was approved. I'm attaching it now — could you please review it and let me know next steps?"
         />
         <ProcessTimelineSection
           steps={steps}
