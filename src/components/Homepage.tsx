@@ -93,8 +93,6 @@ export default function Homepage({ locale }: HomepageProps) {
         <SmileAssessmentSection
           content={assessment}
           labels={ui.assessment}
-          whatsappNumber={contact.whatsapp.number}
-          whatsappSuccessMessage="Hi, I just used the smile assessment tool on your website and my photo was approved. I'm attaching it now — could you please review it and let me know next steps?"
         />
         <ProcessTimelineSection
           steps={steps}
