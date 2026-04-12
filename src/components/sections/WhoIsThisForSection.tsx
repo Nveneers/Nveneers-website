@@ -4,6 +4,8 @@ import RevealOnScroll from "@/components/ui/RevealOnScroll";
 type WhoIsThisForSectionProps = {
   content: EligibilityContent;
   labels: {
+    eyebrow: string;
+    headline: string;
     goodFitTitle: string;
     notIdealTitle: string;
   };
@@ -17,6 +19,13 @@ export default function WhoIsThisForSection({
   return (
     <section className="section section-ivory">
       <div className="container">
+        <RevealOnScroll>
+          <div className="mb-10">
+            <p className="intro-label">{labels.eyebrow}</p>
+            <h2 className="section-title mt-4">{labels.headline}</h2>
+            <div className="divider" />
+          </div>
+        </RevealOnScroll>
         <div className="grid gap-8 lg:grid-cols-2">
           {/* Good Fit - dark card */}
           <RevealOnScroll>

@@ -19,7 +19,7 @@ export default function ComparisonTableSection({ content }: ComparisonTableSecti
         </RevealOnScroll>
         <RevealOnScroll>
           <div className="overflow-x-auto rounded-2xl border border-brand-border">
-            <table className="w-full border-collapse text-[0.8rem] sm:text-[0.9rem]">
+            <table className="w-full border-collapse text-[0.85rem] sm:text-[0.9rem]">
               <thead style={{ background: "var(--deep)", color: "var(--cream)" }}>
                 <tr>
                   {content.columns.map((col, i) => (
@@ -54,6 +54,7 @@ export default function ComparisonTableSection({ content }: ComparisonTableSecti
               </tbody>
             </table>
           </div>
+          <p className="mt-2 text-center text-xs text-brand-muted md:hidden">← scroll to compare →</p>
         </RevealOnScroll>
       </div>
     </section>

@@ -156,6 +156,8 @@ export type HomeUi = {
     eyebrow: string;
   };
   eligibility: {
+    eyebrow: string;
+    headline: string;
     goodFitTitle: string;
     notIdealTitle: string;
   };

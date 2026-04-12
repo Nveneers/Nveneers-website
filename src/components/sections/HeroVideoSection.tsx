@@ -128,10 +128,10 @@ export default function HeroVideoSection({
                   onClick={() => setActiveIndex(index)}
                   aria-label={`${labels.dotAriaLabelPrefix} ${index + 1}`}
                   aria-pressed={isActive}
-                  className={`h-2.5 w-2.5 rounded-full border border-white/80 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black ${
-                    isActive ? "bg-brand-gold" : "bg-transparent"
-                  }`}
-                />
+                  className="flex h-8 w-8 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  <span className={`h-2.5 w-2.5 rounded-full border border-white/80 transition ${isActive ? "bg-brand-gold" : "bg-transparent"}`} />
+                </button>
               );
             })}
           </div>

@@ -11,6 +11,8 @@
     "eyebrow": "رضا المرضى"
   },
   "eligibility": {
+    "eyebrow": "الأهلية",
+    "headline": "هل هذا مناسب لك؟",
     "goodFitTitle": "مناسب",
     "notIdealTitle": "غير مناسب"
   },

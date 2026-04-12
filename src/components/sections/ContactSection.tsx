@@ -51,27 +51,32 @@ export default function ContactSection({
             </div>
           </RevealOnScroll>
           <RevealOnScroll delay={80}>
-            <div className="card p-6 sm:p-8">
-              <div className="space-y-4 text-sm">
-                <div>
-                  <p className="intro-label">{labels.phoneLabel}</p>
-                  <p className="mt-1 text-base font-semibold text-brand-deep">
-                    {content.phone}
-                  </p>
+            <div className="card overflow-hidden p-0">
+              {[
+                { label: labels.phoneLabel, value: content.phone },
+                { label: labels.emailLabel, value: content.email },
+                { label: labels.hoursLabel, value: content.hours },
+              ].map((row, i) => (
+                <div
+                  key={row.label}
+                  className="flex items-start gap-4 px-6 py-5"
+                  style={{
+                    borderTop: i > 0 ? "1px solid var(--border)" : undefined,
+                  }}
+                >
+                  <div
+                    className="mt-1 h-full w-0.5 self-stretch rounded-full"
+                    style={{ background: "var(--gold)", minHeight: "2rem" }}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p className="intro-label">{row.label}</p>
+                    <p className="mt-1 text-base font-semibold text-brand-deep">
+                      {row.value}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="intro-label">{labels.emailLabel}</p>
-                  <p className="mt-1 text-base font-semibold text-brand-deep">
-                    {content.email}
-                  </p>
-                </div>
-                <div>
-                  <p className="intro-label">{labels.hoursLabel}</p>
-                  <p className="mt-1 text-base font-semibold text-brand-deep">
-                    {content.hours}
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </RevealOnScroll>
         </div>

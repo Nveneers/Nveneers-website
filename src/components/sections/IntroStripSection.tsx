@@ -30,7 +30,7 @@ export default function IntroStripSection({ content }: IntroStripSectionProps) {
                 }}>
                   {stat.value}
                   {stat.unit ? (
-                    <span style={{ fontSize: "clamp(0.9rem, 3vw, 1.4rem)" }}>{stat.unit}</span>
+                    <span style={{ fontSize: "clamp(0.85rem, 3.5vw, 1.4rem)" }}>{stat.unit}</span>
                   ) : null}
                 </div>
                 <div className="mt-1 text-[0.78rem] tracking-[0.05em] text-brand-muted">

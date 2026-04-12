@@ -11,7 +11,7 @@ export default function MobileActionBar({ whatsapp, cta }: MobileActionBarProps)
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-gold/20 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 shadow-[0_-4px_18px_rgba(0,0,0,0.15)] md:hidden" style={{ background: "rgba(10,22,40,0.95)", backdropFilter: "blur(12px)" }}>
-      <div className="mx-auto flex max-w-md gap-3">
+      <div className="flex gap-3">
         <a
           className="btn-secondary flex-1 border-white/20 text-white/70"
           href={whatsappHref}

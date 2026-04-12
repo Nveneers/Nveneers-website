@@ -47,10 +47,10 @@ export default function ProcessTimelineSection({
         <div className="mt-10 flex flex-col">
           {steps.map((step, index) => (
             <RevealOnScroll key={step.title} delay={index * 80}>
-              <div className="grid grid-cols-[50px_1fr] gap-4 border-b border-brand-border py-10 last:border-b-0 sm:grid-cols-[80px_1fr] sm:gap-8">
+              <div className="grid grid-cols-[44px_1fr] gap-4 border-b border-brand-border py-10 last:border-b-0 sm:grid-cols-[80px_1fr] sm:gap-8">
                 <div className="text-brand-gold-light" style={{
                   fontFamily: "var(--font-subjectivity), serif",
-                  fontSize: "clamp(2rem, 8vw, 3.5rem)",
+                  fontSize: "clamp(1.8rem, 8vw, 3.5rem)",
                   fontWeight: 300,
                   lineHeight: 1,
                   paddingTop: "0.2rem"
@@ -75,14 +75,16 @@ export default function ProcessTimelineSection({
 
         {/* Visits card */}
         <RevealOnScroll>
-          <div className="mt-10 card p-6">
-            <p className="text-sm font-medium text-brand-deep">
-              {labels.visitsTitle}
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-brand-mid">
+          <div className="mt-10 overflow-hidden rounded-2xl" style={{ background: "var(--warm-white)", border: "1px solid var(--gold)", opacity: 1 }}>
+            <div className="border-b px-6 py-4" style={{ borderColor: "var(--border)", borderLeft: "3px solid var(--gold)" }}>
+              <p className="text-sm font-semibold" style={{ color: "var(--brown)" }}>
+                {labels.visitsTitle}
+              </p>
+            </div>
+            <ul className="flex flex-wrap gap-x-10 gap-y-3 px-6 py-5 text-sm" style={{ color: "var(--text)" }}>
               {process.visits.map((visit) => (
                 <li key={visit} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-brand-gold" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--gold)" }} />
                   <span>{visit}</span>
                 </li>
               ))}

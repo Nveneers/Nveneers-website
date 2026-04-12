@@ -17,7 +17,7 @@ export default function CtaBannerSection({ content }: CtaBannerSectionProps) {
           <h2 className="text-brand-warm-white" style={{
             fontFamily: "var(--font-subjectivity), serif",
             fontWeight: 300,
-            fontSize: "clamp(2.2rem, 5vw, 4rem)",
+            fontSize: "clamp(1.8rem, 7vw, 4rem)",
             lineHeight: 1.2,
             marginBottom: "1rem"
           }}>

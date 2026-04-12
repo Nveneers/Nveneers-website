@@ -11,6 +11,8 @@
     "eyebrow": "Patient Satisfaction"
   },
   "eligibility": {
+    "eyebrow": "Candidacy",
+    "headline": "Is this right for you?",
     "goodFitTitle": "Good fit",
     "notIdealTitle": "Not ideal"
   },

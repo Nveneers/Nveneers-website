@@ -325,9 +325,9 @@ export default function VideoReelsSection({
               <div
                 key={video.id}
                 ref={setCardRef(video.id)}
-                className="group relative min-w-[75vw] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start sm:min-w-[14rem] md:min-w-0"
+                className="group relative min-w-[58vw] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start sm:min-w-[14rem] md:min-w-0"
               >
-                <div className="relative aspect-[9/16]">
+                <div className="relative aspect-[9/16] max-h-[70svh] md:max-h-none">
                   <video
                     ref={setVideoRef(video.id)}
                     className="h-full w-full object-cover"
