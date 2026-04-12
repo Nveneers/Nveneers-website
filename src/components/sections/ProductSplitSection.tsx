@@ -11,12 +11,6 @@ type ProductSplitSectionProps = {
   };
 };
 
-const iconSvgs = [
-  "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z",
-  "M12 2 L22 12 L12 22 L2 12 Z",
-  "M12 4 L20 20 L4 20 Z"
-];
-
 // Split section explaining the product with supporting media.
 export default function ProductSplitSection({
   content
@@ -37,16 +31,10 @@ export default function ProductSplitSection({
             <div className="mt-8 grid gap-6 md:grid-cols-3">
               {content.bullets.map((bullet, index) => (
                 <div key={bullet.title} className="flex gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: "linear-gradient(135deg, var(--gold), var(--brown))" }}>
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-5 w-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                    >
-                      <path d={iconSvgs[index % iconSvgs.length]} />
-                    </svg>
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--gold)] bg-[var(--gold)]/10">
+                    <span className="text-xs font-semibold tracking-wider" style={{ color: "var(--gold)" }}>
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-brand-deep">

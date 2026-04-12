@@ -6,13 +6,13 @@ const VALID_STATUSES: SubmissionStatus[] = ["new", "contacted", "done"];
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   if (!isAdminAuthenticated(req)) {
     return NextResponse.json({ error: "Unauthorised." }, { status: 401 });
   }
 
-  const { id } = params;
+  const { id } = await params;
   const { status } = await req.json();
 
   if (!VALID_STATUSES.includes(status)) {
