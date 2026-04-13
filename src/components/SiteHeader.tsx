@@ -26,9 +26,9 @@ export default function SiteHeader({
           <Image
             src={brand.logoFull}
             alt={brand.logoAlt}
-            width={1280}
-            height={320}
-            className="h-14 w-auto"
+            width={160}
+            height={160}
+            className="h-16 w-auto"
             priority
           />
         </Link>

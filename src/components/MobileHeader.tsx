@@ -61,7 +61,7 @@ export default function MobileHeader({
             <Image
               src={brand.logoFull}
               alt={brand.logoAlt}
-              width={640}
+              width={160}
               height={160}
               className="h-16 w-auto"
               priority
@@ -111,7 +111,7 @@ export default function MobileHeader({
               <Image
                 src={brand.logoFull}
                 alt={brand.logoAlt}
-                width={640}
+                width={160}
                 height={160}
                 className="h-10 w-auto brightness-0 invert"
               />
