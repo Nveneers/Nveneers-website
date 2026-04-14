@@ -17,7 +17,7 @@ export default function SiteHeader({
 }: SiteHeaderProps) {
   return (
     <header dir="ltr" className="sticky top-0 z-40 hidden overflow-visible border-b border-[var(--border)] bg-white md:block" style={{ backdropFilter: "blur(12px)" }}>
-      <div className="flex h-20 items-center justify-between overflow-visible px-16">
+      <div className="flex h-16 items-center justify-between overflow-visible px-16">
         <Link
           href="/"
           className="relative z-10 flex-shrink-0"
@@ -26,9 +26,9 @@ export default function SiteHeader({
           <Image
             src={brand.logoFull}
             alt={brand.logoAlt}
-            width={160}
-            height={160}
-            className="h-16 w-auto"
+            width={1280}
+            height={320}
+            className="h-[10rem] w-auto"
             priority
           />
         </Link>
