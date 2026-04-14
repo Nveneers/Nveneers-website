@@ -1,6 +1,19 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const COUNTRY_CODES = [
+  { code: "+964", label: "🇮🇶 +964" },
+  { code: "+962", label: "🇯🇴 +962" },
+  { code: "+966", label: "🇸🇦 +966" },
+  { code: "+971", label: "🇦🇪 +971" },
+  { code: "+961", label: "🇱🇧 +961" },
+  { code: "+963", label: "🇸🇾 +963" },
+  { code: "+90",  label: "🇹🇷 +90"  },
+  { code: "+20",  label: "🇪🇬 +20"  },
+  { code: "+44",  label: "🇬🇧 +44"  },
+  { code: "+1",   label: "🇺🇸 +1"   },
+];
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import type { AssessmentContent } from "@/content/home";
 
@@ -23,6 +36,7 @@ type SmileAssessmentSectionProps = {
     tryAgainLabel: string;
     fileSizeError: string;
     fileTypeError: string;
+    clinicPhone?: string;
   };
 };
 
@@ -40,9 +54,20 @@ export default function SmileAssessmentSection({
   const [errorMsg, setErrorMsg] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [countryCode, setCountryCode] = useState("+964");
+  const [hardLocked, setHardLocked] = useState(false);
+  const [softLocked, setSoftLocked] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  // Check hard lock on mount (24h after successful submission)
+  useEffect(() => {
+    const ts = localStorage.getItem("smile_submit_ts");
+    if (ts && Date.now() - Number(ts) < 24 * 3600 * 1000) {
+      setHardLocked(true);
+    }
+  }, []);
 
   function handleFile(file: File) {
     if (!ACCEPTED.includes(file.type)) {
@@ -80,11 +105,24 @@ export default function SmileAssessmentSection({
     setErrorMsg("");
     setName("");
     setPhone("");
+    setCountryCode("+964");
   }
 
   // Step 1: AI validation
   async function validate() {
     if (!preview) return;
+
+    // Soft rate limit: 3 AI checks per day
+    const today = new Date().toISOString().slice(0, 10);
+    const savedDate = localStorage.getItem("smile_validate_date");
+    let count = savedDate === today
+      ? Number(localStorage.getItem("smile_validate_count") ?? "0")
+      : 0;
+    if (count >= 3) {
+      setSoftLocked(true);
+      return;
+    }
+
     setStep("validating");
     try {
       const tokenRes = await fetch("/api/challenge-token");
@@ -96,6 +134,12 @@ export default function SmileAssessmentSection({
         headers: { "Content-Type": "application/json", "X-Challenge-Token": token },
         body: JSON.stringify({ image: preview })
       });
+
+      // Increment counter after the API call (valid or invalid)
+      count++;
+      localStorage.setItem("smile_validate_count", String(count));
+      localStorage.setItem("smile_validate_date", today);
+
       const data = (await res.json()) as { valid: boolean; reason: string };
       if (data.valid) {
         setStep("contact-form");
@@ -122,10 +166,12 @@ export default function SmileAssessmentSection({
       const res = await fetch("/api/submit-smile", {
         method: "POST",
         headers: { "Content-Type": "application/json", "X-Challenge-Token": token },
-        body: JSON.stringify({ image: preview, name: name.trim(), phone: phone.trim() })
+        body: JSON.stringify({ image: preview, name: name.trim(), phone: countryCode + phone.trim() })
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (data.ok) {
+        localStorage.setItem("smile_submit_ts", String(Date.now()));
+        setHardLocked(true);
         setStep("done");
       } else {
         setErrorMsg(data.error ?? "Something went wrong. Please try again.");
@@ -147,6 +193,31 @@ export default function SmileAssessmentSection({
             <p className="section-lead">{content.body}</p>
 
             <div className="mt-8 space-y-5">
+              {/* ── HARD LOCKED (already submitted within 24h) ── */}
+              {hardLocked && step !== "done" && (
+                <div className="flex flex-col items-center gap-3 rounded-2xl bg-emerald-50 px-6 py-10 text-center">
+                  <svg className="h-12 w-12 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-lg font-semibold text-emerald-800">You&apos;ve already submitted a photo</p>
+                  <p className="text-sm text-emerald-700">Our team will be in touch with you soon. If you&apos;d like to reach us sooner, please call us{labels.clinicPhone ? ` at ${labels.clinicPhone}` : ""}.</p>
+                </div>
+              )}
+
+              {/* ── SOFT LOCKED (3 AI checks used today) ── */}
+              {!hardLocked && softLocked && (
+                <div className="flex flex-col items-center gap-3 rounded-2xl bg-amber-50 px-6 py-10 text-center">
+                  <svg className="h-12 w-12 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                  </svg>
+                  <p className="text-lg font-semibold text-amber-800">Daily limit reached</p>
+                  <p className="text-sm text-amber-700">You&apos;ve used all 3 free photo checks for today. To get an assessment, please call us{labels.clinicPhone ? ` at ${labels.clinicPhone}` : ""}.</p>
+                </div>
+              )}
+
+              {/* ── Normal flow (only shown when not locked) ── */}
+              {!hardLocked && !softLocked && <>
+
               {/* ── IDLE ── */}
               {step === "idle" && (
                 <>
@@ -239,15 +310,36 @@ export default function SmileAssessmentSection({
                       <label className="mb-1 block text-sm font-medium text-brand-deep">
                         {labels.phoneLabel}
                       </label>
-                      <input
-                        type="tel"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        placeholder={labels.phonePlaceholder}
-                        required
-                        maxLength={30}
-                        className="w-full rounded-xl border border-brand-border bg-brand-warm-white px-4 py-2.5 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20"
-                      />
+                      <div className="flex gap-2">
+                        <div className="relative shrink-0">
+                          <select
+                            value={countryCode}
+                            onChange={(e) => setCountryCode(e.target.value)}
+                            className="h-full appearance-none rounded-xl border border-brand-border bg-brand-warm-white py-2.5 pl-3 pr-8 text-sm text-brand-deep outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 cursor-pointer"
+                          >
+                            {COUNTRY_CODES.map(({ code, label }) => (
+                              <option key={code} value={code}>{label}</option>
+                            ))}
+                          </select>
+                          <svg
+                            className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-brand-muted"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <input
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          placeholder={labels.phonePlaceholder}
+                          required
+                          maxLength={20}
+                          className="min-w-0 flex-1 rounded-xl border border-brand-border bg-brand-warm-white px-4 py-2.5 text-sm outline-none focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20"
+                        />
+                      </div>
                     </div>
                     <button type="submit" className="btn-primary w-full">
                       {labels.submitLabel}
@@ -262,18 +354,13 @@ export default function SmileAssessmentSection({
 
               {/* ── DONE ── */}
               {step === "done" && (
-                <>
-                  <div className="flex flex-col items-center gap-3 rounded-2xl bg-emerald-50 px-6 py-10 text-center">
-                    <svg className="h-12 w-12 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <p className="text-lg font-semibold text-emerald-800">{labels.doneTitle}</p>
-                    <p className="text-sm text-emerald-700">{labels.doneBody}</p>
-                  </div>
-                  <button type="button" className="w-full text-center text-sm text-brand-muted underline underline-offset-2 hover:text-brand-deep" onClick={reset}>
-                    {labels.tryAgainLabel}
-                  </button>
-                </>
+                <div className="flex flex-col items-center gap-3 rounded-2xl bg-emerald-50 px-6 py-10 text-center">
+                  <svg className="h-12 w-12 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p className="text-lg font-semibold text-emerald-800">{labels.doneTitle}</p>
+                  <p className="text-sm text-emerald-700">{labels.doneBody}</p>
+                </div>
               )}
 
               {/* ── ERROR ── */}
@@ -290,6 +377,8 @@ export default function SmileAssessmentSection({
                   </button>
                 </>
               )}
+
+              </>}
 
               <p className="text-xs text-brand-muted">{content.disclaimer}</p>
             </div>

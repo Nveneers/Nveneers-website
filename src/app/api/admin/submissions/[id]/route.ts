@@ -31,3 +31,26 @@ export async function PATCH(
 
   return NextResponse.json({ ok: true });
 }
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  if (!isAdminAuthenticated(req)) {
+    return NextResponse.json({ error: "Unauthorised." }, { status: 401 });
+  }
+
+  const { id } = await params;
+
+  const { error } = await supabase
+    .from("submissions")
+    .delete()
+    .eq("id", id);
+
+  if (error) {
+    console.error("Delete error:", error);
+    return NextResponse.json({ error: "Delete failed." }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true });
+}

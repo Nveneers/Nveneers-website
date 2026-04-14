@@ -53,17 +53,17 @@ export default function MobileHeader({
   const closeMenu = () => setOpen(false);
 
   return (
-    <header dir="ltr" className="sticky top-0 z-40 md:hidden">
-      <div className="border-b border-[var(--border)] bg-white" style={{ backdropFilter: "blur(12px)" }}>
+    <header dir="ltr" className="sticky top-0 z-40 md:hidden overflow-visible">
+      <div className="border-b border-[var(--border)] bg-white overflow-visible" style={{ backdropFilter: "blur(12px)" }}>
         <div className="flex items-center justify-between px-4 pb-3 pt-[calc(0.75rem+env(safe-area-inset-top))]">
           <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
             <span className="sr-only">{brand.name}</span>
             <Image
               src={brand.logoFull}
               alt={brand.logoAlt}
-              width={640}
-              height={160}
-              className="h-16 w-auto"
+              width={1280}
+              height={320}
+              className="h-[10rem] w-auto"
               priority
             />
           </Link>
