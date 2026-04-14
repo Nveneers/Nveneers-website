@@ -92,7 +92,7 @@ export default function Homepage({ locale }: HomepageProps) {
         <ProductSplitSection content={product} />
         <SmileAssessmentSection
           content={assessment}
-          labels={{ ...ui.assessment, clinicPhone: contact.phone }}
+          labels={ui.assessment}
         />
         <ProcessTimelineSection
           steps={steps}
