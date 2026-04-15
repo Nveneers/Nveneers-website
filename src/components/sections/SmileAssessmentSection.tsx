@@ -60,12 +60,14 @@ export default function SmileAssessmentSection({
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
-  // Check hard lock on mount (24h after successful submission)
+  // Check hard lock on mount (2 submissions per calendar day)
   useEffect(() => {
-    const ts = localStorage.getItem("smile_submit_ts");
-    if (ts && Date.now() - Number(ts) < 24 * 3600 * 1000) {
-      setHardLocked(true);
-    }
+    const today = new Date().toISOString().slice(0, 10);
+    const savedDate = localStorage.getItem("smile_submit_date");
+    const count = savedDate === today
+      ? Number(localStorage.getItem("smile_submit_count") ?? "0")
+      : 0;
+    if (count >= 2) setHardLocked(true);
   }, []);
 
   function handleFile(file: File) {
@@ -111,13 +113,13 @@ export default function SmileAssessmentSection({
   async function validate() {
     if (!preview) return;
 
-    // Soft rate limit: 3 AI checks per day
+    // Soft rate limit: 5 AI checks per day
     const today = new Date().toISOString().slice(0, 10);
     const savedDate = localStorage.getItem("smile_validate_date");
     let count = savedDate === today
       ? Number(localStorage.getItem("smile_validate_count") ?? "0")
       : 0;
-    if (count >= 3) {
+    if (count >= 5) {
       setSoftLocked(true);
       return;
     }
@@ -169,8 +171,15 @@ export default function SmileAssessmentSection({
       });
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (data.ok) {
-        localStorage.setItem("smile_submit_ts", String(Date.now()));
-        setHardLocked(true);
+        const today = new Date().toISOString().slice(0, 10);
+        const savedDate = localStorage.getItem("smile_submit_date");
+        const prevCount = savedDate === today
+          ? Number(localStorage.getItem("smile_submit_count") ?? "0")
+          : 0;
+        const newCount = prevCount + 1;
+        localStorage.setItem("smile_submit_count", String(newCount));
+        localStorage.setItem("smile_submit_date", today);
+        if (newCount >= 2) setHardLocked(true);
         setStep("done");
       } else {
         setErrorMsg(data.error ?? "Something went wrong. Please try again.");
