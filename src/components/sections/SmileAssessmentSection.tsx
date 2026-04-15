@@ -56,6 +56,7 @@ export default function SmileAssessmentSection({
   const [countryCode, setCountryCode] = useState("+964");
   const [hardLocked, setHardLocked] = useState(false);
   const [softLocked, setSoftLocked] = useState(false);
+  const [errorContact, setErrorContact] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
@@ -104,6 +105,7 @@ export default function SmileAssessmentSection({
     setStep("idle");
     setPreview(null);
     setErrorMsg("");
+    setErrorContact(false);
     setName("");
     setPhone("");
     setCountryCode("+964");
@@ -127,7 +129,12 @@ export default function SmileAssessmentSection({
     setStep("validating");
     try {
       const tokenRes = await fetch("/api/challenge-token");
-      if (!tokenRes.ok) throw new Error("token_fetch_failed");
+      if (!tokenRes.ok) {
+        setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+        setErrorContact(true);
+        setStep("error");
+        return;
+      }
       const { token } = (await tokenRes.json()) as { token: string };
 
       const res = await fetch("/api/validate-smile", {
@@ -141,15 +148,30 @@ export default function SmileAssessmentSection({
       localStorage.setItem("smile_validate_count", String(count));
       localStorage.setItem("smile_validate_date", today);
 
+      if (res.status === 429) {
+        setErrorMsg("Our system is a little busy right now. Please wait a moment and try again.");
+        setErrorContact(false);
+        setStep("error");
+        return;
+      }
+      if (!res.ok) {
+        setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+        setErrorContact(true);
+        setStep("error");
+        return;
+      }
+
       const data = (await res.json()) as { valid: boolean; reason: string };
       if (data.valid) {
         setStep("contact-form");
       } else {
         setErrorMsg(data.reason);
+        setErrorContact(false);
         setStep("error");
       }
     } catch {
-      setErrorMsg("Something went wrong. Please check your connection and try again.");
+      setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+      setErrorContact(true);
       setStep("error");
     }
   }
@@ -161,7 +183,12 @@ export default function SmileAssessmentSection({
     setStep("submitting");
     try {
       const tokenRes = await fetch("/api/challenge-token");
-      if (!tokenRes.ok) throw new Error("token_fetch_failed");
+      if (!tokenRes.ok) {
+        setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+        setErrorContact(true);
+        setStep("error");
+        return;
+      }
       const { token } = (await tokenRes.json()) as { token: string };
 
       const res = await fetch("/api/submit-smile", {
@@ -169,6 +196,13 @@ export default function SmileAssessmentSection({
         headers: { "Content-Type": "application/json", "X-Challenge-Token": token },
         body: JSON.stringify({ image: preview, name: name.trim(), phone: countryCode + phone.trim() })
       });
+      if (res.status === 429) {
+        setErrorMsg("Our system is a little busy right now. Please wait a moment and try again.");
+        setErrorContact(false);
+        setStep("error");
+        return;
+      }
+
       const data = (await res.json()) as { ok: boolean; error?: string };
       if (data.ok) {
         const today = new Date().toISOString().slice(0, 10);
@@ -182,11 +216,13 @@ export default function SmileAssessmentSection({
         if (newCount >= 2) setHardLocked(true);
         setStep("done");
       } else {
-        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+        setErrorContact(true);
         setStep("error");
       }
     } catch {
-      setErrorMsg("Something went wrong. Please check your connection and try again.");
+      setErrorMsg("Our system is a little busy right now. Please contact us directly to help.");
+      setErrorContact(true);
       setStep("error");
     }
   }
@@ -219,7 +255,7 @@ export default function SmileAssessmentSection({
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                   </svg>
                   <p className="text-lg font-semibold text-amber-800">Daily limit reached</p>
-                  <p className="text-sm text-amber-700">You&apos;ve used all 3 free photo checks for today. To get an assessment, <a href="#contact" className="underline underline-offset-2 hover:text-amber-900">please contact us</a>.</p>
+                  <p className="text-sm text-amber-700">You&apos;ve used all 5 free photo checks for today. To get an assessment, <a href="#contact" className="underline underline-offset-2 hover:text-amber-900">please contact us</a>.</p>
                 </div>
               )}
 
@@ -378,7 +414,12 @@ export default function SmileAssessmentSection({
                     <svg className="h-12 w-12 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} aria-hidden="true">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                     </svg>
-                    <p className="text-sm font-medium text-amber-800">{errorMsg}</p>
+                    <p className="text-sm font-medium text-amber-800">
+                      {errorMsg}
+                      {errorContact && (
+                        <> If this keeps happening, <a href="#contact" className="underline underline-offset-2 hover:text-amber-900">please contact us</a> directly.</>
+                      )}
+                    </p>
                   </div>
                   <button type="button" className="btn-primary w-full" onClick={reset}>
                     {labels.tryAgainLabel}

@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
     const { allowed, retryAfterSeconds } = checkRateLimit(ip, VALIDATE_RATE_LIMIT);
     if (!allowed) {
       return NextResponse.json(
-        { valid: false, reason: "Too many requests. Please wait a moment and try again." },
+        { valid: false, reason: "Our system is a little busy right now. Please wait a moment and try again." },
         {
           status: 429,
           headers: {
@@ -163,7 +163,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json(
         {
           valid: false,
-          reason: "Vision API not configured. Please contact the clinic directly."
+          reason: "Our photo check service is temporarily unavailable. Please contact us directly."
         },
         { status: 503 }
       );
@@ -179,7 +179,7 @@ export async function POST(req: NextRequest) {
       {
         valid: false,
         reason:
-          "Something went wrong while checking your photo. Please try again."
+          "We couldn't check your photo at this time. Please try again."
       },
       { status: 500 }
     );
