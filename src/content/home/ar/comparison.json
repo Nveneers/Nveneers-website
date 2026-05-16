@@ -13,39 +13,24 @@
       "traditional": "~0.5 مم"
     },
     {
-      "feature": "إزالة المينا",
+      "feature": "برد الأسنان",
       "nVeneers": "ضئيلة أو معدومة",
       "traditional": "كبيرة (غير قابلة للعكس)"
     },
     {
-      "feature": "قابلية العكس",
-      "nVeneers": "قابلة للعكس عادةً",
-      "traditional": "غير قابلة للعكس"
+      "feature": "القابلية على الاصلاح",
+      "nVeneers": "تبقى الأسنان على حالها",
+      "traditional": "أسنان مبرودة"
     },
     {
       "feature": "التخدير",
-      "nVeneers": "نادراً",
+      "nVeneers": "لا حاجة",
       "traditional": "مطلوب عادةً"
     },
     {
       "feature": "المواعيد",
       "nVeneers": "زيارتان",
       "traditional": "2–3 زيارات"
-    },
-    {
-      "feature": "إخفاء البقع الداكنة",
-      "nVeneers": "ممتاز",
-      "traditional": "متوسط"
-    },
-    {
-      "feature": "المظهر الطبيعي",
-      "nVeneers": "ممتاز",
-      "traditional": "جيد جداً"
-    },
-    {
-      "feature": "العمر الافتراضي",
-      "nVeneers": "10–20 سنة",
-      "traditional": "10–15 سنة"
     }
   ]
 }
