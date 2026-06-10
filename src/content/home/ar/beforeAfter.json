@@ -1,53 +1,46 @@
-﻿{
-  "filters": ["الفراغات", "الشكل", "اللون", "الاصطفاف"],
+{
   "cases": [
     {
-      "id": "case-gap-1",
+      "id": "case-1",
       "title": "إغلاق الفراغ الأوسط",
-      "filters": ["الفراغات"],
-      "beforeImage": "/images/cases/gaps-before.svg",
-      "afterImage": "/images/cases/gaps-after.svg",
+      "image": "/images/cases/case-1.jpeg",
       "description": "إغلاق الفراغات وتنعيم الحواف."
     },
     {
-      "id": "case-gap-2",
+      "id": "case-2",
       "title": "توازن الفراغات الجانبية",
-      "filters": ["الفراغات"],
-      "beforeImage": "/images/cases/gaps-before.svg",
-      "afterImage": "/images/cases/gaps-after.svg",
+      "image": "/images/cases/case-2.jpeg",
       "description": "تحسين التناسق لابتسامة متوازنة."
     },
     {
-      "id": "case-shape-1",
+      "id": "case-3",
       "title": "الطول والتماثل",
-      "filters": ["الشكل"],
-      "beforeImage": "/images/cases/shape-before.svg",
-      "afterImage": "/images/cases/shape-after.svg",
+      "image": "/images/cases/case-3.jpeg",
       "description": "تحسين الطول مع تحديد طبيعي للحدود."
     },
     {
-      "id": "case-shape-2",
+      "id": "case-4",
       "title": "تنقية الحواف",
-      "filters": ["الشكل"],
-      "beforeImage": "/images/cases/shape-before.svg",
-      "afterImage": "/images/cases/shape-after.svg",
+      "image": "/images/cases/case-4.jpeg",
       "description": "تنعيم الحواف بانحناءات بسيطة."
     },
     {
-      "id": "case-shade-1",
+      "id": "case-5",
       "title": "تفتيح اللون",
-      "filters": ["اللون"],
-      "beforeImage": "/images/cases/shade-before.svg",
-      "afterImage": "/images/cases/shade-after.svg",
+      "image": "/images/cases/case-5.jpeg",
       "description": "رفع درجة اللون مع الحفاظ على الشفافية الطبيعية."
     },
     {
-      "id": "case-align-1",
+      "id": "case-6",
       "title": "تناغم الاصطفاف",
-      "filters": ["الاصطفاف"],
-      "beforeImage": "/images/cases/alignment-before.svg",
-      "afterImage": "/images/cases/alignment-after.svg",
+      "image": "/images/cases/case-6.jpeg",
       "description": "محاذاة الأسنان الأمامية لخط ابتسامة أنظف."
+    },
+    {
+      "id": "case-7",
+      "title": "تجميل الابتسامة الكامل",
+      "image": "/images/cases/case-7.jpeg",
+      "description": "إعادة تشكيل وتفتيح لتحوّل متكامل."
     }
   ],
   "disclaimer": "النتائج تختلف. بعض الحالات تتطلب تحضيرًا خفيفًا بعد الفحص السريري."

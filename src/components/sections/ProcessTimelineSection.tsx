@@ -50,7 +50,7 @@ export default function ProcessTimelineSection({
               <div className="grid grid-cols-[44px_1fr] gap-4 border-b border-brand-border py-10 last:border-b-0 sm:grid-cols-[80px_1fr] sm:gap-8">
                 <div className="text-brand-gold-light" style={{
                   fontFamily: "var(--font-subjectivity), serif",
-                  fontSize: "clamp(1.8rem, 8vw, 3.5rem)",
+                  fontSize: "clamp(1.5rem, 8vw, 3.5rem)",
                   fontWeight: 300,
                   lineHeight: 1,
                   paddingTop: "0.2rem"

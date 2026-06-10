@@ -1,7 +1,7 @@
-﻿[
-  { "label": "الخطوات", "href": "#process" },
-  { "label": "الحالات", "href": "#cases" },
-  { "label": "الفيديوهات", "href": "#videos" },
-  { "label": "الأسئلة", "href": "#faq" },
-  { "label": "التواصل", "href": "#contact" }
+[
+  { "label": "كيف تتم", "href": "#process" },
+  { "label": "النتائج", "href": "#cases" },
+  { "label": "افحص ابتسامتك", "href": "#assessment" },
+  { "label": "الأسئلة الشائعة", "href": "#faq" },
+  { "label": "تواصل معنا", "href": "#contact" }
 ]

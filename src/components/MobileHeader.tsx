@@ -8,7 +8,6 @@ import type { Locale } from "@/content/home";
 type MobileHeaderProps = {
   locale: Locale;
   navigation: { label: string; href: string }[];
-  cta: { label: string; href: string };
   brand: { name: string; logoFull: string; logoAlt: string };
   languageToggle: { label: string; href: string; ariaLabel: string };
 };
@@ -17,7 +16,6 @@ type MobileHeaderProps = {
 export default function MobileHeader({
   locale,
   navigation,
-  cta,
   brand,
   languageToggle
 }: MobileHeaderProps) {
@@ -55,17 +53,23 @@ export default function MobileHeader({
   return (
     <header dir="ltr" className="sticky top-0 z-40 md:hidden overflow-visible">
       <div className="border-b border-[var(--border)] bg-white overflow-visible" style={{ backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center justify-between px-4 pb-3 pt-[calc(0.75rem+env(safe-area-inset-top))]">
+        <div className="flex items-center justify-between pl-2 pr-4 py-2.5 pt-[calc(0.625rem+env(safe-area-inset-top))]">
           <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
             <span className="sr-only">{brand.name}</span>
-            <Image
-              src={brand.logoFull}
-              alt={brand.logoAlt}
-              width={1280}
-              height={320}
-              className="h-[10rem] w-auto"
-              priority
-            />
+            {/* The logo SVG has ~37.5% transparent padding top & bottom (square
+                4500x4500 canvas, wordmark only fills the middle ~25%). Clip to the
+                artwork band: image is ~4x the wrapper height so the middle 25%
+                fills it; symmetric padding means vertical centering aligns it. */}
+            <span className="flex h-8 items-center overflow-hidden sm:h-10">
+              <Image
+                src={brand.logoFull}
+                alt={brand.logoAlt}
+                width={1280}
+                height={320}
+                className="h-[8rem] w-auto max-w-none sm:h-[10rem]"
+                priority
+              />
+            </span>
           </Link>
           <div className="flex items-center gap-2">
             <Link
@@ -139,9 +143,6 @@ export default function MobileHeader({
           </nav>
 
           <div className="mt-auto flex flex-col gap-3 pt-10">
-            <Link href={cta.href} className="btn-primary w-full" onClick={closeMenu}>
-              {cta.label}
-            </Link>
             <Link
               href={languageToggle.href}
               className="btn-secondary w-full border-white/20 text-white/60"

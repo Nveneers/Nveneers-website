@@ -29,6 +29,7 @@ import eligibilityEn from "./en/eligibility.json";
 import stepsEn from "./en/steps.json";
 import processEn from "./en/process.json";
 import beforeAfterEn from "./en/beforeAfter.json";
+import bestCasesEn from "./en/bestCases.json";
 import videosEn from "./en/videos.json";
 import assessmentEn from "./en/assessment.json";
 import faqsEn from "./en/faqs.json";
@@ -50,6 +51,7 @@ import eligibilityAr from "./ar/eligibility.json";
 import stepsAr from "./ar/steps.json";
 import processAr from "./ar/process.json";
 import beforeAfterAr from "./ar/beforeAfter.json";
+import bestCasesAr from "./ar/bestCases.json";
 import videosAr from "./ar/videos.json";
 import assessmentAr from "./ar/assessment.json";
 import faqsAr from "./ar/faqs.json";
@@ -66,6 +68,7 @@ export type {
   AftercareContent,
   AssessmentContent,
   BeforeAfterCase,
+  BestCase,
   ComparisonContent,
   ContactContent,
   CtaBannerContent,
@@ -95,9 +98,9 @@ const homeContentEn: HomeContent = {
   eligibility: eligibilityEn as EligibilityContent,
   steps: stepsEn as Step[],
   process: processEn as ProcessContent,
-  beforeAfterFilters: beforeAfterEn.filters as string[],
   beforeAfterCases: beforeAfterEn.cases as HomeContent["beforeAfterCases"],
   galleryDisclaimer: beforeAfterEn.disclaimer as string,
+  bestCases: bestCasesEn as HomeContent["bestCases"],
   videos: videosEn as VideoItem[],
   assessment: assessmentEn,
   faqs: faqsEn as FaqItem[],
@@ -120,9 +123,9 @@ const homeContentAr: HomeContent = {
   eligibility: eligibilityAr as EligibilityContent,
   steps: stepsAr as Step[],
   process: processAr as ProcessContent,
-  beforeAfterFilters: beforeAfterAr.filters as string[],
   beforeAfterCases: beforeAfterAr.cases as HomeContent["beforeAfterCases"],
   galleryDisclaimer: beforeAfterAr.disclaimer as string,
+  bestCases: bestCasesAr as HomeContent["bestCases"],
   videos: videosAr as VideoItem[],
   assessment: assessmentAr,
   faqs: faqsAr as FaqItem[],

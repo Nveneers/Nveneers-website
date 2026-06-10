@@ -1,7 +1,7 @@
-﻿[
-  { "label": "Process", "href": "#process" },
-  { "label": "Cases", "href": "#cases" },
-  { "label": "Videos", "href": "#videos" },
+[
+  { "label": "How It Works", "href": "#process" },
+  { "label": "Results", "href": "#cases" },
+  { "label": "Smile Check", "href": "#assessment" },
   { "label": "FAQ", "href": "#faq" },
   { "label": "Contact", "href": "#contact" }
 ]

@@ -15,7 +15,7 @@ export default function IntroStripSection({ content }: IntroStripSectionProps) {
             <p className="intro-label">{content.eyebrow}</p>
             <h2 className="section-title mt-4">{content.headline}</h2>
             <div className="divider" />
-            <p className="text-[0.95rem] text-brand-mid">{content.body}</p>
+            <p className="text-[0.9rem] text-brand-mid">{content.body}</p>
           </div>
         </RevealOnScroll>
         <div className="grid grid-cols-2 gap-4">
@@ -24,7 +24,7 @@ export default function IntroStripSection({ content }: IntroStripSectionProps) {
               <div className="card rounded-xl p-6 text-center">
                 <div className="text-brand-gold" style={{
                   fontFamily: "var(--font-subjectivity), serif",
-                  fontSize: "clamp(1.8rem, 7vw, 2.8rem)",
+                  fontSize: "clamp(1.4rem, 7vw, 2.8rem)",
                   fontWeight: 600,
                   lineHeight: 1
                 }}>

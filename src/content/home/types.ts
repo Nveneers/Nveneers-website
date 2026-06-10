@@ -3,15 +3,11 @@ export type Locale = "en" | "ar";
 export type HeroVideoSlide = {
   id: string;
   src: string;
-  poster: string;
+  poster?: string;
 };
 
 export type HeroContent = {
-  eyebrow: string;
-  headline: string;
-  subheadline: string;
   primaryCta: { label: string; href: string };
-  secondaryCta: { label: string; href: string };
   videos: HeroVideoSlide[];
 };
 
@@ -32,7 +28,6 @@ export type ProductContent = {
   headline: string;
   body: string[];
   bullets: { title: string; description: string }[];
-  media: { videoSrc: string; poster: string; alt: string };
 };
 
 export type EligibilityContent = {
@@ -55,10 +50,15 @@ export type ProcessContent = {
 export type BeforeAfterCase = {
   id: string;
   title: string;
-  filters: string[];
-  beforeImage: string;
-  afterImage: string;
+  image: string;
   description: string;
+};
+
+export type BestCase = {
+  id: string;
+  title: string;
+  image: string;
+  caption: string;
 };
 
 
@@ -87,7 +87,6 @@ export type ContactContent = {
   subheadline: string;
   whatsapp: { label: string; number: string; message: string };
   phone: string;
-  email: string;
   hours: string;
   disclaimer: string;
   privacyLabel: string;
@@ -175,6 +174,14 @@ export type HomeUi = {
     beforeLabel: string;
     afterLabel: string;
   };
+  bestCases: {
+    eyebrow: string;
+    headline: string;
+    lead: string;
+    prevAriaLabel: string;
+    nextAriaLabel: string;
+    nudge: string;
+  };
   videos: {
     eyebrow: string;
     headline: string;
@@ -209,7 +216,6 @@ export type HomeUi = {
   contact: {
     eyebrow: string;
     phoneLabel: string;
-    emailLabel: string;
     hoursLabel: string;
   };
 };
@@ -228,9 +234,9 @@ export type HomeContent = {
   eligibility: EligibilityContent;
   steps: Step[];
   process: ProcessContent;
-  beforeAfterFilters: string[];
   beforeAfterCases: BeforeAfterCase[];
   galleryDisclaimer: string;
+  bestCases: BestCase[];
   videos: VideoItem[];
   assessment: AssessmentContent;
   faqs: FaqItem[];

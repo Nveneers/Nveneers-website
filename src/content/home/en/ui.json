@@ -30,6 +30,14 @@
     "beforeLabel": "Before",
     "afterLabel": "After"
   },
+  "bestCases": {
+    "eyebrow": "Our Best Work",
+    "headline": "Smiles we're proud of",
+    "lead": "A selection of real outcomes from non-prep veneer cases.",
+    "prevAriaLabel": "Previous cases",
+    "nextAriaLabel": "Next cases",
+    "nudge": "Curious how your smile could look? Check yours below ↓"
+  },
   "videos": {
     "eyebrow": "Video Proof",
     "headline": "Short reels, real outcomes",
@@ -64,7 +72,6 @@
   "contact": {
     "eyebrow": "Final Step",
     "phoneLabel": "Phone",
-    "emailLabel": "Email",
     "hoursLabel": "Hours"
   }
 }

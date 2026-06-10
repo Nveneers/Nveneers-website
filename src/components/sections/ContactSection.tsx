@@ -7,7 +7,6 @@ type ContactSectionProps = {
   labels: {
     eyebrow: string;
     phoneLabel: string;
-    emailLabel: string;
     hoursLabel: string;
   };
 };
@@ -54,7 +53,6 @@ export default function ContactSection({
             <div className="card overflow-hidden p-0">
               {[
                 { label: labels.phoneLabel, value: content.phone },
-                { label: labels.emailLabel, value: content.email },
                 { label: labels.hoursLabel, value: content.hours },
               ].map((row, i) => (
                 <div

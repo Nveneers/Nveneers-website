@@ -1,24 +1,13 @@
 ﻿{
-  "eyebrow": "Non Prep Veneer",
-  "headline": "Non Prep Veneer, Crafted With Precision",
-  "subheadline": "Ultra-thin ceramic veneers designed for natural light, shape, and balance. Minimal alteration when clinically appropriate.",
   "primaryCta": { "label": "Get assessed", "href": "#assessment" },
-  "secondaryCta": { "label": "See real cases", "href": "#cases" },
   "videos": [
     {
       "id": "hero-1",
-      "src": "/videos/hero-1.mp4",
-      "poster": "/images/hero-poster.svg"
+      "src": "/videos/hero-1-en.mp4"
     },
     {
       "id": "hero-2",
-      "src": "/videos/hero-2.mp4",
-      "poster": "/images/hero-poster.svg"
-    },
-    {
-      "id": "hero-3",
-      "src": "/videos/hero-3.mp4",
-      "poster": "/images/hero-poster.svg"
+      "src": "/videos/hero-2-en.mp4"
     }
   ]
 }

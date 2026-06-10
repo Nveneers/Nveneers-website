@@ -1,53 +1,46 @@
-﻿{
-  "filters": ["Gaps", "Shape", "Shade", "Alignment"],
+{
   "cases": [
     {
-      "id": "case-gap-1",
+      "id": "case-1",
       "title": "Midline gap closure",
-      "filters": ["Gaps"],
-      "beforeImage": "/images/cases/gaps-before.svg",
-      "afterImage": "/images/cases/gaps-after.svg",
+      "image": "/images/cases/case-1.jpeg",
       "description": "Closed spacing and softened edges."
     },
     {
-      "id": "case-gap-2",
+      "id": "case-2",
       "title": "Lateral gap balance",
-      "filters": ["Gaps"],
-      "beforeImage": "/images/cases/gaps-before.svg",
-      "afterImage": "/images/cases/gaps-after.svg",
+      "image": "/images/cases/case-2.jpeg",
       "description": "Balanced proportions for a cohesive smile."
     },
     {
-      "id": "case-shape-1",
+      "id": "case-3",
       "title": "Length and symmetry",
-      "filters": ["Shape"],
-      "beforeImage": "/images/cases/shape-before.svg",
-      "afterImage": "/images/cases/shape-after.svg",
+      "image": "/images/cases/case-3.jpeg",
       "description": "Refined length with natural contouring."
     },
     {
-      "id": "case-shape-2",
+      "id": "case-4",
       "title": "Edge refinement",
-      "filters": ["Shape"],
-      "beforeImage": "/images/cases/shape-before.svg",
-      "afterImage": "/images/cases/shape-after.svg",
+      "image": "/images/cases/case-4.jpeg",
       "description": "Smoothed edges with subtle rounding."
     },
     {
-      "id": "case-shade-1",
+      "id": "case-5",
       "title": "Brightened shade",
-      "filters": ["Shade"],
-      "beforeImage": "/images/cases/shade-before.svg",
-      "afterImage": "/images/cases/shade-after.svg",
+      "image": "/images/cases/case-5.jpeg",
       "description": "Lifted shade while keeping natural translucency."
     },
     {
-      "id": "case-align-1",
+      "id": "case-6",
       "title": "Alignment harmony",
-      "filters": ["Alignment"],
-      "beforeImage": "/images/cases/alignment-before.svg",
-      "afterImage": "/images/cases/alignment-after.svg",
+      "image": "/images/cases/case-6.jpeg",
       "description": "Aligned front teeth for a cleaner line."
+    },
+    {
+      "id": "case-7",
+      "title": "Full smile makeover",
+      "image": "/images/cases/case-7.jpeg",
+      "description": "Reshaped and brightened for a complete transformation."
     }
   ],
   "disclaimer": "Results vary. Some cases require light preparation after the clinical exam."

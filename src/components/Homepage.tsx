@@ -11,6 +11,7 @@ import LanguageDocument from "@/components/LanguageDocument";
 import HeroVideoSection from "@/components/sections/HeroVideoSection";
 import IntroStripSection from "@/components/sections/IntroStripSection";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
+import BestCasesSection from "@/components/sections/BestCasesSection";
 import SmileAssessmentSection from "@/components/sections/SmileAssessmentSection";
 import ProcessTimelineSection from "@/components/sections/ProcessTimelineSection";
 import WhoIsThisForSection from "@/components/sections/WhoIsThisForSection";
@@ -40,10 +41,10 @@ export default function Homepage({ locale }: HomepageProps) {
     eligibility,
     steps,
     process,
-    beforeAfterFilters,
     beforeAfterCases,
     galleryDisclaimer,
-    videos,
+    bestCases,
+    // videos,
     assessment,
     faqs,
     contact,
@@ -68,7 +69,6 @@ export default function Homepage({ locale }: HomepageProps) {
       <MobileHeader
         locale={locale}
         navigation={navigation}
-        cta={hero.primaryCta}
         brand={brand}
         languageToggle={{
           label: ui.header.languageSwitchLabel,
@@ -90,6 +90,7 @@ export default function Homepage({ locale }: HomepageProps) {
         <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
         <IntroStripSection content={introStrip} />
         <ProductSplitSection content={product} />
+        <BestCasesSection cases={bestCases} labels={ui.bestCases} />
         <SmileAssessmentSection
           content={assessment}
           labels={ui.assessment}
@@ -105,12 +106,11 @@ export default function Homepage({ locale }: HomepageProps) {
         />
         <BeforeAfterSection
           cases={beforeAfterCases}
-          filters={beforeAfterFilters}
           disclaimer={galleryDisclaimer}
           labels={ui.beforeAfter}
         />
         <ComparisonTableSection content={comparison} />
-        <VideoReelsSection videos={videos} labels={ui.videos} />
+        {/* <VideoReelsSection videos={videos} labels={ui.videos} /> */}
         <AftercareTipsSection content={aftercare} />
         <FAQSection items={faqs} labels={ui.faq} />
         <SocialProofStrip

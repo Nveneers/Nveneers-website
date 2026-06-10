@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { Submission, SubmissionStatus } from "@/lib/supabase";
+import StatusDropdown from "./StatusDropdown";
 
 const STATUS_LABEL: Record<SubmissionStatus, string> = {
   new: "New",
@@ -22,7 +23,23 @@ const STATUS_SELECT_COLOUR: Record<SubmissionStatus, string> = {
   done: "bg-emerald-50 text-emerald-800 border-emerald-200"
 };
 
+const STATUS_DOT: Record<string, string> = {
+  new: "bg-amber-400",
+  contacted: "bg-blue-500",
+  done: "bg-emerald-500"
+};
+
 const ALL_STATUSES: SubmissionStatus[] = ["new", "contacted", "done"];
+
+const STATUS_OPTIONS = ALL_STATUSES.map((s) => ({
+  value: s,
+  label: STATUS_LABEL[s]
+}));
+
+const FILTER_OPTIONS: { value: SubmissionStatus | "all"; label: string }[] = [
+  { value: "all", label: "All statuses" },
+  ...STATUS_OPTIONS
+];
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("en-GB", {
@@ -52,7 +69,7 @@ export default function AdminDashboard({
   async function handleLogout() {
     setLoggingOut(true);
     await fetch("/api/admin/logout", { method: "POST" });
-    router.push("/admin/login");
+    router.push("/");
     router.refresh();
   }
 
@@ -132,18 +149,15 @@ export default function AdminDashboard({
               onChange={(e) => setSearch(e.target.value)}
               className="flex-1 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-100"
             />
-            <select
+            <StatusDropdown
               value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value as SubmissionStatus | "all")}
-              className="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-700 shadow-sm focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-100"
-            >
-              <option value="all">All statuses</option>
-              {ALL_STATUSES.map((s) => (
-                <option key={s} value={s}>
-                  {STATUS_LABEL[s]}
-                </option>
-              ))}
-            </select>
+              options={FILTER_OPTIONS}
+              onChange={setStatusFilter}
+              size="md"
+              colourClass="bg-white text-gray-700 border-gray-200"
+              optionDot={STATUS_DOT}
+              ariaLabel="Filter by status"
+            />
           </div>
         )}
 
@@ -203,18 +217,15 @@ export default function AdminDashboard({
                       </td>
                       <td className="px-4 py-3 text-gray-500">{formatDate(s.created_at)}</td>
                       <td className="px-4 py-3">
-                        <select
+                        <StatusDropdown
                           value={s.status}
+                          options={STATUS_OPTIONS}
+                          onChange={(status) => updateStatus(s.id, status)}
                           disabled={isPending}
-                          onChange={(e) => updateStatus(s.id, e.target.value as SubmissionStatus)}
-                          className={`rounded-lg border px-2.5 py-1 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-100 disabled:opacity-50 ${STATUS_SELECT_COLOUR[s.status]}`}
-                        >
-                          {ALL_STATUSES.map((st) => (
-                            <option key={st} value={st}>
-                              {STATUS_LABEL[st]}
-                            </option>
-                          ))}
-                        </select>
+                          colourClass={STATUS_SELECT_COLOUR[s.status]}
+                          optionDot={STATUS_DOT}
+                          ariaLabel={`Status for ${s.name}`}
+                        />
                       </td>
                       <td className="px-4 py-3">
                         <button
@@ -253,30 +264,31 @@ export default function AdminDashboard({
                     </a>
                     <div className="min-w-0 flex-1">
                       <p className="font-semibold text-gray-900">{s.name}</p>
-                      <a
-                        href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sm text-gray-600 underline underline-offset-2 hover:text-green-600"
-                      >
-                        {s.phone}
-                      </a>
-                      <p className="mt-0.5 text-xs text-gray-400">{formatDate(s.created_at)}</p>
+                      <div className="mt-0.5 flex items-center justify-between gap-2">
+                        <a
+                          href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-sm text-gray-600 underline underline-offset-2 hover:text-green-600"
+                        >
+                          {s.phone}
+                        </a>
+                        <p className="shrink-0 whitespace-nowrap text-xs text-gray-400">
+                          {formatDate(s.created_at)}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center justify-between gap-2">
-                    <select
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+                    <StatusDropdown
                       value={s.status}
+                      options={STATUS_OPTIONS}
+                      onChange={(status) => updateStatus(s.id, status)}
                       disabled={isPending}
-                      onChange={(e) => updateStatus(s.id, e.target.value as SubmissionStatus)}
-                      className={`rounded-lg border px-2.5 py-1 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-100 disabled:opacity-50 ${STATUS_SELECT_COLOUR[s.status]}`}
-                    >
-                      {ALL_STATUSES.map((st) => (
-                        <option key={st} value={st}>
-                          {STATUS_LABEL[st]}
-                        </option>
-                      ))}
-                    </select>
+                      colourClass={STATUS_SELECT_COLOUR[s.status]}
+                      optionDot={STATUS_DOT}
+                      ariaLabel={`Status for ${s.name}`}
+                    />
                     <button
                       onClick={() => deleteSubmission(s.id)}
                       disabled={deleting === s.id || isPending}

@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
-  <rect width="1200" height="900" fill="#eef2f4" />
-  <rect x="80" y="80" width="1040" height="740" fill="#003b4f" opacity="0.08" />
-  <text x="50%" y="50%" text-anchor="middle" fill="#003b4f" font-size="40" font-family="serif">
-    Shape Before
-  </text>
-</svg>
