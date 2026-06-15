@@ -51,6 +51,38 @@ function formatDate(iso: string) {
   });
 }
 
+function DownloadIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-3.5 w-3.5"
+      aria-hidden="true"
+    >
+      <path d="M12 3v12" />
+      <path d="m7 11 5 5 5-5" />
+      <path d="M5 21h14" />
+    </svg>
+  );
+}
+
+function Spinner() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-3.5 w-3.5 animate-spin text-gray-500"
+      aria-hidden="true"
+    >
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.25" />
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export default function AdminDashboard({
   submissions,
   error
@@ -65,6 +97,7 @@ export default function AdminDashboard({
   const [statusFilter, setStatusFilter] = useState<SubmissionStatus | "all">("all");
   const [deleting, setDeleting] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
+  const [saving, setSaving] = useState<string | null>(null);
 
   async function handleLogout() {
     setLoggingOut(true);
@@ -92,6 +125,47 @@ export default function AdminDashboard({
     await fetch(`/api/admin/submissions/${id}`, { method: "DELETE" });
     setDeleting(null);
     startTransition(() => router.refresh());
+  }
+
+  function slugify(name: string) {
+    return (
+      name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "smile"
+    );
+  }
+
+  async function downloadPhoto(id: string, url: string, name: string) {
+    setSaving(id);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const blob = await res.blob();
+      const extFromType: Record<string, string> = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp",
+        "image/gif": "gif"
+      };
+      const ext =
+        extFromType[blob.type] ||
+        url.split("?")[0].split(".").pop()?.toLowerCase() ||
+        "jpg";
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = `${slugify(name)}-smile.${ext}`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(objectUrl);
+    } catch {
+      // Fall back to opening the image so the action never silently fails.
+      window.open(url, "_blank", "noreferrer");
+    } finally {
+      setSaving(null);
+    }
   }
 
   const visible = submissions
@@ -195,14 +269,33 @@ export default function AdminDashboard({
                       className={`transition hover:bg-gray-50 ${s.status === "done" ? "opacity-60" : ""}`}
                     >
                       <td className="px-4 py-3">
-                        <a href={s.photo_url} target="_blank" rel="noreferrer">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
-                            src={s.photo_url}
-                            alt={`${s.name}'s smile`}
-                            className="h-14 w-14 rounded-lg object-cover ring-1 ring-gray-200 transition hover:ring-yellow-400"
-                          />
-                        </a>
+                        <div className="group relative h-14 w-14">
+                          <a href={s.photo_url} target="_blank" rel="noreferrer">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={s.photo_url}
+                              alt={`${s.name}'s smile`}
+                              className="h-14 w-14 rounded-lg object-cover ring-1 ring-gray-200 transition hover:ring-yellow-400"
+                            />
+                          </a>
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              downloadPhoto(s.id, s.photo_url, s.name);
+                            }}
+                            disabled={saving === s.id}
+                            aria-label={`Save ${s.name}'s photo`}
+                            className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-white/90 text-gray-700 opacity-0 shadow ring-1 ring-gray-200 transition group-hover:opacity-100 hover:text-yellow-600 disabled:opacity-100"
+                          >
+                            {saving === s.id ? (
+                              <Spinner />
+                            ) : (
+                              <DownloadIcon />
+                            )}
+                          </button>
+                        </div>
                       </td>
                       <td className="px-4 py-3 font-medium text-gray-900">{s.name}</td>
                       <td className="px-4 py-3 text-gray-600">
@@ -254,14 +347,29 @@ export default function AdminDashboard({
                   className={`rounded-2xl border border-gray-200 bg-white p-4 shadow-sm ${s.status === "done" ? "opacity-60" : ""}`}
                 >
                   <div className="flex gap-4">
-                    <a href={s.photo_url} target="_blank" rel="noreferrer" className="shrink-0">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={s.photo_url}
-                        alt={`${s.name}'s smile`}
-                        className="h-16 w-16 rounded-xl object-cover ring-1 ring-gray-200"
-                      />
-                    </a>
+                    <div className="relative h-16 w-16 shrink-0">
+                      <a href={s.photo_url} target="_blank" rel="noreferrer">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={s.photo_url}
+                          alt={`${s.name}'s smile`}
+                          className="h-16 w-16 rounded-xl object-cover ring-1 ring-gray-200"
+                        />
+                      </a>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          downloadPhoto(s.id, s.photo_url, s.name);
+                        }}
+                        disabled={saving === s.id}
+                        aria-label={`Save ${s.name}'s photo`}
+                        className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-white/90 text-gray-700 shadow ring-1 ring-gray-200 transition hover:text-yellow-600"
+                      >
+                        {saving === s.id ? <Spinner /> : <DownloadIcon />}
+                      </button>
+                    </div>
                     <div className="min-w-0 flex-1">
                       <p className="font-semibold text-gray-900">{s.name}</p>
                       <div className="mt-0.5 flex items-center justify-between gap-2">

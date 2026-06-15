@@ -52,8 +52,8 @@ export default function ContactSection({
           <RevealOnScroll delay={80}>
             <div className="card overflow-hidden p-0">
               {[
-                { label: labels.phoneLabel, value: content.phone },
-                { label: labels.hoursLabel, value: content.hours },
+                { label: labels.phoneLabel, value: content.phone, ltr: true },
+                { label: labels.hoursLabel, value: content.hours, ltr: false },
               ].map((row, i) => (
                 <div
                   key={row.label}
@@ -69,7 +69,11 @@ export default function ContactSection({
                   />
                   <div>
                     <p className="intro-label">{row.label}</p>
-                    <p className="mt-1 text-base font-semibold text-brand-deep">
+                    <p
+                      className="mt-1 text-base font-semibold text-brand-deep"
+                      dir={row.ltr ? "ltr" : undefined}
+                      style={row.ltr ? { unicodeBidi: "embed", textAlign: "start" } : undefined}
+                    >
                       {row.value}
                     </p>
                   </div>
