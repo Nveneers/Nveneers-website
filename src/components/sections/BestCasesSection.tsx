@@ -34,7 +34,17 @@ export default function BestCasesSection({
   const [cur, setCur] = useState(2);
   const [animate, setAnimate] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isRtl, setIsRtl] = useState(false);
   const lockRef = useRef(false);
+
+  // In RTL the flex track lays slides right-to-left, so the translate must be
+  // positive to bring the real slides into view (negative pushes them off-screen).
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return;
+    }
+    setIsRtl(document.documentElement.dir === "rtl");
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -125,7 +135,7 @@ export default function BestCasesSection({
               <div
                 className="flex"
                 style={{
-                  transform: `translateX(-${cur * cardWidth}%)`,
+                  transform: `translateX(${isRtl ? "" : "-"}${cur * cardWidth}%)`,
                   transition: animate && !reducedMotion ? "transform 500ms ease" : "none"
                 }}
                 onTransitionEnd={handleTransitionEnd}
@@ -163,7 +173,7 @@ export default function BestCasesSection({
                   onClick={() => step(-1)}
                   className={`absolute left-2 top-1/2 -translate-y-1/2 sm:-left-5 ${arrowClass}`}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="rtl:-scale-x-100">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
@@ -173,7 +183,7 @@ export default function BestCasesSection({
                   onClick={() => step(1)}
                   className={`absolute right-2 top-1/2 -translate-y-1/2 sm:-right-5 ${arrowClass}`}
                 >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="rtl:-scale-x-100">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>

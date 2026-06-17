@@ -25,7 +25,7 @@
   },
   "beforeAfter": {
     "eyebrow": "قبل وبعد",
-    "headline": "حالات حقيقية ونتائج محسّنة",
+    "headline": "حالات تم انجازها بتقنية الانفنير بدون برد الاسنان",
     "compareAriaLabel": "قارن بين قبل وبعد",
     "beforeLabel": "قبل",
     "afterLabel": "بعد"
@@ -47,7 +47,7 @@
     "durationLabel": "المدة"
   },
   "assessment": {
-    "uploadLabel": "اسحب وأفلت أو انقر لرفع صورة الابتسامة",
+    "uploadLabel": "ارفع صورة ابتسامتك",
     "cameraLabel": "التقط صورة بالكاميرا",
     "checkLabel": "تحقق من ابتسامتي",
     "changePhotoLabel": "اختر صورة مختلفة",
