@@ -85,6 +85,8 @@ Inside the project folder there may be a file named **`.env`** containing the pr
 
 You'll upload the project folder straight to Vercel using a small command-line tool. This is the easy "upload the folder" path — no GitHub repository required.
 
+> ℹ️ **Why not just upload a zip on the vercel.com website?** The Vercel website only lets you deploy in two ways: importing from GitHub (which needs a GitHub account), or dragging in a *pre-built static site*. This website has live features (database, photo upload, smile check, admin login), so it isn't a static site — the website's drag-and-drop won't run it. The command below is the only way to publish it **without GitHub**. It's just one tool to install and one command to run; everything after that (keys, domain) is done on the Vercel website as normal.
+
 1. Sign up at https://vercel.com/signup (choose the free **Hobby** plan).
 2. Open a terminal (**PowerShell** on Windows) and install the Vercel tool:
 

@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import type { HeroContent } from "@/content/home";
+
+// Hero clips play sped up for a more energetic feel.
+const PLAYBACK_RATE = 1.5;
 
 type HeroVideoSectionProps = {
   content: HeroContent;
@@ -46,11 +49,18 @@ export default function HeroVideoSection({
       }
 
       video.currentTime = 0;
+      video.playbackRate = PLAYBACK_RATE;
       void video.play().catch(() => {
         // Ignore playback failures triggered by browser policies.
       });
     });
   }, [activeIndex, videos.length]);
+
+  // Browsers reset playbackRate when a source (re)loads, so reassert it whenever
+  // a clip loads or starts — this keeps the speed-up from being silently undone.
+  const applyRate = (event: SyntheticEvent<HTMLVideoElement>) => {
+    event.currentTarget.playbackRate = PLAYBACK_RATE;
+  };
 
   const handleEnded = (index: number) => {
     if (index !== activeIndex || videos.length <= 1) {
@@ -103,6 +113,8 @@ export default function HeroVideoSection({
                       muted
                       playsInline
                       preload={index === activeIndex ? "auto" : "metadata"}
+                      onLoadedMetadata={applyRate}
+                      onPlay={applyRate}
                       onEnded={() => handleEnded(index)}
                       aria-hidden="true"
                     >

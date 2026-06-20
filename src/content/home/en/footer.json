@@ -1,3 +1,7 @@
 {
-  "text": "\u00a9 2026 N Veneers Guide \u00b7 All content is for informational purposes only. Consult a qualified dental professional before making treatment decisions."
+  "text": "© 2026 N Veneers Guide · All content is for informational purposes only. Consult a qualified dental professional before making treatment decisions.",
+  "links": [
+    { "label": "Privacy Policy", "href": "/en/privacy" },
+    { "label": "Terms of Use", "href": "/en/terms" }
+  ]
 }

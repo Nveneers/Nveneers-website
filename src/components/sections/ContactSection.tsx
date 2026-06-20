@@ -85,7 +85,6 @@ export default function ContactSection({
         <RevealOnScroll>
           <div className="mt-12 border-t border-brand-border pt-6 text-xs text-brand-muted">
             <p>{content.disclaimer}</p>
-            <p className="mt-2">{content.privacyLabel}</p>
           </div>
         </RevealOnScroll>
       </div>

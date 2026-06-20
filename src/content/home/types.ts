@@ -89,7 +89,6 @@ export type ContactContent = {
   phone: string;
   hours: string;
   disclaimer: string;
-  privacyLabel: string;
 };
 
 export type IntroStripStat = {
@@ -140,6 +139,7 @@ export type CtaBannerContent = {
 
 export type FooterContent = {
   text: string;
+  links: { label: string; href: string }[];
 };
 
 export type HomeUi = {
