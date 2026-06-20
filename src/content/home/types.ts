@@ -51,7 +51,7 @@ export type BeforeAfterCase = {
   id: string;
   title: string;
   image: string;
-  description: string;
+  description?: string;
 };
 
 export type BestCase = {

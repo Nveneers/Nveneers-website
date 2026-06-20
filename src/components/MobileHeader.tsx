@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import LanguageToggle from "@/components/LanguageToggle";
 import type { Locale } from "@/content/home";
 
 type MobileHeaderProps = {
@@ -72,13 +73,12 @@ export default function MobileHeader({
             </span>
           </Link>
           <div className="flex items-center gap-2">
-            <Link
+            <LanguageToggle
               href={languageToggle.href}
+              label={languageToggle.label}
+              ariaLabel={languageToggle.ariaLabel}
               className="rounded-full border border-[var(--border)] px-3 py-2 text-[0.7rem] font-medium text-[var(--muted)] transition hover:border-brand-gold hover:text-brand-gold"
-              aria-label={languageToggle.ariaLabel}
-            >
-              {languageToggle.label}
-            </Link>
+            />
             <button
               type="button"
               className="rounded-full border border-[var(--border)] px-4 py-2 text-xs font-medium text-[var(--muted)]"
@@ -143,14 +143,13 @@ export default function MobileHeader({
           </nav>
 
           <div className="mt-auto flex flex-col gap-3 pt-10">
-            <Link
+            <LanguageToggle
               href={languageToggle.href}
+              label={languageToggle.label}
+              ariaLabel={languageToggle.ariaLabel}
               className="btn-secondary w-full border-white/20 text-white/60"
-              aria-label={languageToggle.ariaLabel}
-              onClick={closeMenu}
-            >
-              {languageToggle.label}
-            </Link>
+              onNavigate={closeMenu}
+            />
           </div>
         </div>
       </div>

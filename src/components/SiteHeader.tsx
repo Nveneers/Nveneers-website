@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import LanguageToggle from "@/components/LanguageToggle";
 
 type SiteHeaderProps = {
   navigation: { label: string; href: string }[];
@@ -44,10 +45,11 @@ export default function SiteHeader({
           ))}
         </nav>
         <div className="flex items-center gap-4">
-          <Link
+          <LanguageToggle
             href={languageToggle.href}
+            label={languageToggle.label}
+            ariaLabel={languageToggle.ariaLabel}
             className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--muted)] transition hover:text-brand-gold"
-            aria-label={languageToggle.ariaLabel}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="10" />
@@ -55,7 +57,7 @@ export default function SiteHeader({
               <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
             </svg>
             {languageToggle.label}
-          </Link>
+          </LanguageToggle>
           <Link href={cta.href} className="btn-primary px-4 py-2 text-xs">
             {cta.label}
           </Link>

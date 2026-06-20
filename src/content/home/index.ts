@@ -20,6 +20,8 @@ import type {
   VideoItem
 } from "./types";
 
+import { getBeforeAfterCases } from "./cases";
+
 import brandEn from "./en/brand.json";
 import heroEn from "./en/hero.json";
 import socialProofEn from "./en/socialProof.json";
@@ -98,7 +100,7 @@ const homeContentEn: HomeContent = {
   eligibility: eligibilityEn as EligibilityContent,
   steps: stepsEn as Step[],
   process: processEn as ProcessContent,
-  beforeAfterCases: beforeAfterEn.cases as HomeContent["beforeAfterCases"],
+  beforeAfterCases: getBeforeAfterCases("en"),
   galleryDisclaimer: beforeAfterEn.disclaimer as string,
   bestCases: bestCasesEn as HomeContent["bestCases"],
   videos: videosEn as VideoItem[],
@@ -123,7 +125,7 @@ const homeContentAr: HomeContent = {
   eligibility: eligibilityAr as EligibilityContent,
   steps: stepsAr as Step[],
   process: processAr as ProcessContent,
-  beforeAfterCases: beforeAfterAr.cases as HomeContent["beforeAfterCases"],
+  beforeAfterCases: getBeforeAfterCases("ar"),
   galleryDisclaimer: beforeAfterAr.disclaimer as string,
   bestCases: bestCasesAr as HomeContent["bestCases"],
   videos: videosAr as VideoItem[],
