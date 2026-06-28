@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import LanguageToggle from "@/components/LanguageToggle";
+import HeaderNav from "@/components/HeaderNav";
 
 type SiteHeaderProps = {
   navigation: { label: string; href: string }[];
@@ -33,17 +34,7 @@ export default function SiteHeader({
             priority
           />
         </Link>
-        <nav className="absolute left-1/2 flex -translate-x-1/2 items-center gap-8 text-[0.8rem] uppercase tracking-[0.05em]">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="whitespace-nowrap text-[var(--muted)] transition hover:text-brand-gold"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <HeaderNav navigation={navigation} />
         <div className="flex items-center gap-4">
           <LanguageToggle
             href={languageToggle.href}
