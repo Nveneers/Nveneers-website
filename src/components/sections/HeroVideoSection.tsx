@@ -133,8 +133,8 @@ export default function HeroVideoSection({
           )}
 
           {videos.length > 1 ? (
-            <div className="absolute inset-x-0 bottom-5 z-10 flex justify-center px-4">
-              <div className="flex items-center gap-3 rounded-full bg-black/25 px-4 py-2 backdrop-blur-sm">
+            <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center px-4 sm:bottom-5">
+              <div className="flex items-center gap-2 rounded-full bg-black/25 px-3 py-1.5 backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2">
                 {videos.map((video, index) => {
                   const isActive = index === activeIndex;
 
@@ -145,9 +145,9 @@ export default function HeroVideoSection({
                       onClick={() => setActiveIndex(index)}
                       aria-label={`${labels.dotAriaLabelPrefix} ${index + 1}`}
                       aria-pressed={isActive}
-                      className="flex h-8 w-8 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                      className="flex h-6 w-6 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-8 sm:w-8"
                     >
-                      <span className={`h-2.5 w-2.5 rounded-full border border-white/80 transition ${isActive ? "bg-brand-gold" : "bg-transparent"}`} />
+                      <span className={`h-2 w-2 rounded-full border border-white/80 transition sm:h-2.5 sm:w-2.5 ${isActive ? "bg-brand-gold" : "bg-transparent"}`} />
                     </button>
                   );
                 })}
