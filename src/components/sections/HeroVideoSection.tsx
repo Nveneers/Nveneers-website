@@ -112,6 +112,7 @@ export default function HeroVideoSection({
                       className="absolute inset-0 h-full w-full object-cover"
                       muted
                       playsInline
+                      poster={video.poster}
                       preload={index === activeIndex ? "auto" : "metadata"}
                       onLoadedMetadata={applyRate}
                       onPlay={applyRate}

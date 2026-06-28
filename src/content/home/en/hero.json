@@ -3,11 +3,13 @@
   "videos": [
     {
       "id": "hero-1",
-      "src": "/videos/hero-1-en.mp4"
+      "src": "/videos/hero-1-en.mp4",
+      "poster": "/videos/hero-1-en-poster.jpg"
     },
     {
       "id": "hero-2",
-      "src": "/videos/hero-2-en.mp4"
+      "src": "/videos/hero-2-en.mp4",
+      "poster": "/videos/hero-2-en-poster.jpg"
     }
   ]
 }
