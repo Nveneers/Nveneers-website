@@ -6,9 +6,9 @@ type AftercareTipsSectionProps = {
 };
 
 const tipIcons: Record<string, string> = {
-  brush: "\uD83E\uDEB5",
+  brush: "\uD83E\uDEA5",
   guard: "\uD83E\uDDBA",
-  floss: "\uD83E\uDDF5",
+  floss: "\uD83E\uDDB7",
   calendar: "\uD83D\uDDD3",
   food: "\uD83E\uDDCA"
 };
