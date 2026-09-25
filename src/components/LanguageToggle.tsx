@@ -43,11 +43,12 @@ export default function LanguageToggle({
   href,
   label,
   ariaLabel,
-  className,
+  className = "",
   children,
   onNavigate
 }: LanguageToggleProps) {
   const router = useRouter();
+  const targetLocale = href.split("/")[1] === "ar" ? "ar" : "en";
 
   const handleClick = () => {
     const sectionId = currentSectionId();
@@ -59,10 +60,16 @@ export default function LanguageToggle({
     <button
       type="button"
       onClick={handleClick}
-      className={className}
+      className={`language-toggle ${className}`}
       aria-label={ariaLabel}
+      dir="ltr"
     >
-      {children ?? label}
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true" className="shrink-0">
+        <circle cx="12" cy="12" r="9" />
+        <ellipse cx="12" cy="12" rx="4" ry="9" />
+        <path d="M3 12h18" />
+      </svg>
+      <span lang={targetLocale} dir={targetLocale === "ar" ? "rtl" : "ltr"}>{children ?? label}</span>
     </button>
   );
 }

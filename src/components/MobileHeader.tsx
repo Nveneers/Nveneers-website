@@ -1,158 +1,80 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LanguageToggle from "@/components/LanguageToggle";
+import BrandLogo from "@/components/BrandLogo";
+import { ThemeToggle } from "@/components/ThemeProvider";
 import type { Locale } from "@/content/home";
+import type { BrandContent } from "@/content/home/types";
 
 type MobileHeaderProps = {
   locale: Locale;
   navigation: { label: string; href: string }[];
-  brand: { name: string; logoFull: string; logoAlt: string };
+  brand: BrandContent;
+  themeLabel: string;
   languageToggle: { label: string; href: string; ariaLabel: string };
 };
-
-// Mobile header with slide-over menu.
-export default function MobileHeader({
-  locale,
-  navigation,
-  brand,
-  languageToggle
-}: MobileHeaderProps) {
+export default function MobileHeader({ locale, navigation, brand, themeLabel, languageToggle }: MobileHeaderProps) {
   const [open, setOpen] = useState(false);
-  const menuLabel = locale === "ar" ? "\u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Menu";
-  const closeLabel = locale === "ar" ? "\u0625\u063a\u0644\u0627\u0642" : "Close";
-  const openLabel = locale === "ar" ? "\u0641\u062a\u062d \u0627\u0644\u0642\u0627\u0626\u0645\u0629" : "Open menu";
-  const navLabel =
-    locale === "ar" ? "\u0627\u0644\u062a\u0646\u0642\u0644 \u0639\u0628\u0631 \u0627\u0644\u0647\u0627\u062a\u0641" : "Mobile navigation";
-
+  const menuRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const menuLabel = locale === "ar" ? "القائمة" : "Menu";
+  const closeLabel = locale === "ar" ? "إغلاق" : "Close";
+  const navLabel = locale === "ar" ? "التنقل عبر الهاتف" : "Mobile navigation";
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
+    if (!open) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const focusable = () => Array.from(menuRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? []);
+    focusable()[0]?.focus({ preventScroll: true });
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
+      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Tab") {
+        const elements = focusable();
+        const first = elements[0], last = elements[elements.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
       }
     };
-
+    const onResize = () => { if (window.innerWidth >= 1024) setOpen(false); };
     document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+      triggerRef.current?.focus({ preventScroll: true });
+    };
   }, [open]);
-
   const closeMenu = () => setOpen(false);
-
   return (
-    <header dir="ltr" className="sticky top-0 z-40 md:hidden overflow-visible">
-      <div className="border-b border-[var(--border)] bg-white overflow-visible" style={{ backdropFilter: "blur(12px)" }}>
-        <div className="flex items-center justify-between pl-2 pr-4 py-2.5 pt-[calc(0.625rem+env(safe-area-inset-top))]">
-          <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
-            <span className="sr-only">{brand.name}</span>
-            {/* The logo SVG has ~37.5% transparent padding top & bottom (square
-                4500x4500 canvas, wordmark only fills the middle ~25%). Clip to the
-                artwork band: image is ~4x the wrapper height so the middle 25%
-                fills it; symmetric padding means vertical centering aligns it. */}
-            <span className="flex h-8 items-center overflow-hidden sm:h-10">
-              <Image
-                src={brand.logoFull}
-                alt={brand.logoAlt}
-                width={1280}
-                height={320}
-                className="h-[8rem] w-auto max-w-none sm:h-[10rem]"
-                priority
-              />
-            </span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <LanguageToggle
-              href={languageToggle.href}
-              label={languageToggle.label}
-              ariaLabel={languageToggle.ariaLabel}
-              className="rounded-full border border-[var(--border)] px-3 py-2 text-[0.7rem] font-medium text-[var(--muted)] transition hover:border-brand-gold hover:text-brand-gold"
-            />
-            <button
-              type="button"
-              className="rounded-full border border-[var(--border)] px-4 py-2 text-xs font-medium text-[var(--muted)]"
-              aria-expanded={open}
-              aria-controls="mobile-menu"
-              aria-label={openLabel}
-              onClick={() => setOpen(true)}
-            >
-              {menuLabel}
-            </button>
-          </div>
+    <header dir="ltr" className="site-header sticky top-0 z-[60] lg:hidden">
+      <div className="flex min-h-[72px] items-center justify-between gap-2 px-3 py-3 pt-[calc(0.75rem+env(safe-area-inset-top))] min-[360px]:px-4">
+        <Link href={`/${locale}`} className="flex items-center" onClick={closeMenu}><BrandLogo brand={brand} className="w-20 min-[360px]:w-28 sm:w-36" priority /></Link>
+        <div className="flex items-center gap-1 sm:gap-3">
+          <LanguageToggle href={languageToggle.href} label={languageToggle.label} ariaLabel={languageToggle.ariaLabel} />
+          <ThemeToggle label={themeLabel} />
+          <button ref={triggerRef} type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border text-brand-heading" aria-expanded={open} aria-controls="mobile-menu" aria-label={menuLabel} onClick={() => setOpen(true)}>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+          </button>
         </div>
       </div>
-
-      <div
-        id="mobile-menu"
-        role="dialog"
-        aria-modal="true"
-        aria-label={navLabel}
-        aria-hidden={!open}
-        onClick={closeMenu}
-        className={`fixed inset-0 z-[60] transition duration-200 ${
-          open ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-        style={{ background: "rgba(10,22,40,0.96)", backdropFilter: "blur(12px)" }}
-      >
-        <div
-          className="flex h-full flex-col overflow-y-auto px-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-[calc(1rem+env(safe-area-inset-top))]"
-          onClick={(event) => event.stopPropagation()}
-        >
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3" onClick={closeMenu}>
-              <span className="sr-only">{brand.name}</span>
-              <Image
-                src={brand.logoFull}
-                alt={brand.logoAlt}
-                width={640}
-                height={160}
-                className="h-10 w-auto brightness-0 invert"
-              />
-            </Link>
-            <button
-              type="button"
-              className="rounded-full border border-white/20 px-4 py-2 text-xs font-medium text-white/60"
-              onClick={closeMenu}
-            >
-              {closeLabel}
-            </button>
+      {open && (
+        <div ref={menuRef} id="mobile-menu" role="dialog" aria-modal="true" aria-label={navLabel} className="fixed inset-0 z-[70] flex h-[100dvh] flex-col overflow-y-auto bg-brand-canvas px-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-[calc(1.5rem+env(safe-area-inset-top))]">
+          <div className="flex items-center justify-between gap-4">
+            <Link href={`/${locale}`} onClick={closeMenu}><BrandLogo brand={brand} /></Link>
+            <button type="button" className="btn-secondary !px-5 !py-2" onClick={closeMenu}>{closeLabel}</button>
           </div>
-
-          <nav className="mt-10 flex flex-col gap-5 text-lg font-normal text-white/70">
-            {navigation.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={closeMenu}
-                className="transition hover:text-brand-gold"
-              >
-                {item.label}
-              </Link>
-            ))}
+          <nav dir={locale === "ar" ? "rtl" : "ltr"} className="mt-12 flex flex-col text-2xl font-medium text-brand-heading">
+            {navigation.map(item => <Link key={item.href} href={item.href} onClick={closeMenu} className="border-b border-brand-border py-5 transition hover:text-brand-accent">{item.label}</Link>)}
           </nav>
-
-          <div className="mt-auto flex flex-col gap-3 pt-10">
-            <LanguageToggle
-              href={languageToggle.href}
-              label={languageToggle.label}
-              ariaLabel={languageToggle.ariaLabel}
-              className="btn-secondary w-full border-white/20 text-white/60"
-              onNavigate={closeMenu}
-            />
+          <div className="mt-auto flex items-center justify-between gap-4 pt-10">
+            <LanguageToggle href={languageToggle.href} label={languageToggle.label} ariaLabel={languageToggle.ariaLabel} onNavigate={closeMenu} />
+            <ThemeToggle label={themeLabel} />
           </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

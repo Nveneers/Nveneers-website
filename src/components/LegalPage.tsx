@@ -2,6 +2,7 @@ import Link from "next/link";
 import LanguageDocument from "@/components/LanguageDocument";
 import type { Locale } from "@/content/home";
 import type { LegalContent } from "@/content/legal";
+import UtilityHeader from "@/components/UtilityHeader";
 
 type LegalPageProps = {
   locale: Locale;
@@ -16,17 +17,18 @@ export default function LegalPage({ locale, content }: LegalPageProps) {
 
   return (
     <div
-      className={`min-h-screen bg-brand-warm-white ${isArabic ? "locale-rtl" : "locale-ltr"}`}
+      className={`min-h-screen bg-brand-surface ${isArabic ? "locale-rtl" : "locale-ltr"}`}
       dir={direction}
       lang={locale}
       data-locale={locale}
     >
       <LanguageDocument locale={locale} />
+      <UtilityHeader locale={locale} />
       <main className="section">
         <div className="container max-w-3xl">
           <Link
             href={`/${locale}`}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-muted transition hover:text-brand-gold"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-brand-muted transition hover:text-brand-accent"
           >
             <span aria-hidden="true">{isArabic ? "→" : "←"}</span>
             {content.backLabel}
@@ -42,7 +44,7 @@ export default function LegalPage({ locale, content }: LegalPageProps) {
           <div className="mt-10 flex flex-col gap-8">
             {content.sections.map((section) => (
               <section key={section.heading}>
-                <h2 className="text-lg font-semibold text-brand-deep">
+                <h2 className="text-lg font-semibold text-brand-heading">
                   {section.heading}
                 </h2>
                 <div className="mt-3 flex flex-col gap-3 text-sm leading-relaxed text-brand-muted">

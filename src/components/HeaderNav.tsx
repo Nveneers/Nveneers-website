@@ -8,7 +8,7 @@ type HeaderNavProps = {
 };
 
 // Desktop nav with scroll-spy: the link for the section currently in view is
-// highlighted in the same gold as the hover state.
+// highlighted in the brand accent, matching the hover state.
 export default function HeaderNav({ navigation }: HeaderNavProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -50,7 +50,7 @@ export default function HeaderNav({ navigation }: HeaderNavProps) {
   }, [navigation]);
 
   return (
-    <nav className="absolute left-1/2 flex -translate-x-1/2 items-center gap-8 text-[0.8rem] uppercase tracking-[0.05em]">
+    <nav className="flex items-center gap-5 text-xs font-medium xl:gap-7 xl:text-sm">
       {navigation.map((item) => {
         const isActive = item.href === `#${activeId}`;
         return (
@@ -58,8 +58,8 @@ export default function HeaderNav({ navigation }: HeaderNavProps) {
             key={item.href}
             href={item.href}
             aria-current={isActive ? "true" : undefined}
-            className={`whitespace-nowrap transition hover:text-brand-gold ${
-              isActive ? "text-brand-gold" : "text-[var(--muted)]"
+            className={`whitespace-nowrap transition hover:text-brand-accent ${
+              isActive ? "text-brand-accent" : "text-[var(--muted)]"
             }`}
           >
             {item.label}

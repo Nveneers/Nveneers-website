@@ -14,7 +14,7 @@ type FAQSectionProps = {
 // FAQ section with accordion disclosure.
 export default function FAQSection({ items, labels }: FAQSectionProps) {
   return (
-    <section id="faq" className="section section-ivory scroll-mt-24">
+    <section id="faq" className="section section-soft scroll-mt-24">
       <div className="container">
         <RevealOnScroll>
           <div className="max-w-2xl">

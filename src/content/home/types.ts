@@ -1,5 +1,13 @@
 export type Locale = "en" | "ar";
 
+export type BrandContent = {
+  name: string;
+  logoFull: string;
+  logoDark: string;
+  logoMark: string;
+  logoAlt: string;
+};
+
 export type HeroVideoSlide = {
   id: string;
   src: string;
@@ -144,6 +152,7 @@ export type FooterContent = {
 
 export type HomeUi = {
   header: {
+    themeToggleLabel: string;
     languageSwitchLabel: string;
     languageSwitchAriaLabel: string;
     languageSwitchLocale: Locale;
@@ -221,12 +230,7 @@ export type HomeUi = {
 };
 
 export type HomeContent = {
-  brand: {
-    name: string;
-    logoFull: string;
-    logoMark: string;
-    logoAlt: string;
-  };
+  brand: BrandContent;
   hero: HeroContent;
   socialProof: SocialProof;
   testimonials: Testimonial[];

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import LanguageDocument from "@/components/LanguageDocument";
 import type { Locale } from "@/content/home";
+import UtilityHeader from "@/components/UtilityHeader";
+import BrandWave from "@/components/BrandWave";
 
 type NotFoundPageProps = {
   locale: Locale;
@@ -28,43 +30,43 @@ export default function NotFoundPage({
   const alignmentClass = isArabic ? "items-end text-right" : "items-start text-left";
   const buttonAlignment = isArabic ? "justify-end" : "justify-start";
   const eyebrowClass = isArabic
-    ? "text-xs font-semibold text-brand-teal/80"
-    : "text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-brand-teal/80";
+    ? "text-xs font-semibold text-brand-heading/80"
+    : "text-[0.7rem] font-semibold uppercase tracking-[0.4em] text-brand-heading/80";
 
   return (
     <div
-      className={`bg-white ${isArabic ? "locale-rtl" : "locale-ltr"}`}
+      className={`bg-brand-surface ${isArabic ? "locale-rtl" : "locale-ltr"}`}
       dir={direction}
       lang={locale}
       data-locale={locale}
     >
       <LanguageDocument locale={locale} />
-      <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,#fffaf2_0%,#f4efe4_45%,#e5f1f4_100%)]">
-        <div className="pointer-events-none absolute -top-32 right-0 h-72 w-72 rounded-full bg-brand-gold/25 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-28 left-0 h-72 w-72 rounded-full bg-brand-teal/15 blur-3xl" />
+      <UtilityHeader locale={locale} />
+      <main className="relative min-h-[80dvh] overflow-hidden bg-brand-canvas px-5">
+        <BrandWave className="opacity-[0.08]" />
         <div
-          className={`container relative flex min-h-screen flex-col justify-center gap-8 py-16 ${alignmentClass}`}
+          className={`container relative flex min-h-[80dvh] flex-col justify-center gap-8 py-16 ${alignmentClass}`}
         >
           <span
-            className={`inline-flex w-fit items-center rounded-full border border-brand-teal/15 bg-white/80 px-4 py-2 shadow-sm fade-up ${eyebrowClass}`}
+            className={`inline-flex w-fit items-center rounded-full border border-brand-heading/15 bg-brand-surface/80 px-4 py-2 shadow-sm fade-up ${eyebrowClass}`}
           >
             {eyebrow}
           </span>
           <div className="flex flex-col gap-5">
             <span
-              className="text-6xl font-semibold text-brand-teal/15 md:text-7xl fade-up"
+              className="text-6xl font-semibold text-brand-heading/15 md:text-7xl fade-up"
               style={{ animationDelay: "60ms" }}
             >
               404
             </span>
             <h1
-              className="max-w-2xl text-4xl font-semibold text-brand-teal md:text-5xl fade-up"
+              className="max-w-2xl text-4xl font-semibold text-brand-heading md:text-5xl fade-up"
               style={{ animationDelay: "120ms" }}
             >
               {title}
             </h1>
             <p
-              className="max-w-xl text-base text-slate-700 md:text-lg fade-up"
+              className="max-w-xl text-base text-brand-muted md:text-lg fade-up"
               style={{ animationDelay: "180ms" }}
             >
               {description}
@@ -82,11 +84,11 @@ export default function NotFoundPage({
             </Link>
           </div>
           <p
-            className={`flex flex-wrap items-center gap-2 text-xs text-brand-teal/60 fade-up ${buttonAlignment}`}
+            className={`flex flex-wrap items-center gap-2 text-xs text-brand-muted fade-up ${buttonAlignment}`}
             style={{ animationDelay: "300ms" }}
           >
             <span>{supportText}</span>
-            <Link href={supportLink.href} className="font-semibold text-brand-teal transition hover:text-brand-teal/80">
+            <Link href={supportLink.href} className="font-semibold text-brand-heading transition hover:text-brand-heading/80">
               {supportLink.label}
             </Link>
           </p>

@@ -115,10 +115,10 @@ export default function BestCasesSection({
   }, [animate, cur]);
 
   const arrowClass =
-    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-border bg-white/80 text-brand-deep backdrop-blur transition hover:border-brand-gold hover:text-brand-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2";
+    "flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-border bg-brand-surface/80 text-brand-heading backdrop-blur transition hover:border-brand-accent hover:text-brand-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2";
 
   return (
-    <section className="section section-warm-white scroll-mt-24">
+    <section className="section section-surface scroll-mt-24">
       <div className="container">
         <RevealOnScroll>
           <div>
@@ -197,7 +197,7 @@ export default function BestCasesSection({
           <p className="mt-10 text-center text-sm text-brand-muted">
             <a
               href={toolHref}
-              className="border-b border-brand-gold/50 pb-0.5 text-brand-deep transition hover:border-brand-gold hover:text-brand-gold"
+              className="border-b border-brand-accent/50 pb-0.5 text-brand-heading transition hover:border-brand-accent hover:text-brand-accent"
             >
               {labels.nudge}
             </a>

@@ -1,8 +1,9 @@
-﻿{
+{
   "header": {
     "languageSwitchLabel": "العربية",
     "languageSwitchAriaLabel": "Switch to Arabic",
-    "languageSwitchLocale": "ar"
+    "languageSwitchLocale": "ar",
+    "themeToggleLabel": "Dark appearance"
   },
   "hero": {
     "dotAriaLabelPrefix": "Go to video"

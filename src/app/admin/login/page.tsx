@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import UtilityHeader from "@/components/UtilityHeader";
+import BrandWave from "@/components/BrandWave";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -36,14 +38,17 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-lg">
-        <h1 className="mb-1 text-xl font-semibold text-gray-900">Admin Login</h1>
-        <p className="mb-6 text-sm text-gray-500">Smile Assessment Dashboard</p>
+    <div className="min-h-screen bg-brand-canvas">
+      <UtilityHeader />
+      <main className="relative flex min-h-[80dvh] items-center justify-center overflow-hidden px-4 py-12">
+      <BrandWave className="opacity-20" />
+      <div className="card relative w-full max-w-sm p-8">
+        <h1 className="mb-1 text-xl font-semibold text-brand-heading">Admin Login</h1>
+        <p className="mb-6 text-sm text-brand-muted">Smile Assessment Dashboard</p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="username" className="mb-1 block text-sm font-medium text-gray-700">
+            <label htmlFor="username" className="mb-1 block text-sm font-medium text-brand-text">
               Username
             </label>
             <input
@@ -52,12 +57,12 @@ export default function AdminLoginPage() {
               type="text"
               autoComplete="username"
               required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200"
+              className="w-full rounded-lg border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent"
             />
           </div>
 
           <div>
-            <label htmlFor="password" className="mb-1 block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="mb-1 block text-sm font-medium text-brand-text">
               Password
             </label>
             <input
@@ -66,23 +71,24 @@ export default function AdminLoginPage() {
               type="password"
               autoComplete="current-password"
               required
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm outline-none focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200"
+              className="w-full rounded-lg border border-brand-border px-3 py-2 text-sm outline-none focus:border-brand-accent focus:ring-2 focus:ring-brand-accent"
             />
           </div>
 
           {error && (
-            <p className="rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
+            <p className="rounded-lg bg-brand-danger-soft px-3 py-2 text-sm text-brand-danger">{error}</p>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-yellow-500 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-yellow-600 disabled:opacity-60"
+            className="btn-primary w-full disabled:opacity-60"
           >
             {loading ? "Signing in…" : "Sign In"}
           </button>
         </form>
       </div>
+      </main>
     </div>
   );
 }

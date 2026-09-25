@@ -1,8 +1,9 @@
-﻿{
+{
   "header": {
     "languageSwitchLabel": "English",
     "languageSwitchAriaLabel": "التبديل إلى الإنجليزية",
-    "languageSwitchLocale": "en"
+    "languageSwitchLocale": "en",
+    "themeToggleLabel": "المظهر الداكن"
   },
   "hero": {
     "dotAriaLabelPrefix": "الانتقال إلى الفيديو"

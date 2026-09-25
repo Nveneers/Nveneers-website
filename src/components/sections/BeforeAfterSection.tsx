@@ -232,7 +232,7 @@ export default function BeforeAfterSection({
   );
 
   return (
-    <section id="cases" ref={sectionRef} className="section section-cream scroll-mt-24">
+    <section id="cases" ref={sectionRef} className="section section-canvas scroll-mt-24">
       <div className="container">
         <RevealOnScroll>
           <div>
@@ -264,7 +264,7 @@ export default function BeforeAfterSection({
               <figure
                 key={`${item.id}-${isClone ? "b" : "a"}`}
                 aria-hidden={isClone || undefined}
-                className="group relative w-[78vw] shrink-0 overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white sm:w-[20rem] md:w-[22rem]"
+                className="group relative w-[78vw] shrink-0 overflow-hidden rounded-2xl border border-brand-border bg-brand-surface sm:w-[20rem] md:w-[22rem]"
               >
                 <div className="relative aspect-[3/4]">
                   <Image

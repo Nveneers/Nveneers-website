@@ -12,7 +12,7 @@ type StatusDropdownProps<T extends string> = {
   disabled?: boolean;
   /** Trigger pill colour classes (bg/text/border). */
   colourClass?: string;
-  /** Optional per-value accent dot colour class, e.g. { new: "bg-amber-400" }. */
+  /** Optional per-value accent dot colour class, e.g. { new: "bg-brand-warning" }. */
   optionDot?: Record<string, string>;
   /** Trigger size: "sm" (row pickers) or "md" (filter bar). */
   size?: "sm" | "md";
@@ -28,7 +28,7 @@ export default function StatusDropdown<T extends string>({
   options,
   onChange,
   disabled = false,
-  colourClass = "bg-white text-gray-700 border-gray-200",
+  colourClass = "bg-brand-surface text-brand-text border-brand-border",
   optionDot,
   size = "sm",
   ariaLabel
@@ -98,7 +98,7 @@ export default function StatusDropdown<T extends string>({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label={ariaLabel}
-        className={`inline-flex items-center gap-1.5 border font-semibold shadow-sm transition focus:outline-none focus:ring-2 focus:ring-yellow-100 disabled:opacity-50 ${triggerSize} ${colourClass}`}
+        className={`inline-flex items-center gap-1.5 border font-semibold shadow-sm transition focus:outline-none focus:ring-2 focus:ring-brand-accent disabled:opacity-50 ${triggerSize} ${colourClass}`}
       >
         <span className="whitespace-nowrap">{selected?.label ?? value}</span>
         <svg
@@ -128,7 +128,7 @@ export default function StatusDropdown<T extends string>({
                 left: rect.left,
                 minWidth: rect.width
               }}
-              className="z-50 w-max overflow-hidden rounded-xl border border-gray-200 bg-white py-1 shadow-lg"
+              className="z-50 w-max overflow-hidden rounded-xl border border-brand-border bg-brand-surface py-1 shadow-lg"
             >
               {options.map((opt) => {
                 const isSelected = opt.value === value;
@@ -142,13 +142,13 @@ export default function StatusDropdown<T extends string>({
                         }
                         setOpen(false);
                       }}
-                      className={`flex w-full items-center gap-2 px-3 py-2 pr-8 text-left text-xs transition hover:bg-gray-50 ${
-                        isSelected ? "bg-gray-50 font-semibold text-gray-900" : "text-gray-600"
+                      className={`flex w-full items-center gap-2 px-3 py-2 pr-8 text-left text-xs transition hover:bg-brand-soft ${
+                        isSelected ? "bg-brand-soft font-semibold text-brand-heading" : "text-brand-text"
                       }`}
                     >
                       {optionDot ? (
                         <span
-                          className={`h-2 w-2 shrink-0 rounded-full ${optionDot[opt.value] ?? "bg-gray-300"}`}
+                          className={`h-2 w-2 shrink-0 rounded-full ${optionDot[opt.value] ?? "bg-brand-border"}`}
                           aria-hidden="true"
                         />
                       ) : null}
@@ -163,7 +163,7 @@ export default function StatusDropdown<T extends string>({
                           strokeWidth="2.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          className="ml-auto shrink-0 text-yellow-500"
+                          className="ml-auto shrink-0 text-brand-accent"
                           aria-hidden="true"
                         >
                           <path d="M20 6 9 17l-5-5" />

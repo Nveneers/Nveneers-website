@@ -301,7 +301,7 @@ export default function VideoReelsSection({
     <section
       id="videos"
       ref={sectionRef}
-      className="section section-warm-white scroll-mt-24"
+      className="section section-surface scroll-mt-24"
     >
       <div className="container">
         <RevealOnScroll>
@@ -325,7 +325,7 @@ export default function VideoReelsSection({
               <div
                 key={video.id}
                 ref={setCardRef(video.id)}
-                className="group relative min-w-[58vw] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-warm-white text-start sm:min-w-[14rem] md:min-w-0"
+                className="group relative min-w-[58vw] snap-start overflow-hidden rounded-2xl border border-brand-border bg-brand-surface text-start sm:min-w-[14rem] md:min-w-0"
               >
                 <div className="relative aspect-[9/16] max-h-[70svh] md:max-h-none">
                   <video
@@ -348,7 +348,7 @@ export default function VideoReelsSection({
                   </video>
                   <div
                     className={`absolute inset-0 pointer-events-none transition-colors ${
-                      isPlaying ? "bg-transparent" : "bg-brand-deep/10"
+                      isPlaying ? "bg-transparent" : "bg-brand-inverse/10"
                     }`}
                   />
                   <button
@@ -366,7 +366,7 @@ export default function VideoReelsSection({
                       className={`flex items-center justify-center rounded-full border shadow-lg transition-colors ${
                         isPlaying
                           ? "h-10 w-10 border-white/70 bg-black/55 text-white"
-                          : "h-12 w-12 border-brand-gold bg-white text-brand-deep"
+                          : "h-12 w-12 border-brand-accent bg-brand-surface text-brand-heading"
                       }`}
                     >
                       <svg

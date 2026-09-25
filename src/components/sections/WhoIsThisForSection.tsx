@@ -17,7 +17,7 @@ export default function WhoIsThisForSection({
   labels
 }: WhoIsThisForSectionProps) {
   return (
-    <section className="section section-ivory">
+    <section className="section section-soft">
       <div className="container">
         <RevealOnScroll>
           <div className="mb-10">
@@ -27,21 +27,21 @@ export default function WhoIsThisForSection({
           </div>
         </RevealOnScroll>
         <div className="grid gap-8 lg:grid-cols-2">
-          {/* Good Fit - dark card */}
+          {/* Positive fit uses the green accent from the identity. */}
           <RevealOnScroll>
-            <div className="rounded-2xl p-6 sm:p-8 lg:p-10" style={{ background: "var(--deep)", color: "var(--cream)" }}>
-              <h3 className="text-brand-gold-light" style={{
-                fontFamily: "var(--font-subjectivity), serif",
+            <div className="h-full rounded-2xl border border-brand-success/20 bg-brand-success-soft p-6 sm:p-8 lg:p-10">
+              <h3 className="text-brand-success" style={{
+                fontFamily: "var(--font-body), sans-serif",
                 fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
-                fontWeight: 400,
+                fontWeight: 500,
                 marginBottom: "1.8rem"
               }}>
                 {labels.goodFitTitle}
               </h3>
               <ul className="flex flex-col gap-4">
                 {content.goodFit.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-white/75">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gold" />
+                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-brand-text">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-success" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -50,19 +50,19 @@ export default function WhoIsThisForSection({
           </RevealOnScroll>
           {/* Not Ideal - light card */}
           <RevealOnScroll delay={80}>
-            <div className="card rounded-2xl p-6 sm:p-8 lg:p-10">
-              <h3 className="text-brand-deep" style={{
-                fontFamily: "var(--font-subjectivity), serif",
+            <div className="card h-full rounded-2xl p-6 sm:p-8 lg:p-10">
+              <h3 className="text-brand-heading" style={{
+                fontFamily: "var(--font-body), sans-serif",
                 fontSize: "clamp(1.2rem, 4vw, 1.6rem)",
-                fontWeight: 400,
+                fontWeight: 500,
                 marginBottom: "1.8rem"
               }}>
                 {labels.notIdealTitle}
               </h3>
               <ul className="flex flex-col gap-4">
                 {content.notIdeal.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-brand-mid">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-brown" />
+                  <li key={item} className="flex items-start gap-3 text-[0.92rem] leading-relaxed text-brand-text">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-muted" />
                     <span>{item}</span>
                   </li>
                 ))}

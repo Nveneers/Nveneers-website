@@ -15,7 +15,7 @@ export default function ProductSplitSection({
   content
 }: ProductSplitSectionProps) {
   return (
-    <section className="section section-cream">
+    <section className="section section-canvas">
       <div className="container">
         {/* Left-aligned editorial header, matching the other sections */}
         <RevealOnScroll>
@@ -25,7 +25,7 @@ export default function ProductSplitSection({
             <div className="divider" />
             <div className="max-w-2xl">
               {content.body.map((paragraph) => (
-                <p key={paragraph} className="mt-4 text-[0.97rem] text-brand-mid">
+                <p key={paragraph} className="mt-4 text-[0.97rem] text-brand-text">
                   {paragraph}
                 </p>
               ))}
@@ -39,17 +39,17 @@ export default function ProductSplitSection({
             <RevealOnScroll key={bullet.title} delay={index * 120}>
               <div className="flex flex-col items-start text-start">
                 <div
-                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-[var(--cream)]"
-                  style={{ borderColor: "var(--gold)" }}
+                  className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border bg-[var(--canvas)]"
+                  style={{ borderColor: "var(--accent)" }}
                 >
                   <span
                     className="text-xs font-semibold tracking-wider"
-                    style={{ color: "var(--gold)" }}
+                    style={{ color: "var(--accent)" }}
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
-                <p className="mt-4 text-sm font-semibold text-brand-deep">
+                <p className="mt-4 text-sm font-semibold text-brand-heading">
                   {bullet.title}
                 </p>
                 <p className="mt-1 text-xs text-brand-muted">

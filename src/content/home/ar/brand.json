@@ -1,6 +1,7 @@
-﻿{
-  "name": "فينير بدون تحضير",
+{
+  "name": "إن فينير",
   "logoFull": "/images/brand/logo-full.svg",
   "logoMark": "/images/brand/logo-mark.svg",
-  "logoAlt": "شعار فينير بدون تحضير"
+  "logoAlt": "إن فينير — فينير بدون تحضير",
+  "logoDark": "/images/brand/logo-full-dark.svg"
 }

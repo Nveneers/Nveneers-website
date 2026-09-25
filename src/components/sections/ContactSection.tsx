@@ -24,7 +24,7 @@ export default function ContactSection({
   return (
     <section
       id="contact"
-      className="section section-ivory scroll-mt-24"
+      className="section section-soft scroll-mt-24"
     >
       <div className="container">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
@@ -64,13 +64,13 @@ export default function ContactSection({
                 >
                   <div
                     className="mt-1 h-full w-0.5 self-stretch rounded-full"
-                    style={{ background: "var(--gold)", minHeight: "2rem" }}
+                    style={{ background: "var(--accent)", minHeight: "2rem" }}
                     aria-hidden="true"
                   />
                   <div>
                     <p className="intro-label">{row.label}</p>
                     <p
-                      className="mt-1 text-base font-semibold text-brand-deep"
+                      className="mt-1 text-base font-semibold text-brand-heading"
                       dir={row.ltr ? "ltr" : undefined}
                       style={row.ltr ? { unicodeBidi: "embed", textAlign: "start" } : undefined}
                     >

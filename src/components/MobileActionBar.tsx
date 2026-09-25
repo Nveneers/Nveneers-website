@@ -10,10 +10,10 @@ export default function MobileActionBar({ whatsapp, cta }: MobileActionBarProps)
   )}`;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-gold/20 px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 shadow-[0_-4px_18px_rgba(0,0,0,0.15)] md:hidden" style={{ background: "rgba(10,22,40,0.95)", backdropFilter: "blur(12px)" }}>
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-brand-border px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom))] pt-2 shadow-[0_-4px_24px_rgb(44_81_244/0.06)] lg:hidden" style={{ background: "rgb(var(--color-surface) / 0.96)", backdropFilter: "blur(12px)" }}>
       <div className="flex gap-3">
         <a
-          className="btn-secondary flex-1 whitespace-nowrap border-white/20 !px-4 !py-2 !tracking-normal text-white/70"
+          className="btn-secondary flex-1 whitespace-nowrap !px-4 !py-2 !tracking-normal"
           href={whatsappHref}
           target="_blank"
           rel="noreferrer"

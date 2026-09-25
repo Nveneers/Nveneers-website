@@ -21,7 +21,7 @@ export default function AssessmentToolPlaceholderSection({
   return (
     <section
       id="assessment"
-      className="section section-ivory scroll-mt-24"
+      className="section section-soft scroll-mt-24"
     >
       <div className="container">
         <RevealOnScroll>
@@ -30,13 +30,13 @@ export default function AssessmentToolPlaceholderSection({
             <h2 className="section-title mt-4">{content.headline}</h2>
             <p className="section-lead">{content.body}</p>
             <div className="mt-8 space-y-4">
-              <label className="block text-sm font-medium text-brand-deep">
+              <label className="block text-sm font-medium text-brand-heading">
                 {labels.uploadLabel}
               </label>
               <input
                 type="file"
                 disabled
-                className="w-full cursor-not-allowed rounded-2xl border border-brand-border bg-brand-warm-white px-4 py-3 text-sm text-brand-muted"
+                className="w-full cursor-not-allowed rounded-2xl border border-brand-border bg-brand-surface px-4 py-3 text-sm text-brand-muted"
               />
               <button
                 type="button"

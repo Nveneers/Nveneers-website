@@ -27,7 +27,7 @@ export default function ProcessTimelineSection({
   return (
     <section
       id="process"
-      className="section section-cream scroll-mt-24"
+      className="section section-canvas scroll-mt-24"
     >
       <div className="container">
         <RevealOnScroll>
@@ -48,8 +48,8 @@ export default function ProcessTimelineSection({
           {steps.map((step, index) => (
             <RevealOnScroll key={step.title} delay={index * 80}>
               <div className="grid grid-cols-[44px_1fr] gap-4 border-b border-brand-border py-10 last:border-b-0 sm:grid-cols-[80px_1fr] sm:gap-8">
-                <div className="text-brand-gold-light" style={{
-                  fontFamily: "var(--font-subjectivity), serif",
+                <div className="text-brand-accent" style={{
+                  fontFamily: "var(--font-body), sans-serif",
                   fontSize: "clamp(1.5rem, 8vw, 3.5rem)",
                   fontWeight: 300,
                   lineHeight: 1,
@@ -58,15 +58,15 @@ export default function ProcessTimelineSection({
                   {String(index + 1).padStart(2, "0")}
                 </div>
                 <div>
-                  <h3 className="text-brand-deep" style={{
-                    fontFamily: "var(--font-subjectivity), serif",
+                  <h3 className="text-brand-heading" style={{
+                    fontFamily: "var(--font-body), sans-serif",
                     fontSize: "clamp(1.1rem, 3vw, 1.35rem)",
-                    fontWeight: 600,
+                    fontWeight: 500,
                     marginBottom: "0.6rem"
                   }}>
                     {step.title}
                   </h3>
-                  <p className="text-[0.95rem] text-brand-mid">{step.description}</p>
+                  <p className="text-[0.95rem] text-brand-text">{step.description}</p>
                 </div>
               </div>
             </RevealOnScroll>
@@ -75,16 +75,16 @@ export default function ProcessTimelineSection({
 
         {/* Visits card */}
         <RevealOnScroll>
-          <div className="mt-10 overflow-hidden rounded-2xl" style={{ background: "var(--warm-white)", border: "1px solid var(--gold)", opacity: 1 }}>
-            <div className="border-b px-6 py-4" style={{ borderColor: "var(--border)", borderLeft: "3px solid var(--gold)" }}>
-              <p className="text-sm font-semibold" style={{ color: "var(--brown)" }}>
+          <div className="mt-10 overflow-hidden rounded-2xl" style={{ background: "var(--surface)", border: "1px solid var(--accent)", opacity: 1 }}>
+            <div className="border-b px-6 py-4" style={{ borderColor: "var(--border)", borderInlineStart: "3px solid var(--accent)" }}>
+              <p className="text-sm font-semibold" style={{ color: "var(--muted)" }}>
                 {labels.visitsTitle}
               </p>
             </div>
             <ul className="flex flex-wrap gap-x-10 gap-y-3 px-6 py-5 text-sm" style={{ color: "var(--text)" }}>
               {process.visits.map((visit) => (
                 <li key={visit} className="flex items-start gap-3">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--gold)" }} />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
                   <span>{visit}</span>
                 </li>
               ))}

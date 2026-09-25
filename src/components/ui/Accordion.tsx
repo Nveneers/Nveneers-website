@@ -24,19 +24,19 @@ export default function Accordion({ items }: AccordionProps) {
           <div key={item.question} className="card overflow-hidden">
             <button
               type="button"
-              className="flex w-full items-center justify-between px-6 py-5 text-start text-sm font-medium text-brand-deep"
+              className="flex w-full items-center justify-between px-6 py-5 text-start text-sm font-medium text-brand-heading"
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex(isOpen ? null : index)}
             >
               <span>{item.question}</span>
-              <span className="text-brand-gold text-lg">
+              <span className="text-brand-accent text-lg">
                 {isOpen ? "\u2212" : "+"}
               </span>
             </button>
             <div
               id={panelId}
-              className={`px-6 pb-6 text-sm text-brand-mid ${
+              className={`px-6 pb-6 text-sm text-brand-text ${
                 isOpen ? "block" : "hidden"
               }`}
             >

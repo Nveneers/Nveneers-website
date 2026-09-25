@@ -1,43 +1,22 @@
 import type { CtaBannerContent } from "@/content/home";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
+import BrandWave from "@/components/BrandWave";
 
-type CtaBannerSectionProps = {
-  content: CtaBannerContent;
-};
-
-// Full-width dark CTA banner with gold gradient.
-export default function CtaBannerSection({ content }: CtaBannerSectionProps) {
+export default function CtaBannerSection({ content }: { content: CtaBannerContent }) {
   return (
-    <section className="relative overflow-hidden py-14 text-center sm:py-24" style={{ background: "var(--deep)" }}>
-      <div className="pointer-events-none absolute inset-0" style={{
-        background: "radial-gradient(ellipse 60% 80% at 50% 50%, rgba(201,168,76,0.12) 0%, transparent 70%)"
-      }} />
+    <section className="cta-stage px-4 py-20 sm:px-8 sm:py-28">
+      <BrandWave />
       <div className="container relative">
-        <RevealOnScroll>
-          <h2 className="text-brand-warm-white" style={{
-            fontFamily: "var(--font-subjectivity), serif",
-            fontWeight: 300,
-            fontSize: "clamp(1.6rem, 7vw, 4rem)",
-            lineHeight: 1.2,
-            marginBottom: "1rem"
-          }}>
-            {content.headline}
-            <br />
-            <em className="text-brand-gold-light" style={{ fontStyle: "italic" }}>
-              {content.highlightedText}
-            </em>
-          </h2>
-        </RevealOnScroll>
-        <RevealOnScroll delay={80}>
-          <p className="mx-auto max-w-[460px] text-[0.97rem] text-white/50" style={{ marginBottom: "2.5rem" }}>
-            {content.body}
-          </p>
-        </RevealOnScroll>
-        <RevealOnScroll delay={160}>
-          <a href={content.cta.href} className="btn-primary">
-            {content.cta.label}
-          </a>
-        </RevealOnScroll>
+        <div className="cta-content mx-auto max-w-4xl rounded-[2rem] px-6 py-14 text-center sm:px-14 sm:py-20">
+          <RevealOnScroll>
+            <h2 className="section-title">
+              {content.headline}<br />
+              <span className="text-brand-accent">{content.highlightedText}</span>
+            </h2>
+            <p className="mx-auto mb-8 mt-6 max-w-lg text-base text-brand-muted">{content.body}</p>
+            <a href={content.cta.href} className="btn-primary">{content.cta.label}</a>
+          </RevealOnScroll>
+        </div>
       </div>
     </section>
   );

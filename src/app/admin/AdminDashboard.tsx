@@ -4,6 +4,9 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import type { Submission, SubmissionStatus } from "@/lib/supabase";
 import StatusDropdown from "./StatusDropdown";
+import BrandLogo from "@/components/BrandLogo";
+import { ThemeToggle } from "@/components/ThemeProvider";
+import Link from "next/link";
 
 const STATUS_LABEL: Record<SubmissionStatus, string> = {
   new: "New",
@@ -12,21 +15,21 @@ const STATUS_LABEL: Record<SubmissionStatus, string> = {
 };
 
 const STATUS_COLOUR: Record<SubmissionStatus, string> = {
-  new: "bg-amber-100 text-amber-800",
-  contacted: "bg-blue-100 text-blue-800",
-  done: "bg-emerald-100 text-emerald-800"
+  new: "bg-brand-warning-soft text-brand-warning",
+  contacted: "bg-brand-accent-soft text-brand-accent",
+  done: "bg-brand-success-soft text-brand-success"
 };
 
 const STATUS_SELECT_COLOUR: Record<SubmissionStatus, string> = {
-  new: "bg-amber-50 text-amber-800 border-amber-200",
-  contacted: "bg-blue-50 text-blue-800 border-blue-200",
-  done: "bg-emerald-50 text-emerald-800 border-emerald-200"
+  new: "bg-brand-warning-soft text-brand-warning border-brand-warning/30",
+  contacted: "bg-brand-accent-soft text-brand-accent border-brand-accent/30",
+  done: "bg-brand-success-soft text-brand-success border-brand-success/30"
 };
 
 const STATUS_DOT: Record<string, string> = {
-  new: "bg-amber-400",
-  contacted: "bg-blue-500",
-  done: "bg-emerald-500"
+  new: "bg-brand-warning",
+  contacted: "bg-brand-accent",
+  done: "bg-brand-success"
 };
 
 const ALL_STATUSES: SubmissionStatus[] = ["new", "contacted", "done"];
@@ -74,7 +77,7 @@ function Spinner() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-3.5 w-3.5 animate-spin text-gray-500"
+      className="h-3.5 w-3.5 animate-spin text-brand-muted"
       aria-hidden="true"
     >
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="3" fill="none" opacity="0.25" />
@@ -188,27 +191,33 @@ export default function AdminDashboard({
       : `${visible.length} of ${submissions.length} submission${submissions.length !== 1 ? "s" : ""}`;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-brand-soft">
       {/* Header */}
-      <header className="sticky top-0 z-10 border-b border-gray-200 bg-white px-6 py-4">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <div>
-            <h1 className="text-lg font-semibold text-gray-900">Smile Assessments</h1>
-            <p className="text-xs text-gray-500">{countLabel}</p>
+      <header className="sticky top-0 z-10 border-b border-brand-border bg-brand-surface px-6 py-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-5">
+            <Link href="/en" className="hidden sm:flex"><BrandLogo className="w-32" /></Link>
+            <div>
+            <h1 className="text-lg font-semibold text-brand-heading">Smile Assessments</h1>
+            <p className="text-xs text-brand-muted">{countLabel}</p>
+            </div>
           </div>
+          <div className="flex items-center gap-3">
+          <ThemeToggle />
           <button
             onClick={handleLogout}
             disabled={loggingOut}
-            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-600 transition hover:bg-gray-100 disabled:opacity-50"
+            className="rounded-lg border border-brand-border px-3 py-1.5 text-sm text-brand-text transition hover:bg-brand-soft disabled:opacity-50"
           >
             {loggingOut ? "Signing out…" : "Sign out"}
           </button>
+          </div>
         </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-4 py-8">
         {error && (
-          <div className="mb-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
+          <div className="mb-6 rounded-lg bg-brand-danger-soft px-4 py-3 text-sm text-brand-danger">
             Error loading submissions: {error}
           </div>
         )}
@@ -221,14 +230,14 @@ export default function AdminDashboard({
               placeholder="Search by name or phone…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 focus:border-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-100"
+              className="flex-1 rounded-xl border border-brand-border bg-brand-surface px-4 py-2.5 text-sm text-brand-heading shadow-sm placeholder:text-brand-muted focus:border-brand-accent focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
             <StatusDropdown
               value={statusFilter}
               options={FILTER_OPTIONS}
               onChange={setStatusFilter}
               size="md"
-              colourClass="bg-white text-gray-700 border-gray-200"
+              colourClass="bg-brand-surface text-brand-text border-brand-border"
               optionDot={STATUS_DOT}
               ariaLabel="Filter by status"
             />
@@ -238,21 +247,21 @@ export default function AdminDashboard({
         {submissions.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <p className="text-4xl">📭</p>
-            <p className="mt-3 text-base font-medium text-gray-700">No submissions yet</p>
-            <p className="mt-1 text-sm text-gray-400">They&apos;ll appear here once patients submit their smile photos.</p>
+            <p className="mt-3 text-base font-medium text-brand-text">No submissions yet</p>
+            <p className="mt-1 text-sm text-brand-muted">They&apos;ll appear here once patients submit their smile photos.</p>
           </div>
         ) : visible.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <p className="text-4xl">🔍</p>
-            <p className="mt-3 text-base font-medium text-gray-700">No results found</p>
-            <p className="mt-1 text-sm text-gray-400">Try adjusting your search or filter.</p>
+            <p className="mt-3 text-base font-medium text-brand-text">No results found</p>
+            <p className="mt-1 text-sm text-brand-muted">Try adjusting your search or filter.</p>
           </div>
         ) : (
           <>
             {/* Desktop table */}
-            <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
+            <div className="hidden overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm md:block">
               <table className="w-full text-sm">
-                <thead className="border-b border-gray-200 bg-gray-50 text-xs font-semibold uppercase tracking-wide text-gray-500">
+                <thead className="border-b border-brand-border bg-brand-soft text-xs font-semibold uppercase tracking-wide text-brand-muted">
                   <tr>
                     <th className="px-4 py-3 text-left">Photo</th>
                     <th className="px-4 py-3 text-left">Name</th>
@@ -262,11 +271,11 @@ export default function AdminDashboard({
                     <th className="px-4 py-3 text-left">Delete</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
+                <tbody className="divide-y divide-brand-border">
                   {visible.map((s) => (
                     <tr
                       key={s.id}
-                      className={`transition hover:bg-gray-50 ${s.status === "done" ? "opacity-60" : ""}`}
+                      className="transition hover:bg-brand-soft"
                     >
                       <td className="px-4 py-3">
                         <div className="group relative h-14 w-14">
@@ -275,7 +284,7 @@ export default function AdminDashboard({
                             <img
                               src={s.photo_url}
                               alt={`${s.name}'s smile`}
-                              className="h-14 w-14 rounded-lg object-cover ring-1 ring-gray-200 transition hover:ring-yellow-400"
+                              className="h-14 w-14 rounded-lg object-cover ring-1 ring-brand-border transition hover:ring-brand-accent"
                             />
                           </a>
                           <button
@@ -287,7 +296,7 @@ export default function AdminDashboard({
                             }}
                             disabled={saving === s.id}
                             aria-label={`Save ${s.name}'s photo`}
-                            className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-white/90 text-gray-700 opacity-0 shadow ring-1 ring-gray-200 transition group-hover:opacity-100 hover:text-yellow-600 disabled:opacity-100"
+                            className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-brand-surface/90 text-brand-text opacity-0 shadow ring-1 ring-brand-border transition group-hover:opacity-100 hover:text-brand-accent disabled:opacity-100"
                           >
                             {saving === s.id ? (
                               <Spinner />
@@ -297,18 +306,18 @@ export default function AdminDashboard({
                           </button>
                         </div>
                       </td>
-                      <td className="px-4 py-3 font-medium text-gray-900">{s.name}</td>
-                      <td className="px-4 py-3 text-gray-600">
+                      <td className="px-4 py-3 font-medium text-brand-heading">{s.name}</td>
+                      <td className="px-4 py-3 text-brand-text">
                         <a
                           href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="underline underline-offset-2 hover:text-green-600"
+                          className="underline underline-offset-2 hover:text-brand-success"
                         >
                           {s.phone}
                         </a>
                       </td>
-                      <td className="px-4 py-3 text-gray-500">{formatDate(s.created_at)}</td>
+                      <td className="px-4 py-3 text-brand-muted">{formatDate(s.created_at)}</td>
                       <td className="px-4 py-3">
                         <StatusDropdown
                           value={s.status}
@@ -326,8 +335,8 @@ export default function AdminDashboard({
                           disabled={deleting === s.id || isPending}
                           className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition disabled:opacity-50 ${
                             confirmDelete === s.id
-                              ? "border-red-300 bg-red-50 text-red-700 hover:bg-red-100"
-                              : "border-gray-300 text-gray-500 hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+                              ? "border-brand-danger/30 bg-brand-danger-soft text-brand-danger hover:bg-brand-danger-soft"
+                              : "border-brand-border text-brand-muted hover:border-brand-danger/30 hover:bg-brand-danger-soft hover:text-brand-danger"
                           }`}
                         >
                           {deleting === s.id ? "Deleting…" : confirmDelete === s.id ? "Confirm?" : "Delete"}
@@ -344,7 +353,7 @@ export default function AdminDashboard({
               {visible.map((s) => (
                 <div
                   key={s.id}
-                  className={`rounded-2xl border border-gray-200 bg-white p-4 shadow-sm ${s.status === "done" ? "opacity-60" : ""}`}
+                  className="rounded-2xl border border-brand-border bg-brand-surface p-4 shadow-sm"
                 >
                   <div className="flex gap-4">
                     <div className="relative h-16 w-16 shrink-0">
@@ -353,7 +362,7 @@ export default function AdminDashboard({
                         <img
                           src={s.photo_url}
                           alt={`${s.name}'s smile`}
-                          className="h-16 w-16 rounded-xl object-cover ring-1 ring-gray-200"
+                          className="h-16 w-16 rounded-xl object-cover ring-1 ring-brand-border"
                         />
                       </a>
                       <button
@@ -365,23 +374,23 @@ export default function AdminDashboard({
                         }}
                         disabled={saving === s.id}
                         aria-label={`Save ${s.name}'s photo`}
-                        className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-white/90 text-gray-700 shadow ring-1 ring-gray-200 transition hover:text-yellow-600"
+                        className="absolute bottom-1 right-1 flex h-6 w-6 items-center justify-center rounded-md bg-brand-surface/90 text-brand-text shadow ring-1 ring-brand-border transition hover:text-brand-accent"
                       >
                         {saving === s.id ? <Spinner /> : <DownloadIcon />}
                       </button>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-semibold text-gray-900">{s.name}</p>
+                      <p className="font-semibold text-brand-heading">{s.name}</p>
                       <div className="mt-0.5 flex items-center justify-between gap-2">
                         <a
                           href={`https://wa.me/${s.phone.replace(/\D/g, "")}`}
                           target="_blank"
                           rel="noreferrer"
-                          className="text-sm text-gray-600 underline underline-offset-2 hover:text-green-600"
+                          className="text-sm text-brand-text underline underline-offset-2 hover:text-brand-success"
                         >
                           {s.phone}
                         </a>
-                        <p className="shrink-0 whitespace-nowrap text-xs text-gray-400">
+                        <p className="shrink-0 whitespace-nowrap text-xs text-brand-muted">
                           {formatDate(s.created_at)}
                         </p>
                       </div>
@@ -402,8 +411,8 @@ export default function AdminDashboard({
                       disabled={deleting === s.id || isPending}
                       className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition disabled:opacity-50 ${
                         confirmDelete === s.id
-                          ? "border-red-300 bg-red-50 text-red-700 hover:bg-red-100"
-                          : "border-gray-300 text-gray-500 hover:border-red-300 hover:bg-red-50 hover:text-red-700"
+                          ? "border-brand-danger/30 bg-brand-danger-soft text-brand-danger hover:bg-brand-danger-soft"
+                          : "border-brand-border text-brand-muted hover:border-brand-danger/30 hover:bg-brand-danger-soft hover:text-brand-danger"
                       }`}
                     >
                       {deleting === s.id ? "Deleting…" : confirmDelete === s.id ? "Confirm?" : "Delete"}

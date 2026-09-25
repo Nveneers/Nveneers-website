@@ -1,6 +1,7 @@
-﻿{
-  "name": "Non Prep Veneer",
+{
+  "name": "Nveneer",
   "logoFull": "/images/brand/logo-full.svg",
   "logoMark": "/images/brand/logo-mark.svg",
-  "logoAlt": "Non Prep Veneer logo"
+  "logoAlt": "Nveneer — Non prep veneer",
+  "logoDark": "/images/brand/logo-full-dark.svg"
 }

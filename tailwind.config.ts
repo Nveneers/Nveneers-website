@@ -1,55 +1,21 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
+const semanticColors = Object.fromEntries(
+  ["canvas", "surface", "soft", "heading", "text", "muted", "border", "accent", "accent-soft", "inverse", "inverse-text", "success", "success-soft", "warning", "warning-soft", "danger", "danger-soft"].map(
+    (name) => [name, `rgb(var(--color-${name}) / <alpha-value>)`]
+  )
+);
+export default {
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1.5rem",
-        md: "2rem",
-        lg: "3rem"
-      },
-      screens: {
-        "2xl": "1100px"
-      }
-    },
+    container: { center: true, padding: { DEFAULT: "0rem", sm: "1rem", lg: "2rem" }, screens: { "2xl": "1180px" } },
     extend: {
-      colors: {
-        brand: {
-          cream: "#f4f6fa",
-          ivory: "#e8edf5",
-          "warm-white": "#f8fafd",
-          gold: "#c9a84c",
-          "gold-light": "#e8d08a",
-          brown: "#7a6030",
-          deep: "#0a1628",
-          mid: "#2a4066",
-          text: "#1a2e4a",
-          muted: "#5a7099",
-          border: "#c0cfe0"
-        }
-      },
-      fontFamily: {
-        brand: ["var(--font-subjectivity)", "serif"]
-      },
-      keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" }
-        },
-        pulse: {
-          "0%, 100%": { opacity: "0.3" },
-          "50%": { opacity: "1" }
-        }
-      },
-      animation: {
-        "fade-up": "fade-up 700ms ease-out both",
-        pulse: "pulse 2s ease infinite"
-      }
+      colors: { brand: { ...semanticColors, cyan: "#00c6ff", blue: "#2c51f4", green: "#00ff9d" } },
+      fontFamily: { brand: ["var(--font-body)", "sans-serif"] },
+      fontWeight: { normal: "300", semibold: "500", bold: "800" },
+      keyframes: { "fade-up": { "0%": { opacity: "0", transform: "translateY(24px)" }, "100%": { opacity: "1", transform: "translateY(0)" } } },
+      animation: { "fade-up": "fade-up 700ms ease-out both" }
     }
   },
   plugins: []
-};
-
-export default config;
+} satisfies Config;

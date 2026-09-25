@@ -66,10 +66,12 @@ export default function Homepage({ locale }: HomepageProps) {
       data-locale={locale}
     >
       <LanguageDocument locale={locale} />
+      <a href="#main-content" className="skip-link">{locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}</a>
       <MobileHeader
         locale={locale}
         navigation={navigation}
         brand={brand}
+        themeLabel={ui.header.themeToggleLabel}
         languageToggle={{
           label: ui.header.languageSwitchLabel,
           ariaLabel: ui.header.languageSwitchAriaLabel,
@@ -77,6 +79,8 @@ export default function Homepage({ locale }: HomepageProps) {
         }}
       />
       <SiteHeader
+        homeHref={`/${locale}`}
+        themeLabel={ui.header.themeToggleLabel}
         navigation={navigation}
         cta={hero.primaryCta}
         brand={brand}
@@ -86,7 +90,7 @@ export default function Homepage({ locale }: HomepageProps) {
           href: `/${ui.header.languageSwitchLocale}`
         }}
       />
-      <main className="pb-[calc(6rem+env(safe-area-inset-bottom))] md:pb-0">
+      <main id="main-content">
         <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
         <IntroStripSection content={introStrip} />
         <ProductSplitSection content={product} />
@@ -125,7 +129,7 @@ export default function Homepage({ locale }: HomepageProps) {
           labels={ui.contact}
         />
       </main>
-      <FooterSection content={footer} />
+      <FooterSection content={footer} brand={brand} locale={locale} />
       <MobileActionBar
         whatsapp={contact.whatsapp}
         cta={hero.primaryCta}
