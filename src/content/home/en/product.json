@@ -1,4 +1,4 @@
-﻿{
+{
   "eyebrow": "What They Are",
   "headline": "A conservative veneer option for the right cases",
   "body": [
@@ -8,15 +8,52 @@
   "bullets": [
     {
       "title": "No alteration",
-      "description": "When possible, we preserve natural enamel and avoid aggressive reshaping."
+      "description": "When possible, we preserve natural enamel and avoid aggressive reshaping.",
+      "image": {
+        "src": "/images/veneers/enamel-preservation.webp",
+        "alt": "Illustration of a thin veneer in front of an intact natural tooth, showing the enamel beneath"
+      },
+      "visual": {
+        "kind": "preservation",
+        "tag": "Enamel preservation",
+        "value": "0",
+        "unit": "mm",
+        "label": "Tooth reduction",
+        "detail": "In clinically suitable cases"
+      }
     },
     {
       "title": "Natural translucency",
-      "description": "Layered ceramics that mimic light reflection for a lifelike finish."
+      "description": "Layered ceramics that mimic light reflection for a lifelike finish.",
+      "image": {
+        "src": "/images/veneers/porcelain-translucency.webp",
+        "alt": "Illustration of a thin porcelain shell with light passing through its delicate edges"
+      },
+      "visual": {
+        "kind": "translucency",
+        "tag": "Porcelain detail",
+        "value": "≈0.2",
+        "unit": "mm",
+        "label": "Ultra-thin profile",
+        "detail": "Thickness varies by case"
+      }
     },
     {
       "title": "Smile design preview",
-      "description": "Digital planning to align expectations before any work begins."
+      "description": "Digital planning to align expectations before any work begins.",
+      "image": {
+        "src": "/images/veneers/smile-planning.webp",
+        "alt": "Illustrative smiling portrait with smile-planning guides"
+      },
+      "visual": {
+        "kind": "planning",
+        "tag": "Smile planning",
+        "value": "2",
+        "unit": "",
+        "label": "Typical treatment visits",
+        "detail": "Plan, then place · Your plan may vary"
+      }
     }
-  ]
+  ],
+  "illustrationNote": "Illustrative views, not patient results. Your treatment is planned after a clinical assessment."
 }

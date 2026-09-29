@@ -44,8 +44,10 @@ function fixture(locale = "en", validation = 200, deniedStorage = false) {
     return exports;
   }
   const storage = compile("../src/lib/browserStorage.ts");
+  const brandWave = compile("../src/components/BrandWave.tsx");
   const Component = compile("../src/components/sections/SmileAssessmentSection.tsx", {
     "@/lib/browserStorage": storage,
+    "@/components/BrandWave": brandWave,
     "@/components/ui/RevealOnScroll": { default: ({ children }) => children }
   }).default;
   const labels = json(`../src/content/home/${locale}/ui.json`).assessment;

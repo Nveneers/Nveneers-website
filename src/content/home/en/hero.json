@@ -1,5 +1,8 @@
-﻿{
-  "primaryCta": { "label": "Get assessed", "href": "#assessment" },
+{
+  "primaryCta": {
+    "label": "Get assessed",
+    "href": "#assessment"
+  },
   "videos": [
     {
       "id": "hero-1",
@@ -11,5 +14,13 @@
       "src": "/videos/hero-2-en.mp4",
       "poster": "/videos/hero-2-en-poster.jpg"
     }
-  ]
+  ],
+  "eyebrow": "Nveneer · Non prep veneers",
+  "headline": "Your smile. Naturally you.",
+  "body": "Explore ultra-thin veneers and a smile designed around you. Start with a personal assessment of your natural teeth.",
+  "secondaryCta": {
+    "label": "Explore the results",
+    "href": "#cases"
+  },
+  "note": "Free initial assessment · Clinically guided planning"
 }

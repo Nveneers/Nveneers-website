@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { readStorage, writeStorage } from "@/lib/browserStorage";
+import BrandWave from "@/components/BrandWave";
 
 const COUNTRY_CODES = [
   { code: "+964", label: "🇮🇶 +964" },
@@ -229,8 +230,9 @@ export default function SmileAssessmentSection({
   }
 
   return (
-    <section id="assessment" className="section section-soft scroll-mt-24">
-      <div className="container">
+    <section id="assessment" className="section section-soft assessment-stage scroll-mt-24">
+      <BrandWave />
+      <div className="container relative">
         <RevealOnScroll>
           <div className="card mx-auto max-w-3xl p-6 sm:p-10">
             <p className="intro-label">{content.eyebrow}</p>

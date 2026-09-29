@@ -1,11 +1,29 @@
 {
   "eyebrow": "What Are N Veneers?",
   "headline": "A Revolution in Cosmetic Dentistry",
-  "body": "Dental N Veneers are a patented brand of ultra-thin porcelain veneers \u2014 roughly 0.2 mm thick, about the width of a contact lens \u2014 that are bonded directly over your natural teeth. Crafted from proprietary Cerinate porcelain, they require little to no enamel removal, making them a minimally invasive and often reversible procedure.",
+  "body": "N Veneers are ultra-thin porcelain shells designed to cover the front surface of your teeth. In suitable cases, they can enhance shape and shade with little or no enamel removal. Thickness and preparation are selected for your smile after a clinical assessment.",
   "stats": [
-    { "value": "0.2", "unit": "mm", "label": "Ultra-thin porcelain" },
-    { "value": "20", "unit": "yr", "label": "Potential lifespan" },
-    { "value": "2", "unit": "", "label": "Appointments only" },
-    { "value": "0", "unit": "", "label": "Shots or drilling" }
-  ]
+    {
+      "value": "2",
+      "unit": "",
+      "label": "Typical visits to plan and place"
+    },
+    {
+      "value": "0",
+      "unit": "mm",
+      "label": "Enamel reduction in suitable cases"
+    }
+  ],
+  "image": {
+    "src": "/images/veneers/veneer-macro.webp",
+    "alt": "Macro illustration of a wafer-thin porcelain veneer held by dental tweezers, showing its translucent edge",
+    "eyebrow": "Porcelain, up close",
+    "caption": "Enlarged illustration to show detail. Final thickness depends on the material and your case."
+  },
+  "measurement": {
+    "value": "≈0.2",
+    "unit": "mm",
+    "label": "An ultra-thin profile",
+    "detail": "A delicate edge. A closer look."
+  }
 }

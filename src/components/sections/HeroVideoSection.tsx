@@ -1,142 +1,102 @@
 "use client";
 
-import { useEffect, useRef, useState, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 import BrandWave from "@/components/BrandWave";
-import type { HeroContent } from "@/content/home";
-
-// Hero clips play sped up for a more energetic feel.
-const PLAYBACK_RATE = 1.5;
+import type { HeroContent, HomeUi } from "@/content/home";
 
 type HeroVideoSectionProps = {
   content: HeroContent;
-  labels: {
-    dotAriaLabelPrefix: string;
-  };
+  labels: HomeUi["hero"];
 };
 
-// Full-viewport hero with video carousel background and dot navigation.
-export default function HeroVideoSection({
-  content,
-  labels
-}: HeroVideoSectionProps) {
+export default function HeroVideoSection({ content, labels }: HeroVideoSectionProps) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
-  const videos = content.videos ?? [];
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videos = content.videos;
+  const activeVideo = videos[activeIndex];
 
   useEffect(() => {
-    if (videos.length === 0) {
-      return;
-    }
-
-    setActiveIndex((previous) => (previous < videos.length ? previous : 0));
-  }, [videos.length]);
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setIsPlaying(!preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
-    if (videos.length === 0) {
-      return;
-    }
-
-    videoRefs.current.forEach((video, index) => {
-      if (!video) {
-        return;
-      }
-
-      if (index !== activeIndex) {
-        if (!video.paused) {
-          video.pause();
-        }
-        video.currentTime = 0;
-        return;
-      }
-
-      video.currentTime = 0;
-      video.playbackRate = PLAYBACK_RATE;
+    const video = videoRef.current;
+    if (!video) return;
+    let cancelled = false;
+    if (isPlaying) {
       void video.play().catch(() => {
-        // Ignore playback failures triggered by browser policies.
+        if (!cancelled) setIsPlaying(false);
       });
-    });
-  }, [activeIndex, videos.length]);
-
-  // Browsers reset playbackRate when a source (re)loads, so reassert it whenever
-  // a clip loads or starts — this keeps the speed-up from being silently undone.
-  const applyRate = (event: SyntheticEvent<HTMLVideoElement>) => {
-    event.currentTarget.playbackRate = PLAYBACK_RATE;
-  };
-
-  const handleEnded = (index: number) => {
-    if (index !== activeIndex || videos.length <= 1) {
-      return;
+    } else {
+      video.pause();
     }
-
-    setActiveIndex((previous) => (previous + 1) % videos.length);
-  };
+    return () => { cancelled = true; };
+  }, [activeIndex, isPlaying]);
 
   return (
-    <section className="hero-stage">
+    <section className="hero-stage" aria-labelledby="hero-title">
       <BrandWave />
-      {/* Centered stage caps the screen width on large displays so the brand ribbon frames it. */}
-      <div className="relative mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-        {/* The frame is true 3:2 and sized by HEIGHT (capped to fit on first screen),
-            so width follows the ratio — the whole video is visible on load, no crop. */}
-        <div className="relative mx-auto aspect-[3/2] h-[min(calc(100dvh-9rem),calc((100vw-2rem)*2/3))] w-auto max-w-full overflow-hidden rounded-2xl hero-frame">
-          {videos.length > 0 ? (
-            <div className="absolute inset-0" dir="ltr" aria-hidden="true">
-              <div
-                className="flex h-full w-full transition-transform duration-700 ease-out"
-                style={{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }}
+      <div className="container hero-layout">
+        <div className="hero-copy">
+          <p className="intro-label">{content.eyebrow}</p>
+          <h1 id="hero-title" className="hero-title">{content.headline}</h1>
+          <p className="hero-description">{content.body}</p>
+          <div className="hero-actions">
+            <a href={content.primaryCta.href} className="btn-primary">{content.primaryCta.label}</a>
+            <a href={content.secondaryCta.href} className="hero-text-link">
+              {content.secondaryCta.label}<span aria-hidden="true">↗</span>
+            </a>
+          </div>
+          <p className="hero-note">{content.note}</p>
+        </div>
+
+        {activeVideo && (
+          <div className="hero-media">
+            <div className="hero-frame">
+              <video
+                key={activeVideo.id}
+                ref={videoRef}
+                className="h-full w-full object-contain"
+                muted
+                playsInline
+                loop={videos.length === 1}
+                poster={activeVideo.poster}
+                preload="metadata"
+                onEnded={() => setActiveIndex(index => (index + 1) % videos.length)}
+                aria-hidden="true"
               >
+                <source src={activeVideo.src} type="video/mp4" />
+              </video>
+            </div>
+            <div className="hero-media-controls">
+              <div className="flex items-center gap-1" dir="ltr">
                 {videos.map((video, index) => (
-                  <div key={video.id} className="relative h-full w-full shrink-0">
-                    <video
-                      ref={(node) => {
-                        videoRefs.current[index] = node;
-                      }}
-                      className="absolute inset-0 h-full w-full object-cover"
-                      muted
-                      playsInline
-                      poster={video.poster}
-                      preload={index === activeIndex ? "auto" : "metadata"}
-                      onLoadedMetadata={applyRate}
-                      onPlay={applyRate}
-                      onEnded={() => handleEnded(index)}
-                      aria-hidden="true"
-                    >
-                      <source src={video.src} type="video/mp4" />
-                    </video>
-                  </div>
+                  <button
+                    key={video.id}
+                    type="button"
+                    onClick={() => setActiveIndex(index)}
+                    aria-label={`${labels.dotAriaLabelPrefix} ${index + 1}`}
+                    aria-pressed={index === activeIndex}
+                    className="hero-dot"
+                  >
+                    <span />
+                  </button>
                 ))}
               </div>
+              <button type="button" className="hero-playback" onClick={() => setIsPlaying(value => !value)}>
+                <svg viewBox="0 0 16 16" width="13" height="13" fill="currentColor" aria-hidden="true">
+                  {isPlaying ? <path d="M4 3h3v10H4zM9 3h3v10H9z" /> : <path d="m5 2 9 6-9 6z" />}
+                </svg>
+                {isPlaying ? labels.pauseLabel : labels.playLabel}
+              </button>
             </div>
-          ) : (
-            <div
-              className="absolute inset-0 bg-brand-inverse"
-              aria-hidden="true"
-            />
-          )}
-
-          {videos.length > 1 ? (
-            <div className="absolute inset-x-0 bottom-3 z-10 flex justify-center px-4 sm:bottom-5">
-              <div className="flex items-center gap-2 rounded-full bg-black/25 px-3 py-1.5 backdrop-blur-sm sm:gap-3 sm:px-4 sm:py-2">
-                {videos.map((video, index) => {
-                  const isActive = index === activeIndex;
-
-                  return (
-                    <button
-                      key={video.id}
-                      type="button"
-                      onClick={() => setActiveIndex(index)}
-                      aria-label={`${labels.dotAriaLabelPrefix} ${index + 1}`}
-                      aria-pressed={isActive}
-                      className="flex h-6 w-6 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:h-8 sm:w-8"
-                    >
-                      <span className={`h-2 w-2 rounded-full border border-white/80 transition sm:h-2.5 sm:w-2.5 ${isActive ? "bg-white" : "bg-transparent"}`} />
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          ) : null}
-        </div>
+          </div>
+        )}
       </div>
     </section>
   );

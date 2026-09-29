@@ -15,6 +15,11 @@ export type HeroVideoSlide = {
 };
 
 export type HeroContent = {
+  eyebrow: string;
+  headline: string;
+  body: string;
+  secondaryCta: { label: string; href: string };
+  note: string;
   primaryCta: { label: string; href: string };
   videos: HeroVideoSlide[];
 };
@@ -35,7 +40,20 @@ export type ProductContent = {
   eyebrow: string;
   headline: string;
   body: string[];
-  bullets: { title: string; description: string }[];
+  bullets: {
+    title: string;
+    description: string;
+    image: { src: string; alt: string };
+    visual: {
+      kind: "preservation" | "translucency" | "planning";
+      tag: string;
+      value: string;
+      unit: string;
+      label: string;
+      detail: string;
+    };
+  }[];
+  illustrationNote: string;
 };
 
 export type EligibilityContent = {
@@ -60,6 +78,12 @@ export type BeforeAfterCase = {
   title: string;
   image: string;
   description?: string;
+  // Crop the two views from the existing stacked case photograph, without
+  // retouching the clinical images. Coordinates are fractions of its height.
+  comparison?: {
+    before: { top: number; height: number };
+    after: { top: number; height: number };
+  };
 };
 
 export type BestCase = {
@@ -110,6 +134,8 @@ export type IntroStripContent = {
   headline: string;
   body: string;
   stats: IntroStripStat[];
+  image: { src: string; alt: string; eyebrow: string; caption: string };
+  measurement: { value: string; unit: string; label: string; detail: string };
 };
 
 export type ComparisonRow = {
@@ -159,6 +185,8 @@ export type HomeUi = {
   };
   hero: {
     dotAriaLabelPrefix: string;
+    pauseLabel: string;
+    playLabel: string;
   };
   socialProof: {
     eyebrow: string;
@@ -182,6 +210,9 @@ export type HomeUi = {
     compareAriaLabel: string;
     beforeLabel: string;
     afterLabel: string;
+    hint: string;
+    previousLabel: string;
+    nextLabel: string;
   };
   bestCases: {
     eyebrow: string;

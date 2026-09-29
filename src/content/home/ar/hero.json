@@ -1,5 +1,8 @@
-﻿{
-  "primaryCta": { "label": "احصل على تقييم", "href": "#assessment" },
+{
+  "primaryCta": {
+    "label": "احصل على تقييم",
+    "href": "#assessment"
+  },
   "videos": [
     {
       "id": "hero-1",
@@ -11,5 +14,13 @@
       "src": "/videos/hero-2-ar.mp4",
       "poster": "/videos/hero-2-ar-poster.jpg"
     }
-  ]
+  ],
+  "eyebrow": "إنفنير · قشور بدون برد",
+  "headline": "ابتسامة تُشبهك. بثقة أكبر.",
+  "body": "اكتشف القشور فائقة الرقة وخطة ابتسامة مصممة لك، تبدأ بتقييم شخصي لأسنانك.",
+  "secondaryCta": {
+    "label": "شاهد النتائج",
+    "href": "#cases"
+  },
+  "note": "تقييم أولي مجاني · خطة بإشراف طبي"
 }

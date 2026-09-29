@@ -6,7 +6,9 @@
     "themeToggleLabel": "Dark appearance"
   },
   "hero": {
-    "dotAriaLabelPrefix": "Go to video"
+    "dotAriaLabelPrefix": "Go to video",
+    "pauseLabel": "Pause video",
+    "playLabel": "Play video"
   },
   "socialProof": {
     "eyebrow": "Patient Satisfaction"
@@ -29,7 +31,10 @@
     "headline": "Real cases, refined outcomes",
     "compareAriaLabel": "Compare before and after",
     "beforeLabel": "Before",
-    "afterLabel": "After"
+    "afterLabel": "After",
+    "hint": "Drag the line to explore each smile, before and after.",
+    "previousLabel": "Previous cases",
+    "nextLabel": "Next cases"
   },
   "bestCases": {
     "eyebrow": "Our Best Work",

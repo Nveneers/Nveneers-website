@@ -6,7 +6,9 @@
     "themeToggleLabel": "المظهر الداكن"
   },
   "hero": {
-    "dotAriaLabelPrefix": "الانتقال إلى الفيديو"
+    "dotAriaLabelPrefix": "الانتقال إلى الفيديو",
+    "pauseLabel": "إيقاف مؤقت",
+    "playLabel": "تشغيل الفيديو"
   },
   "socialProof": {
     "eyebrow": "رضا المرضى"
@@ -29,7 +31,10 @@
     "headline": "حالات تم انجازها بتقنية الانفنير بدون برد الاسنان",
     "compareAriaLabel": "قارن بين قبل وبعد",
     "beforeLabel": "قبل",
-    "afterLabel": "بعد"
+    "afterLabel": "بعد",
+    "hint": "حرّك الفاصل لمقارنة الابتسامة قبل وبعد.",
+    "previousLabel": "الحالات السابقة",
+    "nextLabel": "الحالات التالية"
   },
   "bestCases": {
     "eyebrow": "أفضل أعمالنا",

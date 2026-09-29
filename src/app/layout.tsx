@@ -14,10 +14,15 @@ const formula = localFont({
 });
 const ping = localFont({
   src: [
+    { path: "../../public/fonts/PingARLT-Hairline.otf", weight: "50", style: "normal" },
+    { path: "../../public/fonts/PingARLT-Thin.otf", weight: "100", style: "normal" },
+    { path: "../../public/fonts/PingARLT-ExtraLight.otf", weight: "200", style: "normal" },
+    { path: "../../public/fonts/PingARLT-Light.otf", weight: "300", style: "normal" },
     { path: "../../public/fonts/PingARLT-Regular.otf", weight: "400", style: "normal" },
-    { path: "../../public/fonts/PingARLT-Medium.otf", weight: "500", style: "normal" }
+    { path: "../../public/fonts/PingARLT-Medium.otf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/PingARLT-Bold.otf", weight: "700", style: "normal" }
   ],
-  variable: "--font-arabic", display: "swap"
+  variable: "--font-arabic", display: "swap", preload: false
 });
 export const metadata: Metadata = {
   title: "Nveneer | Non prep veneers",
