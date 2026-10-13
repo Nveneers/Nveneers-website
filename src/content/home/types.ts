@@ -22,6 +22,10 @@ export type HeroContent = {
   note: string;
   primaryCta: { label: string; href: string };
   videos: HeroVideoSlide[];
+  backgroundVideo: {
+    desktop: { src: string; poster: string };
+    mobile: { src: string; poster: string };
+  };
 };
 
 export type Testimonial = {

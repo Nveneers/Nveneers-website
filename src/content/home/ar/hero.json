@@ -3,6 +3,10 @@
     "label": "احصل على تقييم",
     "href": "#assessment"
   },
+  "backgroundVideo": {
+    "desktop": { "src": "/videos/portrait-hero-desktop.mp4", "poster": "/videos/portrait-hero-desktop.webp" },
+    "mobile": { "src": "/videos/portrait-hero-mobile.mp4", "poster": "/videos/portrait-hero-mobile.webp" }
+  },
   "videos": [
     {
       "id": "hero-1",

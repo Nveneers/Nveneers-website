@@ -197,6 +197,88 @@ p { text-wrap: pretty; }
   .product-section-intro { grid-template-columns: 1.2fr 1fr; gap: 5rem; }
   .material-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
 }
+/* The original .hero-* player styles remain available for its future reuse. */
+.portrait-hero {
+  --portrait-blue: #053575;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: max(48rem, 100svh);
+  background: var(--portrait-blue);
+  color: #fff;
+}
+.portrait-hero-media, .portrait-hero-shade { position: absolute; inset: 0; pointer-events: none; }
+.portrait-hero-media { z-index: -2; }
+.portrait-hero-image, .portrait-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.portrait-hero-video { opacity: 0; }
+.portrait-hero-video.has-frame { opacity: 1; }
+.portrait-hero-shade {
+  z-index: -1;
+  background: linear-gradient(180deg, rgb(12 20 44 / 0.24), transparent 20%, transparent 39%, rgb(10 17 37 / 0.65) 62%, #0b1229 100%);
+}
+.portrait-hero-layout {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  min-height: inherit;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: max(27rem, 56svh) 1.25rem 2rem;
+}
+.portrait-hero-copy { width: 100%; max-width: 35rem; }
+.portrait-hero-eyebrow { color: #e3e9f7; font-size: 0.75rem; font-weight: 500; }
+.portrait-hero-title { margin-top: 0.7rem; max-width: 12ch; font-size: clamp(2.3rem, 7.7vw, 3.5rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.04em; text-wrap: balance; }
+.portrait-hero-description { max-width: 38ch; margin-top: 1rem; font-size: 0.88rem; line-height: 1.55; color: #e3e9f7; }
+.portrait-hero-actions { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.6rem; }
+.portrait-hero-primary, .portrait-hero-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; min-height: 48px; padding: 0.85rem 1.1rem; flex: 1 1 auto; border-radius: 999px; font-size: 0.84rem; font-weight: 500; line-height: 1.3; text-align: center; transition: background 180ms, transform 180ms; }
+.portrait-hero-primary { background: #fff; color: #182445; }
+.portrait-hero-secondary { background: rgb(255 255 255 / 0.16); color: #fff; }
+.portrait-hero-primary:hover { background: #e3e9f7; transform: translateY(-2px); }
+.portrait-hero-secondary:hover { background: rgb(255 255 255 / 0.25); transform: translateY(-2px); }
+.portrait-hero-primary:active, .portrait-hero-secondary:active { transform: translateY(1px); }
+.portrait-hero-note { margin-top: 1.2rem; max-width: 45ch; font-size: 0.68rem; line-height: 1.6; color: #cbd5ed; }
+.portrait-hero-playback { position: absolute; inset-inline-end: 1rem; top: calc(5.5rem + env(safe-area-inset-top)); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgb(255 255 255 / 0.25); border-radius: 50%; color: #fff; background: rgb(12 20 44 / 0.5); transition: background 180ms; }
+.portrait-hero-playback:hover { background: rgb(12 20 44 / 0.8); }
+.portrait-hero :focus-visible, .hero-header.is-over-hero :focus-visible { outline-color: #fff; }
+.locale-rtl .portrait-hero-title { max-width: 15ch; line-height: 1.3; letter-spacing: 0; font-weight: 500; }
+.hero-header { transition: background 220ms, border-color 220ms; }
+.hero-header.is-over-hero { background: transparent; border-color: transparent; backdrop-filter: none; }
+.hero-header.is-over-hero .hero-header-inner { --heading: #fff; --muted: #e3e9f7; --accent: #fff; }
+.hero-header.is-over-hero .brand-logo-light { display: none; }
+.hero-header.is-over-hero .brand-logo-dark { display: block; }
+.hero-header.is-over-hero .mobile-menu-trigger { color: #fff; }
+.hero-header.is-over-hero nav a:hover, .hero-header.is-over-hero nav a[aria-current="true"] { color: #fff; }
+.hero-header.is-over-hero .btn-primary { color: #182445; background: #fff; box-shadow: none; }
+.hero-header.is-over-hero .btn-primary:hover { background: #e3e9f7; }
+.hero-header.is-over-hero .theme-toggle, .hero-header.is-over-hero .language-toggle { color: #fff; border-color: rgb(255 255 255 / 0.25); background: rgb(255 255 255 / 0.08); }
+.hero-header.is-over-hero .theme-toggle:hover, .hero-header.is-over-hero .language-toggle:hover { background: rgb(255 255 255 / 0.18); }
+@media (min-width: 640px) and (max-width: 1023px) {
+  .portrait-hero { min-height: max(58rem, 100svh); }
+  .portrait-hero-layout { padding-inline: 2.5rem; padding-bottom: 3rem; padding-top: max(35rem, 58svh); }
+  .portrait-hero-description { font-size: 1rem; }
+  .portrait-hero-actions { max-width: 29rem; }
+}
+@media (min-width: 1024px) {
+  .portrait-hero { min-height: clamp(44rem, 56vw, 54rem); }
+  .portrait-hero-media { inset-inline-start: auto; width: 60%; }
+  .portrait-hero-image, .portrait-hero-video { object-position: 50% 28%; }
+  .portrait-hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--portrait-blue), transparent 28%, transparent 90%, rgb(5 53 117 / 0.35)); }
+  .locale-rtl .portrait-hero-media::after { background: linear-gradient(270deg, var(--portrait-blue), transparent 28%, transparent 90%, rgb(5 53 117 / 0.35)); }
+  .portrait-hero-shade { background: linear-gradient(180deg, rgb(5 53 117 / 0.25), transparent 22%, transparent 80%, rgb(13 22 48 / 0.28)); }
+  .portrait-hero-layout { align-items: center; padding: 10rem 3rem 5rem; }
+  .portrait-hero-copy { width: 44%; max-width: 36rem; }
+  .portrait-hero-eyebrow { font-size: 0.85rem; }
+  .portrait-hero-title { margin-top: 1.3rem; font-size: clamp(3.5rem, 4.8vw, 5.1rem); }
+  .portrait-hero-description { max-width: 34ch; margin-top: 1.6rem; font-size: 1.08rem; line-height: 1.65; }
+  .portrait-hero-actions { margin-top: 2.3rem; gap: 1rem; }
+  .portrait-hero-primary, .portrait-hero-secondary { flex: 0 1 auto; min-height: 54px; padding-inline: 1.65rem; font-size: 0.95rem; }
+  .portrait-hero-note { margin-top: 3rem; font-size: 0.75rem; }
+  .portrait-hero-playback { top: auto; bottom: 2rem; inset-inline-end: 2rem; }
+  .desktop-hero-header { padding: 1rem 2rem; border: 0; }
+  .desktop-hero-header .hero-header-inner { border-radius: 999px; transition: background 220ms; }
+  .desktop-hero-header.is-over-hero .hero-header-inner { background: rgb(13 22 48 / 0.7); backdrop-filter: blur(16px); }
+}
 @keyframes pageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 .page-fade-in { animation: pageFadeIn 0.4s ease-out; }
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }

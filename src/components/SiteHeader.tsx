@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import useHeroHeader from "@/components/useHeroHeader";
 import LanguageToggle from "@/components/LanguageToggle";
 import HeaderNav from "@/components/HeaderNav";
 import BrandLogo from "@/components/BrandLogo";
@@ -14,9 +17,10 @@ type SiteHeaderProps = {
   languageToggle: { label: string; href: string; ariaLabel: string };
 };
 export default function SiteHeader({ navigation, cta, brand, themeLabel, homeHref, languageToggle }: SiteHeaderProps) {
+  const overHero = useHeroHeader();
   return (
-    <header dir="ltr" className="site-header sticky top-0 z-40 hidden lg:block">
-      <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-6 px-6 xl:px-10">
+    <header dir="ltr" className={`site-header hero-header desktop-hero-header fixed inset-x-0 top-0 z-40 hidden lg:block${overHero ? " is-over-hero" : ""}`}>
+      <div className="hero-header-inner mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-6 px-6 xl:px-10">
         <Link href={homeHref} className="flex shrink-0 items-center"><BrandLogo brand={brand} className="w-36 xl:w-40" priority /></Link>
         <HeaderNav navigation={navigation} />
         <div className="flex shrink-0 items-center gap-3">

@@ -6,9 +6,8 @@ import {
 } from "@/content/home";
 import SiteHeader from "@/components/SiteHeader";
 import MobileHeader from "@/components/MobileHeader";
-import MobileActionBar from "@/components/MobileActionBar";
 import LanguageDocument from "@/components/LanguageDocument";
-import HeroVideoSection from "@/components/sections/HeroVideoSection";
+import PortraitHeroSection from "@/components/sections/PortraitHeroSection";
 import IntroStripSection from "@/components/sections/IntroStripSection";
 import ProductSplitSection from "@/components/sections/ProductSplitSection";
 import BestCasesSection from "@/components/sections/BestCasesSection";
@@ -68,6 +67,7 @@ export default function Homepage({ locale }: HomepageProps) {
       <LanguageDocument locale={locale} />
       <a href="#main-content" className="skip-link">{locale === "ar" ? "انتقل إلى المحتوى" : "Skip to content"}</a>
       <MobileHeader
+        cta={hero.primaryCta}
         locale={locale}
         navigation={navigation}
         brand={brand}
@@ -91,7 +91,7 @@ export default function Homepage({ locale }: HomepageProps) {
         }}
       />
       <main id="main-content">
-        <HeroVideoSection content={hero as HeroContent} labels={ui.hero} />
+        <PortraitHeroSection content={hero as HeroContent} labels={ui.hero} />
         <IntroStripSection content={introStrip} />
         <ProductSplitSection content={product} />
         <BestCasesSection cases={bestCases} labels={ui.bestCases} />
@@ -130,10 +130,6 @@ export default function Homepage({ locale }: HomepageProps) {
         />
       </main>
       <FooterSection content={footer} brand={brand} locale={locale} />
-      <MobileActionBar
-        whatsapp={contact.whatsapp}
-        cta={hero.primaryCta}
-      />
     </div>
   );
 }

@@ -11,7 +11,7 @@ type FooterSectionProps = {
 
 export default function FooterSection({ content, brand, locale }: FooterSectionProps) {
   return (
-    <footer className="border-t border-brand-border bg-brand-canvas px-5 pb-28 pt-12 text-center text-xs text-brand-muted lg:pb-10">
+    <footer className="border-t border-brand-border bg-brand-canvas px-5 pb-10 pt-12 text-center text-xs text-brand-muted">
       <Link href={`/${locale}`} className="mb-8 inline-flex"><BrandLogo brand={brand} className="w-36" /></Link>
       {content.links?.length ? (
         <nav className="mb-4 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">

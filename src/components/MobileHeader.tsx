@@ -5,6 +5,7 @@ import Link from "next/link";
 import LanguageToggle from "@/components/LanguageToggle";
 import BrandLogo from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeProvider";
+import useHeroHeader from "@/components/useHeroHeader";
 import type { Locale } from "@/content/home";
 import type { BrandContent } from "@/content/home/types";
 
@@ -13,9 +14,11 @@ type MobileHeaderProps = {
   navigation: { label: string; href: string }[];
   brand: BrandContent;
   themeLabel: string;
+  cta: { label: string; href: string };
   languageToggle: { label: string; href: string; ariaLabel: string };
 };
-export default function MobileHeader({ locale, navigation, brand, themeLabel, languageToggle }: MobileHeaderProps) {
+export default function MobileHeader({ locale, navigation, brand, themeLabel, languageToggle, cta }: MobileHeaderProps) {
+  const overHero = useHeroHeader();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -49,13 +52,12 @@ export default function MobileHeader({ locale, navigation, brand, themeLabel, la
   }, [open]);
   const closeMenu = () => setOpen(false);
   return (
-    <header dir="ltr" className="site-header sticky top-0 z-[60] lg:hidden">
-      <div className="flex min-h-[72px] items-center justify-between gap-2 px-3 py-3 pt-[calc(0.75rem+env(safe-area-inset-top))] min-[360px]:px-4">
+    <header dir="ltr" className={`site-header hero-header mobile-hero-header fixed inset-x-0 top-0 z-[60] lg:hidden${overHero && !open ? " is-over-hero" : ""}`}>
+      <div className="hero-header-inner flex min-h-[72px] items-center justify-between gap-2 px-3 py-3 pt-[calc(0.75rem+env(safe-area-inset-top))] min-[360px]:px-4">
         <Link href={`/${locale}`} className="flex items-center" onClick={closeMenu}><BrandLogo brand={brand} className="w-20 min-[360px]:w-28 sm:w-36" priority /></Link>
         <div className="flex items-center gap-1 sm:gap-3">
-          <LanguageToggle href={languageToggle.href} label={languageToggle.label} ariaLabel={languageToggle.ariaLabel} />
-          <ThemeToggle label={themeLabel} />
-          <button ref={triggerRef} type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border text-brand-heading" aria-expanded={open} aria-controls="mobile-menu" aria-label={menuLabel} onClick={() => setOpen(true)}>
+          <Link href={cta.href} className="btn-primary mobile-header-cta !px-4 !text-xs" onClick={closeMenu}>{cta.label}</Link>
+          <button ref={triggerRef} type="button" className="mobile-menu-trigger inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-heading" aria-expanded={open} aria-controls="mobile-menu" aria-label={menuLabel} onClick={() => setOpen(true)}>
             <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
           </button>
         </div>

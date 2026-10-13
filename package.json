@@ -12,6 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:branding": "node --test tests/branding.test.mjs tests/assessment.test.mjs",
+    "test:hero": "node --test tests/portrait-hero.test.mjs",
     "preview:mock": "node tests/preview-server.mjs"
   },
   "dependencies": {
