@@ -1,4 +1,4 @@
-import Image from "next/image";
+import VeneerImage from "@/components/VeneerImage";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 import type { ProductContent } from "@/content/home";
 
@@ -56,7 +56,7 @@ export default function ProductSplitSection({ content }: ProductSplitSectionProp
                   <p>{bullet.description}</p>
                 </div>
                 <figure className={`material-visual material-visual-${bullet.visual.kind}`}>
-                  <Image src={bullet.image.src} alt={bullet.image.alt} fill sizes="(min-width: 1024px) 360px, (min-width: 768px) 30vw, 92vw" className="material-image" />
+                  <VeneerImage src={bullet.image.src} alt={bullet.image.alt} sizes="(min-width: 1024px) 360px, (min-width: 768px) calc((100vw - 8rem) / 2), 92vw" className="material-image" />
                   <DetailGuides kind={bullet.visual.kind} />
                   <span className="material-tag"><span aria-hidden="true" />{bullet.visual.tag}</span>
                   {bullet.visual.kind === "translucency" && <div className="porcelain-shades" aria-hidden="true"><i /><i /><i /><i /></div>}

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import VeneerImage from "@/components/VeneerImage";
 import type { IntroStripContent } from "@/content/home";
 import RevealOnScroll from "@/components/ui/RevealOnScroll";
 
@@ -27,7 +27,7 @@ export default function IntroStripSection({ content }: IntroStripSectionProps) {
         <RevealOnScroll delay={120}>
           <figure className="veneer-macro">
             <div className="veneer-macro-image">
-              <Image src={content.image.src} alt={content.image.alt} fill sizes="(min-width: 1024px) 620px, (min-width: 768px) 52vw, 92vw" className="object-cover" />
+              <VeneerImage src={content.image.src} alt={content.image.alt} eager sizes="(min-width: 1024px) 620px, (min-width: 768px) 52vw, 92vw" className="object-cover" />
               <span className="macro-eyebrow">{content.image.eyebrow}</span>
               <svg className="macro-guides" viewBox="0 0 600 500" fill="none" aria-hidden="true" focusable="false">
                 <path d="M30 75V30h45m450 0h45v45M155 330h80l35-20" />

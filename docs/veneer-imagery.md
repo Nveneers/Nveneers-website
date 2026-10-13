@@ -9,6 +9,10 @@ Generated with the built-in image generation tool on 2026-09-29. These are educa
 - `public/images/veneers/porcelain-translucency.webp`
 - `public/images/veneers/smile-planning.webp`
 
+## Web delivery
+
+The four original files are genuine WebP assets. Delivery variants at 480px, 800px and the original dimensions (plus a 1200px macro variant) are pre-generated with Pillow, Lanczos resizing, WebP quality 76 and method 6. `VeneerImage` serves them through a responsive `srcset` directly, avoiding on-demand Next.js AVIF conversion. High-density screens also use compressed variants; the original files remain as source assets. The introduction's macro loads eagerly; the three product illustrations retain native lazy loading. Re-generate these variants if replacing the originals.
+
 ## Numerical wording and sources
 
 - The approximate 0.2 mm concept comes from the supplied Nveneer brand brief and existing website copy. It is retained as an illustrative reference, qualified by material and case. This is not an independently verified manufacturing specification for Nveneer.
