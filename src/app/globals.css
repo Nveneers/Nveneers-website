@@ -132,7 +132,7 @@ p { text-wrap: pretty; }
   .case-navigation { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--border); border-radius: 50%; color: var(--heading); background: var(--surface); transition: border-color 180ms, background 180ms; }
   .case-navigation:hover { border-color: var(--accent); background: rgb(var(--color-accent-soft)); }
   .cta-stage { position: relative; isolation: isolate; overflow: hidden; background: var(--canvas); }
-  .cta-stage .brand-wave { width: 125%; left: -12.5%; top: 35%; height: 80%; opacity: 0.9; }
+  .cta-stage .brand-wave { width: 125%; left: -12.5%; top: 35%; height: 80%; opacity: 0.9; overflow: visible; }
   .cta-content { position: relative; background: rgb(var(--color-surface) / 0.95); border: 1px solid var(--border); box-shadow: var(--brand-shadow); }
   .skip-link { @apply fixed left-4 top-4 z-[100] rounded-full bg-brand-surface px-5 py-3 font-medium text-brand-heading; transform: translateY(-150%); }
   .skip-link:focus { transform: translateY(0); }
